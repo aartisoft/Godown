@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGrey"
+    tools:context="com.commercialMgmt.AddNewConsumerActivity"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/actionbar_toolbar" />
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/customerView">
+
+        <EditText
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:id="@+id/et_consumer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Consumer"
+            android:drawableLeft="@drawable/product"
+            android:drawablePadding="@dimen/activity_vertical_margin"
+            android:focusableInTouchMode="false"
+            android:theme="@style/EditTextTheme"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+            <com.infosolutions.ui.user.stock.AutoCompleteTextView
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:id="@+id/et_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select Product"
+                android:enabled="false"
+                android:drawableLeft="@drawable/product"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:theme="@style/EditTextTheme"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                />
+            <TextView
+                android:id="@+id/assigned_cylinder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:visibility="gone"
+                />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_chalan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_chalan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:hint="Chalan No"
+                android:enabled="true"
+                android:maxLength="12"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_bpcl_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_bpcl_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:hint="MRP"
+                android:enabled="true"
+                android:maxLength="12"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="numberDecimal"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_Discount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/percentage"
+                android:hint="Discount"
+                android:enabled="true"
+                android:maxLength="12"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="numberDecimal"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_rate_for_party"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_rate_for_party"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:hint="Selling Price"
+                android:enabled="true"
+                android:maxLength="12"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="numberDecimal"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_total_credit_cyl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <EditText
+                    android:id="@+id/et_total_credit_cyl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/email"
+                    android:hint="Total Credit Cyl"
+                    android:enabled="true"
+                    android:maxLength="3"
+                    android:drawablePadding="@dimen/activity_vertical_margin"
+                    android:inputType="number"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_full_cyl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_full_cyl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:hint="Full Cyl"
+                android:enabled="true"
+                android:maxLength="3"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_empty_cyl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_empty_cyl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:hint="Empty Cyl"
+                android:enabled="true"
+                android:maxLength="3"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_sv_cyl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <EditText
+                    android:id="@+id/et_sv_cyl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/email"
+                    android:hint="SV"
+                    android:enabled="true"
+                    android:maxLength="3"
+                    android:drawablePadding="@dimen/activity_vertical_margin"
+                    android:inputType="number"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_credit_cyl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_credit_cyl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:hint="Credit Cyl Balanced"
+                android:enabled="true"
+                android:maxLength="3"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_total_amt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_total_amt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:hint="Total Amt"
+                android:enabled="true"
+                android:maxLength="15"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="numberDecimal"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_cash_amt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <EditText
+                    android:id="@+id/et_cash_amt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/email"
+                    android:hint="Cash Amt"
+                    android:enabled="true"
+                    android:maxLength="15"
+                    android:drawablePadding="@dimen/activity_vertical_margin"
+                    android:inputType="numberDecimal"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_total_credit_amt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/et_total_credit_amt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/email"
+                android:hint="Total Credit Amt"
+                android:enabled="true"
+                android:maxLength="12"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:inputType="numberDecimal"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_balanced_credit_amt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <EditText
+                    android:id="@+id/et_balanced_credit_amt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/email"
+                    android:hint="Balanced Credit Amt"
+                    android:enabled="true"
+                    android:maxLength="12"
+                    android:drawablePadding="@dimen/activity_vertical_margin"
+                    android:inputType="numberDecimal"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <EditText
+                android:id="@+id/abcdesd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_lock_outline"
+                android:hint="GSTIN"
+                android:visibility="invisible"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnSaveComDelivery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:elevation="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_background"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textAllCaps="true"
+        android:text="Submit" />
+
+
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/progress_bar_container"
+        android:layout_width="match_parent"
+        android:clickable="true"
+        android:layout_height="match_parent"
+        android:background="@color/black_overlay"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            />
+    </RelativeLayout>
+</FrameLayout>
