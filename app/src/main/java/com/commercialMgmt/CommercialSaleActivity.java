@@ -195,14 +195,22 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     }
 
     private void SetCreditTextColor() {
-        if (Integer.parseInt(et_balanced_credit_amt.getText().toString())<0){
-            et_balanced_credit_amt.setTextColor(Color.RED);
+
+        if (et_balanced_credit_amt.getText().toString().equalsIgnoreCase("")) {
+            //code
         }
-        else{
-            et_balanced_credit_amt.setTextColor(Color.BLACK);
+        else {
+            if (
+                    Integer.parseInt(et_balanced_credit_amt.getText().toString()) < 0) {
+                et_balanced_credit_amt.setTextColor(Color.RED);
+            } else {
+                et_balanced_credit_amt.setTextColor(Color.BLACK);
+            }
         }
 
     }
+
+
 
     private void disabledViews() {
         et_full_cyl.setEnabled(false);
@@ -901,8 +909,8 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                     }
                     else {
                         // start
-                        if (selectedConsumer != null && selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
-                            userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
+                        /*if (selectedConsumer != null && selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
+                        */    userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
                             if (userAssignedCylinderModel != null) {
                                 assignedCylinderQty = userAssignedCylinderModel.Qty;
 
@@ -933,12 +941,12 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                                 Toast.makeText(CommercialSaleActivity.this, "Cylinder Not Assigened to deliveryman yet"
                                         , Toast.LENGTH_SHORT).show();
                             }
-                        } else {
+                        /*} else {
                             com_product_name.setText("");
                             assigned_cylinder.setVisibility(View.GONE);
                             Toast.makeText(CommercialSaleActivity.this, "You are registered with "+selectedConsumer.product_name+" Kg product"
                                     , Toast.LENGTH_SHORT).show();
-                        }
+                        }*/
 
 
                         //end
