@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -148,11 +149,15 @@ public class DomesticActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
         mTitle.setText("Domestic");
+        ImageView imageView=toolbar.findViewById(R.id.imageview);
+        imageView.setImageResource(R.drawable.domestic);
         setSupportActionBar(toolbar);
+
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_backspace);
+        //getSupportActionBar().setDisplayOptions(R.drawable.cyl_five_kg);
         setProductModel();
 
 

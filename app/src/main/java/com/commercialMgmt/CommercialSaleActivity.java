@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -38,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.commercialMgmt.models.AreaModel;
 import com.commercialMgmt.models.CommercialProductModel;
 import com.commercialMgmt.models.ConsumerModel;
 import com.commercialMgmt.models.UserAssignedCylinderModel;
@@ -114,6 +116,10 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
     @BindView(R.id.assigned_cylinder)
     TextView assigned_cylinder;
+    @BindView(R.id.et_area)
+    AutoCompleteTextView et_area;
+
+
     boolean isCommercialConsumerServiceRunning;
     int creditCyl = 0;
     @BindView(R.id.progress_bar_container)
@@ -123,9 +129,15 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     private DatabaseHelper databaseHelper;
     private ArrayList<String> spinItems;
     private ArrayAdapter<String> spinAdapter;
+
+    private ArrayList<String> areaItems;
+    private ArrayAdapter<String> areaAdapter;
+    private int[] areaArr;
+
     private int[] productArr;
     private String consumerList;
     private List<CommercialProductModel> productDBList;
+    private List<AreaModel> areaDBList;
     private List<ConsumerModel> consumerDBList;
     private String[] consumerArr;
     private ArrayList<String> consumerListItems;
@@ -144,6 +156,8 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     private Double calSellingPrice = 0.0, calTotalAmt = 0.0;
     private int assignedCylinderQty, availableStock = 0;
     private UserAssignedCylinderModel userAssignedCylinderModel;
+    private AreaModel areaModel;
+    private CommercialProductModel commercialProductModel;
     private int sv_cyl = 0;
     private ProgressDialog pd;
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -154,6 +168,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
         }
     };
+    private int areaId;
 
     public String getSelectedDeliveryManId() {
         return selectedDeliveryManId;
@@ -175,11 +190,13 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         disabledViews();
 
         userId = PreferencesHelper.getInstance().getIntValue(Constants.LOGIN_DELIVERYMAN_ID, 0);
-        Log.e("UserID..", String.valueOf(userId));
 
+        com_product_name.isClickable();
         disabledFocusFromET();
         getConsumer();
-        getProducts();
+        getArea();
+      //getProducts();
+
 
         SetCreditTextColor();
 
@@ -189,9 +206,84 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
                 new IntentFilter(Constants.CONSUMER_BROADCAST));
-        // To fetch assigned cylinder model
+
+    }
+
+    private void getArea() {
 
 
+        areaItems = new ArrayList<>();
+
+        RuntimeExceptionDao<AreaModel, Integer> comAreaDB = getHelper().getCommercialAreaModelExceptionDao();
+        areaDBList = comAreaDB.queryForAll();
+        int areaSize = areaDBList.size();
+
+        /*areaArr = new int[areaDBList.size()];
+        for (int i = 0; i < areaDBList.size(); i++) {
+            areaArr[i] = areaDBList.get(i).AreaID;
+            Log.e("Products position....", String.valueOf(areaArr[i]));
+        }*/
+
+        areaItems.clear();
+
+        if (areaSize > 0) {
+            for (AreaModel item : areaDBList)
+                areaItems.add(item.AreaName);
+        }
+
+        areaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, areaItems);
+        et_area.setAdapter(areaAdapter);
+
+
+        et_area.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                areaId = areaDBList.get(position).AreaID;
+
+                RuntimeExceptionDao<CommercialProductModel, Integer> comProductDB = getHelper().getComProductRTExceptionDao();
+                productDBList = comProductDB.queryForAll();
+                int productSize = productDBList.size();
+
+                //----------------------------------------------------------------------------------
+                //  product poaitions
+
+                productArr = new int[productDBList.size()];
+                for (int i = 0; i < productDBList.size(); i++) {
+                    productArr[i] = productDBList.get(i).product_id;
+                    Log.e("Products position....", String.valueOf(productArr[i]));
+                }
+
+                try {
+                    commercialProductModel=getHelper().getCommercialProductModelExceptionDao().queryBuilder().where().eq("Area", areaId).queryForFirst();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                if (commercialProductModel!=null ) {
+                    spinItems = new ArrayList<>();
+
+                    spinItems.clear();
+
+                    if (productSize > 0 ) {
+                        for (CommercialProductModel item : productDBList)
+                            if (Integer.toString(areaId).equalsIgnoreCase(Integer.toString(item.Area))) {
+                                spinItems.add(item.product_name);
+                            }
+                    }
+
+                    spinAdapter = new ArrayAdapter<String>(CommercialSaleActivity.this, android.R.layout.simple_spinner_dropdown_item, spinItems);
+                    //spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    com_product_name.setAdapter(spinAdapter);
+                }
+                    et_area.setText(areaDBList.get(position).AreaName);
+                    et_area.clearFocus();
+                    com_product_name.setText("");
+                    com_product_name.setEnabled(true);
+                    com_product_name.isFocusable();
+
+                    getProducts();
+            }
+        });
     }
 
     private void SetCreditTextColor() {
@@ -248,13 +340,20 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Double calMRP;
+
+                Double calMRP=0.0;
                 Double calDiscount = 0.0;
                 calMRP = Double.valueOf(et_bpcl_rate.getText().toString());
 
-                if (!TextUtils.isEmpty(et_discount.getText())) {
-                    calDiscount = Double.valueOf(et_discount.getText().toString());
-                    calSellingPrice = calMRP - calDiscount;
+
+                if (!TextUtils.isEmpty(et_discount.getText()) ) {
+                    if(et_discount.getText().toString().equalsIgnoreCase(".")){
+                        et_discount.setText("0");
+                    }
+                    {
+                        calDiscount = Double.valueOf(et_discount.getText().toString());
+                        calSellingPrice = calMRP - calDiscount;
+                    }
                     if (calDiscount >= calMRP) {
                         et_discount.setError("You can't enter discount more than MRP");
                         et_discount.setText("0");
@@ -484,7 +583,13 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
                 totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
                 totalAmt = 0.0;
-                Double cash=Double.valueOf(et_cash_amt.getText().toString());
+                Double cash=0.0;
+                if (et_cash_amt.getText().toString().equalsIgnoreCase(".")) {
+                    et_cash_amt.setText("0");
+                }
+                else {
+                    cash = Double.valueOf(et_cash_amt.getText().toString());
+                }
                 if(isplusminus) {
                     et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt - totalAmt) + cash));
                     et_balanced_credit_amt.setTextColor(Color.RED);
@@ -714,20 +819,21 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             //jsonObject.put("DATETIME",Constants.getDateTime());
             jsonObject.put("ConsumerName", consumer_name);
             jsonObject.put("IdProduct", productId);
-            jsonObject.put("ChallanNo", Chalan);
-            jsonObject.put("MRP", MRP);
-            jsonObject.put("Discount", Discount);
-            jsonObject.put("SellingPrice", Selling_price);
-            jsonObject.put("FullCylQty", et_full_cyl.getText().toString());
-            jsonObject.put("EmptyCylRec", empty_cyl);
-            jsonObject.put("TotalAmount", Total_Amt);
-            jsonObject.put("CashAmount", Cash_Amt);
-            jsonObject.put("TotalPendingEmptyCyl", total_pending_cyl);
-            jsonObject.put("TotalCreditAmount", Total_credit_amt);
+            jsonObject.put("ChallanNo", et_chalan.getText().toString());
+            jsonObject.put("MRP", Double.valueOf(et_bpcl_rate.getText().toString()));
+            jsonObject.put("Discount", Double.valueOf(et_discount.getText().toString()));
+            jsonObject.put("SellingPrice",Double.valueOf(et_selling_price.getText().toString()));
+            jsonObject.put("FullCylQty", Integer.parseInt(et_full_cyl.getText().toString()));
+            jsonObject.put("EmptyCylRec", Integer.parseInt(et_full_cyl.getText().toString()));
+            jsonObject.put("TotalAmount", Double.valueOf(et_total_amt.getText().toString()));
+            jsonObject.put("CashAmount", Double.valueOf(et_cash_amt.getText().toString()));
+            jsonObject.put("TotalPendingEmptyCyl", Integer.parseInt(et_credit_cyl.getText().toString()));
+            jsonObject.put("TotalCreditAmount", Double.valueOf(et_balanced_credit_amt.getText().toString()));
             jsonObject.put("LedgerCode", selectedConsumer.LedgerCode);
+            jsonObject.put("Area", commercialProductModel.Area);
             jsonObject.put("YY", AppSettings.getYear());
             jsonObject.put("ModeOfEntry", "Mobile");
-            jsonObject.put("sv", sv_cyl);
+            jsonObject.put("sv", Integer.parseInt(et_sv_cyl.getText().toString()));
 
             parentJsonObj.put("objCommercialSale", jsonObject);
             Log.e("final JSON", parentJsonObj.toString());
@@ -785,11 +891,14 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
 
                             selectedConsumer = consumerDBList.get(i);
-                            com_product_name.setText("");
-                            com_product_name.setEnabled(true);
+
                             String ConsumerName = consumer;
                             AppSettings.hideKeyboard(CommercialSaleActivity.this);
                             et_consumer_name.setText(ConsumerName);
+                            com_product_name.setText("");
+                            com_product_name.setEnabled(true);
+                            et_cash_amt.setEnabled(true);
+
 
                             checkDefaultConsumer();
 
@@ -844,7 +953,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         {
             et_chalan.setEnabled(true);
             et_sv_cyl.setEnabled(true);
-            et_discount.setEnabled(true);
+           // et_discount.setEnabled(true);
 
         }
 
@@ -852,65 +961,38 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
     private void getProducts() {
 
-        spinItems = new ArrayList<>();
-
-        RuntimeExceptionDao<CommercialProductModel, Integer> comProductDB = getHelper().getComProductRTExceptionDao();
-        productDBList = comProductDB.queryForAll();
-        int productSize = productDBList.size();
-
-        //----------------------------------------------------------------------------------
-        //  product poaitions
-
-        productArr = new int[productDBList.size()];
-        for (int i = 0; i < productDBList.size(); i++) {
-            productArr[i] = productDBList.get(i).product_id;
-            Log.e("Products position....", String.valueOf(productArr[i]));
-        }
-
-        //------------------------------------------------------------------------------------
-
-        spinItems.clear();
-
-        if (productSize > 0) {
-            for (CommercialProductModel item : productDBList)
-                spinItems.add(item.product_name);
-        }
-
-        //spinItems.add(0,default_str);
-
-        spinAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinItems);
-        //spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        com_product_name.setAdapter(spinAdapter);
 
         com_product_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
                 productId = productDBList.get(position).product_id;
                 BPCLrate = productDBList.get(position).bpcl_rate;
+                int areaId=productDBList.get(position).Area;
 
                 try {
+                   // areaModel=getHelper().getCommercialAreaModelExceptionDao().queryBuilder().where().eq("AreaID",areaId).queryForFirst();
 
-                    if (et_consumer_name.getText().toString().contains("Default")
-                            || et_consumer_name.getText().toString().contains("DEFAULT")
-                            || et_consumer_name.getText().toString().contains("default"))
-                    {
+                        if (et_consumer_name.getText().toString().contains("Default")
+                                || et_consumer_name.getText().toString().contains("DEFAULT")
+                                || et_consumer_name.getText().toString().contains("default")) {
 
-                        userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
-                        if (userAssignedCylinderModel != null) {
-                            assignedCylinderQty = userAssignedCylinderModel.Qty;
-                            assigned_cylinder.setVisibility(View.VISIBLE);
-                            assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
-                            availableStock = userAssignedCylinderModel.Qty;
-                            et_empty_cyl.setEnabled(true);
-                            et_full_cyl.setEnabled(true);
-                        }
+                            userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
+                            if (userAssignedCylinderModel != null) {
+                                assignedCylinderQty = userAssignedCylinderModel.Qty;
+                                assigned_cylinder.setVisibility(View.VISIBLE);
+                                assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
+                                availableStock = userAssignedCylinderModel.Qty;
+                                et_empty_cyl.setEnabled(true);
+                                et_full_cyl.setEnabled(true);
+                            }
 
-                    }
-                    else {
-                        // start
-                        /*if (selectedConsumer != null && selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
-                        */    userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
+                        } else {
+                            // start
+                            /*if (selectedConsumer != null && selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
+                             */
+                            userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
                             if (userAssignedCylinderModel != null) {
                                 assignedCylinderQty = userAssignedCylinderModel.Qty;
 
@@ -933,30 +1015,21 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                                 assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
 
                             } else {
-                    /*assignedCylinderQty = 0;
-                    assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(assignedCylinderQty));*/
                                 com_product_name.setText("");
                                 assigned_cylinder.setVisibility(View.GONE);
                                 disabledViews();
                                 Toast.makeText(CommercialSaleActivity.this, "Cylinder Not Assigened to deliveryman yet"
                                         , Toast.LENGTH_SHORT).show();
                             }
-                        /*} else {
-                            com_product_name.setText("");
-                            assigned_cylinder.setVisibility(View.GONE);
-                            Toast.makeText(CommercialSaleActivity.this, "You are registered with "+selectedConsumer.product_name+" Kg product"
-                                    , Toast.LENGTH_SHORT).show();
-                        }*/
 
-
-                        //end
-                    }
-
+                            //end
+                        }
 
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 et_bpcl_rate.setText(String.valueOf(BPCLrate));
+                et_discount.setEnabled(true);
                 if (!TextUtils.isEmpty(et_consumer_name.getText())) {
                     if (selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
 

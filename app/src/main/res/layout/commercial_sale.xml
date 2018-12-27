@@ -46,10 +46,25 @@
 
             <com.infosolutions.ui.user.stock.AutoCompleteTextView
                 android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:id="@+id/et_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select Area"
+                android:enabled="false"
+                android:drawableLeft="@drawable/product"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:theme="@style/EditTextTheme"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                />
+
+            <com.infosolutions.ui.user.stock.AutoCompleteTextView
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/et_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Select Product"
+                android:focusable="false"
                 android:enabled="false"
                 android:drawableLeft="@drawable/product"
                 android:drawablePadding="@dimen/activity_vertical_margin"
@@ -64,6 +79,8 @@
                 android:textColor="@color/colorBlack"
                 android:visibility="gone"
                 />
+
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_chalan"
@@ -115,10 +132,10 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/percentage"
                 android:hint="Discount"
-                android:enabled="true"
+                android:enabled="false"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberSigned|numberDecimal"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -271,10 +288,10 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
                     android:hint="Cash Amt"
-                    android:enabled="true"
+                    android:enabled="false"
                     android:maxLength="15"
                     android:drawablePadding="@dimen/activity_vertical_margin"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="numberSigned|numberDecimal"/>
 
             </android.support.design.widget.TextInputLayout>
 

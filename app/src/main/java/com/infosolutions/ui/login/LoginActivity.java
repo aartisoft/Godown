@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 
 import com.android.volley.VolleyError;
+import com.commercialMgmt.models.AreaModel;
 import com.commercialMgmt.models.CommercialProductModel;
 import com.commercialMgmt.models.ConsumerModel;
 import com.commercialMgmt.models.UserAssignedCylinderModel;
@@ -451,6 +452,7 @@ public class LoginActivity extends BaseActivity {
                         PreferencesHelper.getInstance().setValue(Constants.LOGIN_DELIVERYMAN_ID, user_id);
 
                         fillCommercialProductsDB(jsonResult);
+                        fillAreaDB(jsonResult);
                         fillUserAssignedCylinders(jsonResult);
                         Intent intent = new Intent(this, GetCommercialConsumerService.class);
                         startService(intent);
@@ -480,6 +482,29 @@ public class LoginActivity extends BaseActivity {
 
 
         }
+    }
+
+    void fillAreaDB(JSONObject jsonObject) {
+
+
+        JSONArray arrayPRODUCT = jsonObject.optJSONArray("area");
+        RuntimeExceptionDao<AreaModel, Integer> productDB = getHelper().getCommercialAreaModelExceptionDao();
+        try {
+            productDB.deleteBuilder().delete();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(arrayPRODUCT != null) {
+            for (int product = 0; product < arrayPRODUCT.length(); product++) {
+                JSONObject objectProduct = arrayPRODUCT.optJSONObject(product);
+
+                AreaModel commercialProductModel = new AreaModel(objectProduct);
+                productDB.create(commercialProductModel);
+            }
+        }
+
+
     }
 
 
@@ -679,6 +704,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     void fillCommercialProductsDB(JSONObject jsonObject){
+
         JSONArray arrayPRODUCT = jsonObject.optJSONArray("products");
         RuntimeExceptionDao<CommercialProductModel, Integer> productDB = getHelper().getCommercialProductModelExceptionDao();
         try {

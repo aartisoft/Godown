@@ -103,6 +103,7 @@ public class ReportListItemsActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), NewReportDetailsActivity.class);
                 intent.putExtra("reportName", "GET_TODAYS_DOMESTIC");
                 intent.putExtra("header", "Domestic");
+                
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 

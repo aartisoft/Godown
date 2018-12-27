@@ -22,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -401,6 +402,9 @@ public class MainActivity extends BaseActivity {
             Toolbar toolbar = findViewById(R.id.toolbar);
             TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
             mTitle.setText(R.string.godown);
+
+            ImageView imageView=toolbar.findViewById(R.id.imageview);
+            imageView.setVisibility(View.INVISIBLE);
 
             String SELECTED_GODOWN_NAME = PreferencesHelper.getInstance().getStringValue(KEY_GODOWN_NAME, "Empty");
             String SELECTED_GODOWN_CODE = PreferencesHelper.getInstance().getStringValue(KEY_GODOWN, "Empty");

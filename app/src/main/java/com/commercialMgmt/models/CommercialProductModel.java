@@ -20,6 +20,9 @@ public class CommercialProductModel implements Serializable {
     public String product_name;
 
     @DatabaseField
+    public int Area;
+
+    @DatabaseField
     public int product_id;
 
     @DatabaseField
@@ -35,6 +38,7 @@ public class CommercialProductModel implements Serializable {
             product_category = jsonObject.optInt("ID_PRODUCT_CATEGORY");
             product_name = jsonObject.optString("PRODUCT_NAME");
             product_id = jsonObject.optInt("PRODUCT_ID");
+            Area = jsonObject.optInt("Area");
             product_rate = jsonObject.optDouble("rate");
             bpcl_rate=jsonObject.optDouble("BPCLRate");
 

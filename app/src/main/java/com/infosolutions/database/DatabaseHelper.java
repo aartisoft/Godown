@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 //import com.commercialMgmt.models.CommercialConsumerModel;
+import com.commercialMgmt.models.AreaModel;
 import com.commercialMgmt.models.CommercialProductModel;
 import com.commercialMgmt.models.CommercialStockModel;
 import com.commercialMgmt.models.ConsumerModel;
@@ -45,6 +46,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private Dao<CommercialProductModel, Integer> comProductDao = null;
 	private RuntimeExceptionDao<CommercialProductModel, Integer>
 			comProductRTExceptionDao = null;
+
+
+	private Dao<AreaModel, Integer> comAreaDao = null;
+	private RuntimeExceptionDao<AreaModel, Integer>
+			comAreaRTExceptionDao = null;
 
 	private Dao<ConsumerModel, Integer> comCosnumerDao = null;
 	private RuntimeExceptionDao<ConsumerModel, Integer>
@@ -90,6 +96,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private RuntimeExceptionDao<CommercialProductModel, Integer>
 			commercialProductModelRuntimeExceptionDao = null;
 
+
+	private RuntimeExceptionDao<AreaModel, Integer>
+			commercialAreaModelRuntimeExceptionDao = null;
+
 	private RuntimeExceptionDao<CommercialStockModel, Integer>
 			commercialStockModelRuntimeExceptionDao = null;
 
@@ -123,6 +133,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, ConsumerDetails.class);
 			TableUtils.createTable(connectionSource, ConsumerModel.class);
 			TableUtils.createTable(connectionSource, CommercialProductModel.class);
+			TableUtils.createTable(connectionSource, AreaModel.class);
 			TableUtils.createTable(connectionSource, CommercialStockModel.class);
 			TableUtils.createTable(connectionSource, UserAssignedCylinderModel.class);
 			//TableUtils.createTable(connectionSource, CommercialConsumerModel.class);
@@ -175,6 +186,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, ConsumerDetails.class, true);
 			TableUtils.dropTable(connectionSource, ConsumerModel.class,true);
 			TableUtils.dropTable(connectionSource, CommercialProductModel.class,true);
+			TableUtils.dropTable(connectionSource, AreaModel.class,true);
 			TableUtils.dropTable(connectionSource, CommercialStockModel.class,true);
 			TableUtils.dropTable(connectionSource, UserAssignedCylinderModel.class,true);
 			//TableUtils.dropTable(connectionSource, CommercialConsumerModel.class,true);
@@ -275,6 +287,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			comProductRTExceptionDao = getRuntimeExceptionDao(CommercialProductModel.class);
 		}
 		return comProductRTExceptionDao;
+	}
+
+
+	public RuntimeExceptionDao<AreaModel, Integer> getComAreaRTExceptionDao() {
+
+		if (comAreaRTExceptionDao == null) {
+			comAreaRTExceptionDao = getRuntimeExceptionDao(AreaModel.class);
+		}
+		return comAreaRTExceptionDao;
 	}
 
 	public RuntimeExceptionDao<ConsumerModel, Integer> getComConsumerRTExceptionDao() {
@@ -424,6 +445,19 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		}
 		return commercialProductModelRuntimeExceptionDao;
 	}
+
+
+
+	public RuntimeExceptionDao<AreaModel, Integer> getCommercialAreaModelExceptionDao() {
+
+		if (commercialAreaModelRuntimeExceptionDao == null) {
+			commercialAreaModelRuntimeExceptionDao = getRuntimeExceptionDao(AreaModel.class);
+		}
+		return commercialAreaModelRuntimeExceptionDao;
+	}
+
+
+
 
 	public RuntimeExceptionDao<CommercialStockModel, Integer> getCommercialStockModelExceptionDao() {
 
