@@ -204,6 +204,21 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
     }
 
 
+    public String getDateOnly() {
+
+        SimpleDateFormat simpleDateFormat = null;
+        Date date = null;
+        try {
+            DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+            date = formatter.parse(new Date().toString());
+            simpleDateFormat= new SimpleDateFormat("yyyyMMdd");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return simpleDateFormat.format(date);
+    }
+
 
     public String getDateTime() {
 

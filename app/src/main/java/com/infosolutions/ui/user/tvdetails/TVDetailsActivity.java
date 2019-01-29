@@ -57,6 +57,7 @@ import org.json.JSONObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,6 +73,8 @@ public class TVDetailsActivity extends BaseActivity {
     private DatabaseHelper databaseHelper;
     private String selectedCylinderTYPE;
     private List<ChipModel> chipListModel = new ArrayList<>();
+    private String uniqueID;
+
     @BindView(R.id.recycler_view_chip)
     RecyclerView recycler_view_chip;
     @BindView(R.id.viewTV)
@@ -128,12 +131,24 @@ public class TVDetailsActivity extends BaseActivity {
         getCylinderButtonHandler();
         getDataButtonHandler();
 
+
+
         VolleySingleton.getInstance(getApplicationContext()).addResponseListener(VolleySingleton.CallType.CONSUMER_DETAILS, this);
         input_number_of_cylinders.setEnabled(false);
         consumer_name.setEnabled(false);
         btnSubmit.setEnabled(false);
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
                 new IntentFilter(Constants.CONSUMER_BROADCAST));
+    }
+
+    public String uniqueID() {
+        int min=10,max=110;
+        int random = new Random().nextInt((max - min) + 1) + min;
+        Log.e("random number", Integer.toString(random));
+
+        String uniquerandomID=getDateOnly()+getGoDownId()+getSelectedCylinderTYPE()+Integer.toString(random);
+
+        return uniquerandomID;
     }
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -263,9 +278,11 @@ public class TVDetailsActivity extends BaseActivity {
 
     private void saveTOLocalDB(String consumerNo, int cylinderCount){
 
+        uniqueID=uniqueID()+consumerNo;
+
         RuntimeExceptionDao<TVDetailsDB, Integer> tvDB = getHelper().getTVDetailRTExceptionDao();
         tvDB.create(new TVDetailsDB(1, consumerNo, cylinderCount, getGoDownId(), getSelectedCylinderTYPE(), "INSERT",
-                getDateTime(), "N", getDeviceId(), getApplicationUserId(),"OPEN"));
+                getDateTime(), "N", getDeviceId(), getApplicationUserId(),"OPEN",uniqueID));
 
         showToast(getResources().getString(R.string.saved_success_msg));
     }

@@ -304,6 +304,7 @@ public class SplashActivity extends BaseActivity {
                     tvDetailObject.put("Mode_of_Entry", "Mobile");
                     tvDetailObject.put("CREATED_DATE", cn.surrender_date);
                     tvDetailObject.put("TV_Status", cn.tv_status);
+                    tvDetailObject.put("TV_Invoice_code", cn.uniqueID);
 
                     objectTVDetails.put(tvDetailObject);
                 } catch (JSONException e) {

@@ -101,6 +101,7 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
     private ArrayList<String> spinItems;
     private ArrayAdapter<String> spinAdapter;
     private  ArrayList<String> state ;
+    private List<CommercialProductModel> results;
 
 
     private int[] productArr;
@@ -187,11 +188,14 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
         spinItems = new ArrayList<>();
 
         RuntimeExceptionDao<CommercialProductModel, Integer> comProductDB = getHelper().getComProductRTExceptionDao();
-        productDBList = comProductDB.queryForAll();
+        try {
+            productDBList = comProductDB.queryBuilder().distinct().selectColumns("product_id","product_name").query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //productDBList = comProductDB.queryBuilder().distinct().where().in("",).query();
         int productSize = productDBList.size();
 
-        //----------------------------------------------------------------------------------
-        //  product poaitions
 
         productArr = new int[productDBList.size()];
         for(int i = 0; i < productDBList.size(); i++){
@@ -208,7 +212,6 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
                 spinItems.add(item.product_name);
         }
 
-        //spinItems.add(0,default_str);
 
         spinAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinItems);
         //spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -349,10 +352,10 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
                 jsonObject.put("uniqueId",uniqueId());
                 jsonObject.put("ModeOfEntry","Mobile");
                 jsonObject.put("IsActive","Y");
+                jsonObject.put("LedgerCode","");
                 jsonObject.put("State",et_state.getText().toString());
 
                 parentJsonObj.put("objCommercialPartyMst",jsonObject);
-                Log.e("consumer Data",parentJsonObj.toString());
                 AppSettings.getInstance(this).saveCommercialConsumer(this,parentJsonObj);
 
             } catch (JSONException e) {

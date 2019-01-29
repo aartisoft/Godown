@@ -15,7 +15,7 @@ public class TVDetailsDB implements Serializable {
     public TVDetailsDB() {
     }
 
-    public TVDetailsDB(int tv_table_id, String consumer_no, int numberOfCylinder, int godownId, int product_code ,String typeOfQuery,String surrender_date, String is_sync, String deviceId, int userId, String tv_status) {
+    public TVDetailsDB(int tv_table_id, String consumer_no, int numberOfCylinder, int godownId, int product_code ,String typeOfQuery,String surrender_date, String is_sync, String deviceId, int userId, String tv_status,String uniqueID) {
         this.tv_table_id = tv_table_id;
         this.consumer_no = consumer_no;
         this.numberOfCylinder = numberOfCylinder;
@@ -27,6 +27,8 @@ public class TVDetailsDB implements Serializable {
         this.deviceId = deviceId;
         this.userId = userId;
         this.tv_status = tv_status;
+        this.uniqueID = uniqueID;
+
     }
 
     @DatabaseField(generatedId = true, columnName = "tv_detail_id")
@@ -51,6 +53,8 @@ public class TVDetailsDB implements Serializable {
     public int userId;
     @DatabaseField
     public String tv_status;
+    @DatabaseField
+    public String uniqueID;
 
     @Override
     public String toString() {
@@ -66,6 +70,7 @@ public class TVDetailsDB implements Serializable {
                 ", deviceId='" + deviceId + '\'' +
                 ", userId=" + userId +
                 ", tv_status='" + tv_status + '\'' +
+                ", uniqueID='" + uniqueID + '\'' +
                 '}';
     }
 }

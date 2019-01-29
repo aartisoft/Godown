@@ -195,6 +195,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                                 Constants.COMMERCIAL_REPORTS);
             }
 
+
         } else {
             Toast.makeText(getApplicationContext(), R.string.no_network_available, Toast.LENGTH_SHORT).show();
         }
@@ -409,12 +410,10 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
             if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.commercial_reports_row_child, null);
-
             }
 
             LinearLayout consumerContainer = convertView.findViewById(R.id.consumerContainer);
             LinearLayout stockcontainer = convertView.findViewById(R.id.stockcontainer);
-
 
             consumer_name_textview = convertView.findViewById(R.id.consumer_name_textview);
             consumer_name_textview_value = convertView.findViewById(R.id.consumer_name_textview_value);
@@ -434,7 +433,6 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
 
             consumer_emptycyl_textview = convertView.findViewById(R.id.consumer_emptycyl_textview);
             consumer_emptycyl_textview_value = convertView.findViewById(R.id.consumer_emptycyl_textview_value);
-
 
             consumer_sv_cyl_textview = convertView.findViewById(R.id.consumer_sv_cyl_textview);
             consumer_sv_cyl_textview_value = convertView.findViewById(R.id.consumer_sv_cyl_textview_value);
@@ -464,7 +462,6 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
             payment_mode_textview.setVisibility(View.GONE);
             payment_mode_textview_value = convertView.findViewById(R.id.payment_mode_textview_value);
             payment_mode_textview_value.setVisibility(View.GONE);
-
 
             payment_status_textview = convertView.findViewById(R.id.payment_status_textview);
             payment_status_textview.setVisibility(View.GONE);
@@ -499,7 +496,6 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
 
                 discount_textview.setText("Discount: ");
                 discount_textview_value.setText(Integer.toString(childModel.Discount));
-
 
                 creditcyl_textview.setText("CredityCyl: ");
                 creditcyl_textview_value.setText(Integer.toString(childModel.CreditCyl));
@@ -545,7 +541,6 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 sv_cyl_textview.setText("SV: ");
                 sv_cyl_textview_value.setText(Integer.toString(childModel.sv));
 
-
                 credit_textview.setText("Credit: ");
                 credit_textview_value.setText(Integer.toString(childModel.Credit));
 
@@ -554,7 +549,6 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
 
                 opening_textview.setText("Opening: ");
                 opening_textview_value.setText(Integer.toString(childModel.Opening));
-
 
             }
             return  convertView;

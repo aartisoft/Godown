@@ -195,8 +195,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         disabledFocusFromET();
         getConsumer();
         getArea();
-      //getProducts();
-
 
         SetCreditTextColor();
 
@@ -218,12 +216,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         areaDBList = comAreaDB.queryForAll();
         int areaSize = areaDBList.size();
 
-        /*areaArr = new int[areaDBList.size()];
-        for (int i = 0; i < areaDBList.size(); i++) {
-            areaArr[i] = areaDBList.get(i).AreaID;
-            Log.e("Products position....", String.valueOf(areaArr[i]));
-        }*/
-
         areaItems.clear();
 
         if (areaSize > 0) {
@@ -234,54 +226,45 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         areaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, areaItems);
         et_area.setAdapter(areaAdapter);
 
-
         et_area.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 areaId = areaDBList.get(position).AreaID;
 
                 RuntimeExceptionDao<CommercialProductModel, Integer> comProductDB = getHelper().getComProductRTExceptionDao();
-                productDBList = comProductDB.queryForAll();
-                int productSize = productDBList.size();
-
-                //----------------------------------------------------------------------------------
-                //  product poaitions
-
-                productArr = new int[productDBList.size()];
-                for (int i = 0; i < productDBList.size(); i++) {
-                    productArr[i] = productDBList.get(i).product_id;
-                    Log.e("Products position....", String.valueOf(productArr[i]));
-                }
-
                 try {
-                    commercialProductModel=getHelper().getCommercialProductModelExceptionDao().queryBuilder().where().eq("Area", areaId).queryForFirst();
+                    productDBList = comProductDB.queryBuilder().where().eq("Area",areaId).query();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                int productSize = productDBList.size();
 
-                if (commercialProductModel!=null ) {
                     spinItems = new ArrayList<>();
 
                     spinItems.clear();
 
-                    if (productSize > 0 ) {
+                    if (productSize > 0) {
                         for (CommercialProductModel item : productDBList)
                             if (Integer.toString(areaId).equalsIgnoreCase(Integer.toString(item.Area))) {
                                 spinItems.add(item.product_name);
                             }
+
+                        spinAdapter = new ArrayAdapter<String>(CommercialSaleActivity.this, android.R.layout.simple_spinner_dropdown_item, spinItems);
+                        com_product_name.setAdapter(spinAdapter);
+
+                        et_area.setText(areaDBList.get(position).AreaName);
+                        et_area.clearFocus();
+                        com_product_name.setText("");
+                        com_product_name.setEnabled(true);
+                        com_product_name.isFocusable();
+                        getProducts();
+                    }
+                    else {
+                        Toast.makeText(CommercialSaleActivity.this, "Products Not Available", Toast.LENGTH_SHORT).show();
                     }
 
-                    spinAdapter = new ArrayAdapter<String>(CommercialSaleActivity.this, android.R.layout.simple_spinner_dropdown_item, spinItems);
-                    //spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    com_product_name.setAdapter(spinAdapter);
-                }
-                    et_area.setText(areaDBList.get(position).AreaName);
-                    et_area.clearFocus();
-                    com_product_name.setText("");
-                    com_product_name.setEnabled(true);
-                    com_product_name.isFocusable();
 
-                    getProducts();
+
             }
         });
     }
@@ -301,7 +284,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         }
 
     }
-
 
 
     private void disabledViews() {
@@ -556,51 +538,51 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 et_cash_amt.setError("enter valid cash amt");
             }
         } else {*/
-            if (et_total_amt.getText().toString() != null && et_total_credit_amt.getText().toString() != null
-                    && et_cash_amt.getText().toString() != null
-                    && !TextUtils.isEmpty(et_total_amt.getText())) {
-                //et_total_amt.setText("0");
-                totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
-                totalAmt = Double.valueOf(et_total_amt.getText().toString());
-                Double cash =0.0;
-                if (et_cash_amt.getText().toString().equalsIgnoreCase("")) {
-                    cash =0.0;
-                }
-                else
-                {
-                    cash = Double.valueOf(et_cash_amt.getText().toString());
-                }
-                if(isplusminus) {
-                    et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt - totalAmt)+cash));
-                    et_balanced_credit_amt.setTextColor(Color.RED);
-                }else{
-                    et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt + totalAmt)-cash));
-                    et_balanced_credit_amt.setTextColor(Color.BLACK);
-                }
+        if (et_total_amt.getText().toString() != null && et_total_credit_amt.getText().toString() != null
+                && et_cash_amt.getText().toString() != null
+                && !TextUtils.isEmpty(et_total_amt.getText())) {
+            //et_total_amt.setText("0");
+            totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
+            totalAmt = Double.valueOf(et_total_amt.getText().toString());
+            Double cash =0.0;
+            if (et_cash_amt.getText().toString().equalsIgnoreCase("")) {
+                cash =0.0;
             }
-            else if(et_total_amt.getText().toString().equalsIgnoreCase("") &&
-                    !TextUtils.isEmpty(et_cash_amt.getText())){
-
-                totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
-                totalAmt = 0.0;
-                Double cash=0.0;
-                if (et_cash_amt.getText().toString().equalsIgnoreCase(".")) {
-                    et_cash_amt.setText("0");
-                }
-                else {
-                    cash = Double.valueOf(et_cash_amt.getText().toString());
-                }
-                if(isplusminus) {
-                    et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt - totalAmt) + cash));
-                    et_balanced_credit_amt.setTextColor(Color.RED);
-                }else {
-                    et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt + totalAmt) - cash));
-                    et_balanced_credit_amt.setTextColor(Color.BLACK);
-                }
-            }else
+            else
             {
-                et_balanced_credit_amt.setText(et_total_credit_amt.getText().toString());
+                cash = Double.valueOf(et_cash_amt.getText().toString());
             }
+            if(isplusminus) {
+                et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt - totalAmt)+cash));
+                et_balanced_credit_amt.setTextColor(Color.RED);
+            }else{
+                et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt + totalAmt)-cash));
+                et_balanced_credit_amt.setTextColor(Color.BLACK);
+            }
+        }
+        else if(et_total_amt.getText().toString().equalsIgnoreCase("") &&
+                !TextUtils.isEmpty(et_cash_amt.getText())){
+
+            totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
+            totalAmt = 0.0;
+            Double cash=0.0;
+            if (et_cash_amt.getText().toString().equalsIgnoreCase(".")) {
+                et_cash_amt.setText("0");
+            }
+            else {
+                cash = Double.valueOf(et_cash_amt.getText().toString());
+            }
+            if(isplusminus) {
+                et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt - totalAmt) + cash));
+                et_balanced_credit_amt.setTextColor(Color.RED);
+            }else {
+                et_balanced_credit_amt.setText(String.valueOf((totalCreditAmt + totalAmt) - cash));
+                et_balanced_credit_amt.setTextColor(Color.BLACK);
+            }
+        }else
+        {
+            et_balanced_credit_amt.setText(et_total_credit_amt.getText().toString());
+        }
 
 
 
@@ -821,22 +803,66 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             jsonObject.put("IdProduct", productId);
             jsonObject.put("ChallanNo", et_chalan.getText().toString());
             jsonObject.put("MRP", Double.valueOf(et_bpcl_rate.getText().toString()));
-            jsonObject.put("Discount", Double.valueOf(et_discount.getText().toString()));
+            if (et_discount.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("Discount", 0);
+            }else {
+                jsonObject.put("Discount", Double.valueOf(et_discount.getText().toString()));
+            }
+
             jsonObject.put("SellingPrice",Double.valueOf(et_selling_price.getText().toString()));
-            jsonObject.put("FullCylQty", Integer.parseInt(et_full_cyl.getText().toString()));
-            jsonObject.put("EmptyCylRec", Integer.parseInt(et_full_cyl.getText().toString()));
-            jsonObject.put("TotalAmount", Double.valueOf(et_total_amt.getText().toString()));
-            jsonObject.put("CashAmount", Double.valueOf(et_cash_amt.getText().toString()));
-            jsonObject.put("TotalPendingEmptyCyl", Integer.parseInt(et_credit_cyl.getText().toString()));
-            jsonObject.put("TotalCreditAmount", Double.valueOf(et_balanced_credit_amt.getText().toString()));
+            if (et_full_cyl.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("FullCylQty", 0);
+            }else {
+                jsonObject.put("FullCylQty", Integer.parseInt(et_full_cyl.getText().toString()));
+            }
+
+            if (et_empty_cyl.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("EmptyCylRec",0);
+            }else {
+                jsonObject.put("EmptyCylRec", Integer.parseInt(et_empty_cyl.getText().toString()));
+            }
+
+            if (et_total_amt.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("TotalAmount", 0);
+            }else {
+                jsonObject.put("TotalAmount", Double.valueOf(et_total_amt.getText().toString()));
+            }
+
+
+            if (et_cash_amt.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("CashAmount", 0);
+            }else {
+                jsonObject.put("CashAmount", Double.valueOf(et_cash_amt.getText().toString()));
+            }
+
+
+            if (et_credit_cyl.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("TotalPendingEmptyCyl", 0);
+            }else {
+                jsonObject.put("TotalPendingEmptyCyl", Integer.parseInt(et_credit_cyl.getText().toString()));
+            }
+
+
+            if (et_balanced_credit_amt.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("TotalCreditAmount", 0);
+            }else {
+                jsonObject.put("TotalCreditAmount", Double.valueOf(et_balanced_credit_amt.getText().toString()));
+            }
+
+
             jsonObject.put("LedgerCode", selectedConsumer.LedgerCode);
             jsonObject.put("Area", commercialProductModel.Area);
             jsonObject.put("YY", AppSettings.getYear());
             jsonObject.put("ModeOfEntry", "Mobile");
-            jsonObject.put("sv", Integer.parseInt(et_sv_cyl.getText().toString()));
+            if (et_sv_cyl.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("sv", 0);
+            }else {
+                jsonObject.put("sv", Integer.parseInt(et_sv_cyl.getText().toString()));
+            }
+
 
             parentJsonObj.put("objCommercialSale", jsonObject);
-            Log.e("final JSON", parentJsonObj.toString());
+            //Log.e("final JSON", parentJsonObj.toString());
             AppSettings.getInstance(this).saveCommercialConsumerDelivery(this, parentJsonObj);
 
             progress_bar_container.setVisibility(View.GONE);
@@ -896,7 +922,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                             AppSettings.hideKeyboard(CommercialSaleActivity.this);
                             et_consumer_name.setText(ConsumerName);
                             com_product_name.setText("");
-                            com_product_name.setEnabled(true);
+                            com_product_name.setEnabled(false);
                             et_cash_amt.setEnabled(true);
 
 
@@ -953,8 +979,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         {
             et_chalan.setEnabled(true);
             et_sv_cyl.setEnabled(true);
-           // et_discount.setEnabled(true);
-
         }
 
     }
@@ -962,86 +986,100 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     private void getProducts() {
 
 
-        com_product_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                com_product_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        int areaId;
+                        try {
+                            productId = productDBList.get(position).product_id;
+                            BPCLrate = productDBList.get(position).bpcl_rate;
+                            areaId = productDBList.get(position).Area;
+                        }
+                        catch (IndexOutOfBoundsException e)
+                        {
+                            e.printStackTrace();
+                        }
 
 
-                productId = productDBList.get(position).product_id;
-                BPCLrate = productDBList.get(position).bpcl_rate;
-                int areaId=productDBList.get(position).Area;
+                        try {
+                            // areaModel=getHelper().getCommercialAreaModelExceptionDao().queryBuilder().where().eq("AreaID",areaId).queryForFirst();
 
-                try {
-                   // areaModel=getHelper().getCommercialAreaModelExceptionDao().queryBuilder().where().eq("AreaID",areaId).queryForFirst();
+                            if (et_consumer_name.getText().toString().contains("Default")
+                                    || et_consumer_name.getText().toString().contains("DEFAULT")
+                                    || et_consumer_name.getText().toString().contains("default")) {
 
-                        if (et_consumer_name.getText().toString().contains("Default")
-                                || et_consumer_name.getText().toString().contains("DEFAULT")
-                                || et_consumer_name.getText().toString().contains("default")) {
+                                userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
+                                if (userAssignedCylinderModel != null) {
+                                    assignedCylinderQty = userAssignedCylinderModel.Qty;
+                                    assigned_cylinder.setVisibility(View.VISIBLE);
+                                    assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
+                                    availableStock = userAssignedCylinderModel.Qty;
+                                    et_empty_cyl.setEnabled(true);
+                                    et_full_cyl.setEnabled(true);
+                                }
 
-                            userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
-                            if (userAssignedCylinderModel != null) {
-                                assignedCylinderQty = userAssignedCylinderModel.Qty;
-                                assigned_cylinder.setVisibility(View.VISIBLE);
-                                assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
-                                availableStock = userAssignedCylinderModel.Qty;
-                                et_empty_cyl.setEnabled(true);
-                                et_full_cyl.setEnabled(true);
-                            }
-
-                        } else {
-                            // start
-                            /*if (selectedConsumer != null && selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
-                             */
-                            userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
-                            if (userAssignedCylinderModel != null) {
-                                assignedCylinderQty = userAssignedCylinderModel.Qty;
+                            } else {
+                                // start
+                                /*if (selectedConsumer != null && selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
+                                 */
+                                userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
+                                if (userAssignedCylinderModel != null) {
+                                    assignedCylinderQty = userAssignedCylinderModel.Qty;
 
 
-                                if (et_consumer_name.getText().toString() != null && !et_consumer_name.getText().toString().equalsIgnoreCase("")) {
-                                    if (assignedCylinderQty > 0) {
-                                        enabledViews();
-                                    } else if (selectedConsumer.credit_cylinder > 0) {
-                                        et_empty_cyl.setEnabled(true);
-                                        et_full_cyl.setEnabled(false);
-                                        et_sv_cyl.setEnabled(false);
+                                    if (et_consumer_name.getText().toString() != null && !et_consumer_name.getText().toString().equalsIgnoreCase("")) {
+                                        if (assignedCylinderQty > 0) {
+                                            enabledViews();
+                                        } else if (selectedConsumer.credit_cylinder > 0) {
+                                            et_empty_cyl.setEnabled(true);
+                                            et_full_cyl.setEnabled(false);
+                                            et_sv_cyl.setEnabled(false);
+                                        } else {
+                                            disabledViews();
+                                        }
                                     } else {
                                         disabledViews();
                                     }
+
+                                    assigned_cylinder.setVisibility(View.VISIBLE);
+                                    assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
+
                                 } else {
+                                    com_product_name.setText("");
+                                    assigned_cylinder.setVisibility(View.GONE);
                                     disabledViews();
+                                    Toast.makeText(CommercialSaleActivity.this, "Cylinder Not Assigened to deliveryman yet"
+                                            , Toast.LENGTH_SHORT).show();
                                 }
 
-                                assigned_cylinder.setVisibility(View.VISIBLE);
-                                assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
-
-                            } else {
-                                com_product_name.setText("");
-                                assigned_cylinder.setVisibility(View.GONE);
-                                disabledViews();
-                                Toast.makeText(CommercialSaleActivity.this, "Cylinder Not Assigened to deliveryman yet"
-                                        , Toast.LENGTH_SHORT).show();
+                                //end
                             }
 
-                            //end
+                        } catch (SQLException e) {
+                            e.printStackTrace();
                         }
+                        et_bpcl_rate.setText(String.valueOf(BPCLrate));
+                        et_discount.setEnabled(true);
+                        try {
+                        if (!TextUtils.isEmpty(et_consumer_name.getText())) {
+                            if (selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
 
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                et_bpcl_rate.setText(String.valueOf(BPCLrate));
-                et_discount.setEnabled(true);
-                if (!TextUtils.isEmpty(et_consumer_name.getText())) {
-                    if (selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
+                                    et_discount.setText(Integer.toString(selectedConsumer.discount));
+                                    et_total_credit_cyl.setText(Integer.toString(selectedConsumer.credit_cylinder));
 
-                        et_discount.setText(Integer.toString(selectedConsumer.discount));
-                        et_total_credit_cyl.setText(Integer.toString(selectedConsumer.credit_cylinder));
-                    } else {
-                        et_total_credit_cyl.setText("0");
-                        // et_discount.setText("0");
+                            } else {
+                                et_total_credit_cyl.setText("0");
+                                // et_discount.setText("0");
+                            }
+                        }
+                    }catch (IndexOutOfBoundsException e){
+                        e.printStackTrace();
                     }
-                }
-            }
-        });
+                    }
+                });
+
+
+
     }
 
     private DatabaseHelper getHelper() {
@@ -1071,7 +1109,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         pd.setIndeterminate(true);
         pd.setCancelable(false);
         pd.show();
-
     }
 
     public void hideProgressDialog() {

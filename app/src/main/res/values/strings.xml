@@ -229,4 +229,11 @@
     <string name="RecordError">Record already available</string>
 
 
+
+    <string-array name="array_name">
+        <item>Truck Number 1</item>
+        <item>Truck Number 2</item>
+        <item>Truck Number 3</item>
+    </string-array>
+
 </resources>

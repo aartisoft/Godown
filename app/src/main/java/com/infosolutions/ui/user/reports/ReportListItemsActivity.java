@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.commercialMgmt.CommercialReportDetailActivity;
+import com.commercialMgmt.graph.graphReport;
 import com.infosolutions.adapter.StockReportAdapter;
 import com.infosolutions.evita.R;
 import com.infosolutions.model.StockReportModel;
@@ -91,6 +92,7 @@ public class ReportListItemsActivity extends AppCompatActivity {
     private void loadCommercialData() {
         listModel.add(new StockReportModel(Constants.StockReportTitle));
         listModel.add(new StockReportModel(Constants.ConsumerReportTitle));
+       // listModel.add(new StockReportModel("graph"));
 
     }
 
@@ -139,7 +141,15 @@ public class ReportListItemsActivity extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
-            }else if (model.getStockReportTitle().equalsIgnoreCase(Constants.StockReportTitle)) {
+            }/*else if (model.getStockReportTitle().equalsIgnoreCase("graph")) {
+
+                Intent intent = new Intent(getApplicationContext(), graphReport.class);
+                intent.putExtra("header", "graph");
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+
+            }
+*/            else if (model.getStockReportTitle().equalsIgnoreCase(Constants.StockReportTitle)) {
 
                 Intent intent = new Intent(getApplicationContext(), CommercialReportDetailActivity.class);
                 intent.putExtra("reportName", "GET_STOCK");
@@ -155,7 +165,11 @@ public class ReportListItemsActivity extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
-            } else {
+            }
+
+
+
+            else {
                 Toast.makeText(this, "Wrong Selection", Toast.LENGTH_SHORT).show();
             }
     }
@@ -167,6 +181,7 @@ public class ReportListItemsActivity extends AppCompatActivity {
         listModel.add(new StockReportModel("Truck Received"));
         listModel.add(new StockReportModel("Truck Send"));
         listModel.add(new StockReportModel("TV Details"));
+        listModel.add(new StockReportModel("graph"));
     }
 
     private interface ClickListener {

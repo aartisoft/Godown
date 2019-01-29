@@ -32,6 +32,7 @@
         android:protectionLevel="signature"
         android:roundIcon="@drawable/login_logo_1"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
 
@@ -165,9 +166,25 @@
             android:exported="true" />
 
 
-        <activity android:label="" android:name="com.commercialMgmt.AddNewConsumerActivity"></activity>
-        <activity android:label="" android:name="com.commercialMgmt.CommercialSaleActivity"></activity>
-        <activity android:label="" android:name="com.commercialMgmt.CommercialReportDetailActivity"></activity>
+        <activity
+            android:label=""
+            android:name="com.commercialMgmt.AddNewConsumerActivity" />
+        <activity
+            android:label=""
+            android:name="com.commercialMgmt.CommercialSaleActivity" />
+        <activity
+            android:label=""
+            android:name="com.commercialMgmt.CommercialReportDetailActivity" />
+        <activity
+            android:name="com.commercialMgmt.graph.graphReport"
+            android:label="" >
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+
+        </activity>
     </application>
 
 </manifest>
