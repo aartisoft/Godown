@@ -458,7 +458,6 @@ public class LoginActivity extends BaseActivity {
                         startService(intent);
                         //fillCommercialConsumerDB(jsonResult);
 
-
                         String NENUS_LIST = jsonResult.optString("menus");
 
                         setOffline_module_list(NENUS_LIST);
@@ -479,8 +478,6 @@ public class LoginActivity extends BaseActivity {
                     showErrorToast(LoginActivity.this, "Error", responseMsg);
                 }
             }
-
-
         }
     }
 
@@ -503,8 +500,6 @@ public class LoginActivity extends BaseActivity {
                 productDB.create(commercialProductModel);
             }
         }
-
-
     }
 
 
@@ -531,8 +526,8 @@ public class LoginActivity extends BaseActivity {
 
             //Amey
             clearTablesData();
-
         }
+
         savePreferences(PREF_DATE, current_date);
         saveLoginTypePreference(login_type);
 
@@ -557,9 +552,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void setLoginType(String loginType){
-
     }
-
 
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
@@ -601,7 +594,6 @@ public class LoginActivity extends BaseActivity {
         if (empSize > 0) {
             employeeDB.delete(employeeDBList);
         }
-
 
         int EMP_LENGTH = arrayEMPLOYEE.length();
         if (EMP_LENGTH > 0) {
@@ -676,7 +668,6 @@ public class LoginActivity extends BaseActivity {
         String PRODUCT_LIST = objectESS.optString("productDetails");
         setOffline_module_list(PRODUCT_LIST);
         saveWithSharedPreferences(this, Constants.KEY_USER_TYPE, getUSER_TYPE());
-
     }
 
     void fillUserAssignedCylinders(JSONObject jsonObject){
@@ -688,19 +679,15 @@ public class LoginActivity extends BaseActivity {
             e.printStackTrace();
         }
 
-
         ArrayList<UserAssignedCylinderModel> cylinderModels = new ArrayList<>();
         if(arrayPRODUCT != null) {
             for (int i = 0; i < arrayPRODUCT.length(); i++) {
                 JSONObject objectProduct = arrayPRODUCT.optJSONObject(i);
                 UserAssignedCylinderModel model = new UserAssignedCylinderModel(objectProduct);
                 cylinderModels.add(model);
-
             }
             assignedCylinderDB.create(cylinderModels);
-
         }
-
     }
 
     void fillCommercialProductsDB(JSONObject jsonObject){
@@ -716,11 +703,7 @@ public class LoginActivity extends BaseActivity {
         if(arrayPRODUCT != null) {
             for (int product = 0; product < arrayPRODUCT.length(); product++) {
                 JSONObject objectProduct = arrayPRODUCT.optJSONObject(product);
-           /* int PRODUCT_CODE = Integer.parseInt(objectProduct.optString("PRODUCT_CODE"));
-            String PRODUCT_CATEGORY = objectProduct.optString("ID_PRODUCT_CATEGORY");
-            String PRODUCT_DESCRIPTION = objectProduct.optString("DESCRIPTION");
-            String UNIT_MEASUREMENT = objectProduct.optString("UNIT_OF_MEASUREMENT");
-*/
+
                 CommercialProductModel commercialProductModel = new CommercialProductModel(objectProduct);
                 productDB.create(commercialProductModel);
             }

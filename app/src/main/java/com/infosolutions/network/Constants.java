@@ -64,12 +64,11 @@ public class Constants {
     public static final  String EVITA_API_URL = PROD_URL;
 
 
-
     /*
     Cloud
      */
 
-    public static final String dbname = "EVITA_PROD";
+    /*public static final String dbname = "EVITA_PROD";
     public static final String GET_ALL_REPORT = "http://android.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://android.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
     public static final String post_url = "http://android.evitasoftsolutions.com/Purchase/SaveDomesticDeliveryAndrA";
@@ -87,12 +86,11 @@ public class Constants {
     public static final String AGENCY_NAME="http://android.evitasoftsolutions.com/Masters/GetAndrPrimaryCompany";
     public static final String STOCK_REPORT="http://android.evitasoftsolutions.com/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://android.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
-
+*/
     /*
     production
     * */
 
-/*
 
     public static final String dbname = "EVITA_PROD";
     public static final String GET_ALL_REPORT = "http://103.31.144.174/Reports/GetAndrReportAll";
@@ -112,13 +110,13 @@ public class Constants {
     public static final String AGENCY_NAME="http://103.31.144.174/Masters/GetAndrPrimaryCompany";
     public static final String STOCK_REPORT="http://103.31.144.174/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://103.31.144.174/Inventory/GetAndrOwnerReports";
-*/
 
 /*
   evita
    */
 
-  /*  public static final String dbname = "EVITA_PROD";
+/*
+    public static final String dbname = "EVITA_PROD";
     public static final String GET_ALL_REPORT = "http://ags.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://ags.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
     public static final String post_url = "http://ags.evitasoftsolutions.com/Purchase/SaveDomesticDeliveryAndrA";
@@ -138,10 +136,10 @@ public class Constants {
     public static final String OWNER_DETAIL_REPORT = "http://ags.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
 */
 
+
     /*
     Godown_Ags
     * */
-
 
 
 /*
@@ -169,7 +167,6 @@ public class Constants {
     /*
     tester
     * */
-
 
 
     /*public static final String dbname = "TESTER_AGS";

@@ -257,6 +257,8 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
         }
     }
     private void saveConsumerBtn() {
+
+
         btn_addConsumer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -315,7 +317,7 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "SAVE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //showProgressDialog();
+                showProgressDialog();
                 //isValidMail(com_consumer_email_id.getText().toString());
                 progress_bar_container.setVisibility(View.VISIBLE);
                     saveConsumerDetails();
@@ -385,6 +387,7 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_backspace);
 
         }
+
 
     @Override
     public void onSuccess(VolleySingleton.CallType type, String response) {

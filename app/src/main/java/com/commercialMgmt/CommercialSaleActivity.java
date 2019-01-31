@@ -212,7 +212,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
         areaItems = new ArrayList<>();
 
-        RuntimeExceptionDao<AreaModel, Integer> comAreaDB = getHelper().getCommercialAreaModelExceptionDao();
+        final RuntimeExceptionDao<AreaModel, Integer> comAreaDB = getHelper().getCommercialAreaModelExceptionDao();
         areaDBList = comAreaDB.queryForAll();
         int areaSize = areaDBList.size();
 
@@ -230,6 +230,10 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 areaId = areaDBList.get(position).AreaID;
+                //com_product_name.clearListSelection();
+
+                et_area.setText(areaDBList.get(position).AreaName);
+                et_area.clearFocus();
 
                 RuntimeExceptionDao<CommercialProductModel, Integer> comProductDB = getHelper().getComProductRTExceptionDao();
                 try {
@@ -239,11 +243,23 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 }
                 int productSize = productDBList.size();
 
-                    spinItems = new ArrayList<>();
+                spinItems = new ArrayList<>();
 
-                    spinItems.clear();
+                    if (productSize==0) {
+                        spinAdapter = new ArrayAdapter<String>(CommercialSaleActivity.this, android.R.layout.simple_spinner_dropdown_item, spinItems);
+                        com_product_name.setAdapter(spinAdapter);
 
-                    if (productSize > 0) {
+                        com_product_name.setText("");
+                        Toast.makeText(CommercialSaleActivity.this, "Products Not Available", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        getProducts(areaId);
+                    }
+
+
+
+
+                    /*if (productSize > 0 && productDBList!=null) {
                         for (CommercialProductModel item : productDBList)
                             if (Integer.toString(areaId).equalsIgnoreCase(Integer.toString(item.Area))) {
                                 spinItems.add(item.product_name);
@@ -252,19 +268,16 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         spinAdapter = new ArrayAdapter<String>(CommercialSaleActivity.this, android.R.layout.simple_spinner_dropdown_item, spinItems);
                         com_product_name.setAdapter(spinAdapter);
 
-                        et_area.setText(areaDBList.get(position).AreaName);
-                        et_area.clearFocus();
+
                         com_product_name.setText("");
                         com_product_name.setEnabled(true);
                         com_product_name.isFocusable();
                         getProducts();
                     }
                     else {
+                        com_product_name.setText("");
                         Toast.makeText(CommercialSaleActivity.this, "Products Not Available", Toast.LENGTH_SHORT).show();
-                    }
-
-
-
+                    }*/
             }
         });
     }
@@ -282,7 +295,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 et_balanced_credit_amt.setTextColor(Color.BLACK);
             }
         }
-
     }
 
 
@@ -299,8 +311,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         et_total_credit_amt.setEnabled(false);
         et_balanced_credit_amt.setEnabled(false);
         et_full_cyl.clearFocus();
-
-
     }
 
     private void enabledViews() {
@@ -849,7 +859,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 jsonObject.put("TotalCreditAmount", Double.valueOf(et_balanced_credit_amt.getText().toString()));
             }
 
-
             jsonObject.put("LedgerCode", selectedConsumer.LedgerCode);
             jsonObject.put("Area", commercialProductModel.Area);
             jsonObject.put("YY", AppSettings.getYear());
@@ -859,7 +868,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             }else {
                 jsonObject.put("sv", Integer.parseInt(et_sv_cyl.getText().toString()));
             }
-
 
             parentJsonObj.put("objCommercialSale", jsonObject);
             //Log.e("final JSON", parentJsonObj.toString());
@@ -983,14 +991,29 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
     }
 
-    private void getProducts() {
+    private void getProducts(int areaId) {
+
+        for (CommercialProductModel item : productDBList)
+            if (Integer.toString(areaId).equalsIgnoreCase(Integer.toString(item.Area))) {
+                spinItems.add(item.product_name);
+            }
+
+        spinAdapter = new ArrayAdapter<String>(CommercialSaleActivity.this, android.R.layout.simple_spinner_dropdown_item, spinItems);
+        com_product_name.setAdapter(spinAdapter);
+
+        //com_product_name.setText("");
+        com_product_name.setEnabled(true);
+        com_product_name.isFocusable();
+
 
 
                 com_product_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         int areaId;
+
                         try {
+                            commercialProductModel=productDBList.get(position);
                             productId = productDBList.get(position).product_id;
                             BPCLrate = productDBList.get(position).bpcl_rate;
                             areaId = productDBList.get(position).Area;
