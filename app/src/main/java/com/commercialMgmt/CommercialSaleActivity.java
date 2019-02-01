@@ -1023,7 +1023,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                             e.printStackTrace();
                         }
 
-
                         try {
                             // areaModel=getHelper().getCommercialAreaModelExceptionDao().queryBuilder().where().eq("AreaID",areaId).queryForFirst();
 
