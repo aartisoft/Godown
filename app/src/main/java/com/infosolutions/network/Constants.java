@@ -69,6 +69,7 @@ public class Constants {
      */
 
     /*public static final String dbname = "EVITA_PROD";
+     public static final  String INFO ="android.evitasoftsolutions.com";
     public static final String GET_ALL_REPORT = "http://android.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://android.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
     public static final String post_url = "http://android.evitasoftsolutions.com/Purchase/SaveDomesticDeliveryAndrA";
@@ -92,7 +93,8 @@ public class Constants {
     * */
 
 
-    public static final String dbname = "EVITA_PROD";
+    /*public static final String dbname = "EVITA_PROD";
+    public static final  String INFO ="192.168.1.177";
     public static final String GET_ALL_REPORT = "http://103.31.144.174/Reports/GetAndrReportAll";
     public static final String get_url = "http://103.31.144.174/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
     public static final String post_url = "http://103.31.144.174/Purchase/SaveDomesticDeliveryAndrA";
@@ -110,6 +112,30 @@ public class Constants {
     public static final String AGENCY_NAME="http://103.31.144.174/Masters/GetAndrPrimaryCompany";
     public static final String STOCK_REPORT="http://103.31.144.174/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://103.31.144.174/Inventory/GetAndrOwnerReports";
+*/
+
+  // 192.168.1.177
+
+    public static final String dbname = "EVITA_PROD";
+    public static final  String INFO ="192.168.1.177";
+    public static final String GET_ALL_REPORT = "http://192.168.1.177/Reports/GetAndrReportAll";
+    public static final String get_url = "http://192.168.1.177/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
+    public static final String post_url = "http://192.168.1.177/Purchase/SaveDomesticDeliveryAndrA";
+    public static final String COMMERCIAL_DELIVERY_COUNT = "http://192.168.1.177/Purchase/GetCreditCommCyl";
+    public static final String GET_CONSUMER_DETAILS ="http://192.168.1.177/Purchase/GetAndrConsumerDetails";
+    public static final String GET_STOCKS_URL = "http://192.168.1.177/Purchase/GetStockDetials";
+    public static final String POST_STOCKS_URL = "http://192.168.1.177/Purchase/SaveTransfer";
+    public static final String GET_PURCHASE_ERV = "http://192.168.1.177/Purchase/GetAndrPurchaseERV";
+    public static final String LOGIN_URL = "http://192.168.1.177/login/validateLogin";
+    public static final String COMMERCIAL_REPORTS = "http://192.168.1.177/Purchase/GetAndrReport";
+    public static final String COMMERCIAL_GET_CONSUMER_DETAILS = "http://192.168.1.177/Masters/GetAndrCommConsumer";
+    public static final String COMMERCIAL_SAVE_CONSUMER_DELIVERY = "http://192.168.1.177/CommercialMng/SaveAndrCommercial";
+    public static final String SAVE_CONSUMER_DETAILS="http://192.168.1.177/masters/SaveCommercialParty";
+    public static final String GET_AVAILABLE_CYLINDERS="http://192.168.1.177/masters/GetAndrAvilableCylinders";
+    public static final String AGENCY_NAME="http://192.168.1.177/Masters/GetAndrPrimaryCompany";
+    public static final String STOCK_REPORT="http://192.168.1.177/Inventory/GetAndrGodownWiseStocks";
+    public static final String OWNER_DETAIL_REPORT = "http://192.168.1.177/Inventory/GetAndrOwnerReports";
+
 
 /*
   evita
@@ -117,6 +143,7 @@ public class Constants {
 
 /*
     public static final String dbname = "EVITA_PROD";
+    public static final  String INFO ="ags.evitasoftsolutions.com";
     public static final String GET_ALL_REPORT = "http://ags.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://ags.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
     public static final String post_url = "http://ags.evitasoftsolutions.com/Purchase/SaveDomesticDeliveryAndrA";

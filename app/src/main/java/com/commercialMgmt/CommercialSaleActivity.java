@@ -77,8 +77,7 @@ import static java.lang.Integer.parseInt;
 public class CommercialSaleActivity extends AppCompatActivity implements ResponseListener {
 
 
-    @BindView(R.id.input_layout_full_cyl)
-    TextInputLayout input_layout_full_cyl;
+
     @BindView(R.id.scrollView)
     ScrollView scrollView;
     @BindView(R.id.et_chalan)
@@ -118,7 +117,52 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     TextView assigned_cylinder;
     @BindView(R.id.et_area)
     AutoCompleteTextView et_area;
+    @BindView(R.id.et_cash_sale)
+    AutoCompleteTextView et_cash_sale;
 
+    // TextInputLayout  ----------------------------------------------------------
+
+    @BindView(R.id.input_layout_chalan)
+    TextInputLayout input_layout_chalan;
+
+    @BindView(R.id.input_layout_bpcl_rate)
+    TextInputLayout input_layout_bpcl_rate;
+
+    @BindView(R.id.input_layout_Discount)
+    TextInputLayout input_layout_Discount;
+
+    @BindView(R.id.input_layout_rate_for_party)
+    TextInputLayout input_layout_rate_for_party;
+
+    @BindView(R.id.input_layout_total_credit_cyl)
+    TextInputLayout input_layout_total_credit_cyl;
+
+    @BindView(R.id.input_layout_full_cyl)
+    TextInputLayout input_layout_full_cyl;
+
+    @BindView(R.id.input_layout_empty_cyl)
+    TextInputLayout input_layout_empty_cyl;
+
+    @BindView(R.id.input_layout_sv_cyl)
+    TextInputLayout input_layout_sv_cyl;
+
+    @BindView(R.id.input_layout_credit_cyl)
+    TextInputLayout input_layout_credit_cyl;
+
+    @BindView(R.id.input_layout_total_amt)
+    TextInputLayout input_layout_total_amt;
+
+    @BindView(R.id.input_layout_cash_amt)
+    TextInputLayout input_layout_cash_amt;
+
+    @BindView(R.id.input_layout_total_credit_amt)
+    TextInputLayout input_layout_total_credit_amt;
+
+    @BindView(R.id.input_layout_balanced_credit_amt)
+    TextInputLayout input_layout_balanced_credit_amt;
+
+
+//-------------------------------------------------------------------------
 
     boolean isCommercialConsumerServiceRunning;
     int creditCyl = 0;
@@ -160,6 +204,10 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     private CommercialProductModel commercialProductModel;
     private int sv_cyl = 0;
     private ProgressDialog pd;
+    private String[] cash_sale={"cash","sale"};
+
+    private ArrayAdapter<String> cash_sale_adapter;
+
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -168,6 +216,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
         }
     };
+
     private int areaId;
 
     public String getSelectedDeliveryManId() {
@@ -186,7 +235,12 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         ButterKnife.bind(this);
         setupToolbar();
 
+        InitFunctions();
 
+
+    }
+
+    private void InitFunctions() {
         disabledViews();
 
         userId = PreferencesHelper.getInstance().getIntValue(Constants.LOGIN_DELIVERYMAN_ID, 0);
@@ -194,21 +248,55 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         com_product_name.isClickable();
         disabledFocusFromET();
         getConsumer();
-        getArea();
+
+        CashSaleView();
 
         SetCreditTextColor();
 
         saveCommercialSaleBtn();
-        Calculation();
         VolleySingleton.getInstance(getApplicationContext()).addResponseListener(VolleySingleton.CallType.COMMERCIAL_SAVE_CONSUMER_DELIVERY, this);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
                 new IntentFilter(Constants.CONSUMER_BROADCAST));
+    }
+
+    private void CashSaleView() {
+
+        cash_sale_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cash_sale);
+        et_cash_sale.setAdapter(cash_sale_adapter);
+
+        et_cash_sale.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position==0){
+                    //cash views
+
+                    disabledViews();
+                    visibleCashViews();
+                    et_area.setEnabled(false);
+                    com_product_name.setEnabled(false);
+                    et_cash_amt.setEnabled(true);
+                    onTextChange_CashAmtCalculation();
+                }
+                else if(position==1){
+                    //sale views
+
+                    enabledViews();
+                    visibleSaleViews();
+                    getArea();
+                    Calculation();
+                }else{
+
+                }
+
+
+            }
+        });
 
     }
 
-    private void getArea() {
 
+    private void getArea() {
 
         areaItems = new ArrayList<>();
 
@@ -297,12 +385,58 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         }
     }
 
+    private void visibleSaleViews(){
+        et_area.setVisibility(View.VISIBLE);
+        com_product_name.setVisibility(View.VISIBLE);
+
+        //visible Text Input Layouts
+        input_layout_bpcl_rate.setVisibility(View.VISIBLE);
+        input_layout_Discount.setVisibility(View.VISIBLE);
+        input_layout_rate_for_party.setVisibility(View.VISIBLE);
+        input_layout_total_credit_cyl.setVisibility(View.VISIBLE);
+        input_layout_full_cyl.setVisibility(View.VISIBLE);
+        input_layout_empty_cyl.setVisibility(View.VISIBLE);
+        input_layout_sv_cyl.setVisibility(View.VISIBLE);
+        input_layout_credit_cyl.setVisibility(View.VISIBLE);
+        input_layout_total_amt.setVisibility(View.VISIBLE);
+
+        input_layout_chalan.setVisibility(View.VISIBLE);
+        input_layout_cash_amt.setVisibility(View.VISIBLE);
+        input_layout_total_credit_amt.setVisibility(View.VISIBLE);
+        input_layout_balanced_credit_amt.setVisibility(View.VISIBLE);
+
+    }
+
+
+    private void visibleCashViews(){
+        et_area.setVisibility(View.GONE);
+        com_product_name.setVisibility(View.GONE);
+
+        //visible/gone Text Input Layouts
+        input_layout_bpcl_rate.setVisibility(View.GONE);
+        input_layout_Discount.setVisibility(View.GONE);
+        input_layout_rate_for_party.setVisibility(View.GONE);
+        input_layout_total_credit_cyl.setVisibility(View.GONE);
+        input_layout_full_cyl.setVisibility(View.GONE);
+        input_layout_empty_cyl.setVisibility(View.GONE);
+        input_layout_sv_cyl.setVisibility(View.GONE);
+        input_layout_credit_cyl.setVisibility(View.GONE);
+        input_layout_total_amt.setVisibility(View.GONE);
+
+        input_layout_chalan.setVisibility(View.VISIBLE);
+        input_layout_cash_amt.setVisibility(View.VISIBLE);
+        input_layout_total_credit_amt.setVisibility(View.VISIBLE);
+        input_layout_balanced_credit_amt.setVisibility(View.VISIBLE);
+
+    }
+
 
     private void disabledViews() {
+        //et_area.setEnabled(false);
         et_full_cyl.setEnabled(false);
         et_empty_cyl.setEnabled(false);
         et_sv_cyl.setEnabled(false);
-
+       // com_product_name.setEnabled(false);
         et_bpcl_rate.setEnabled(false);
         et_selling_price.setEnabled(false);
         et_credit_cyl.setEnabled(false);
@@ -314,6 +448,8 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     }
 
     private void enabledViews() {
+        et_area.setEnabled(true);
+        com_product_name.setEnabled(true);
         et_full_cyl.setEnabled(true);
         et_empty_cyl.setEnabled(true);
         et_sv_cyl.setEnabled(true);
@@ -495,6 +631,12 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             }
         });
 
+        onTextChange_CashAmtCalculation();
+
+    }
+
+    private void onTextChange_CashAmtCalculation() {
+
         // calculations for cash amt based
 
         et_cash_amt.addTextChangedListener(new TextWatcher() {
@@ -525,7 +667,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
             }
         });
-
 
     }
 
@@ -593,7 +734,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         {
             et_balanced_credit_amt.setText(et_total_credit_amt.getText().toString());
         }
-
 
 
         /*Double d = new Double(et_balanced_credit_amt.getText().toString());
@@ -667,11 +807,9 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     }
 
     private void ifTotalCreditAmtInMinus(){
-
     }
 
     private void ifTotalCreditAmtInPlus(){
-
     }
 
     @Override
@@ -682,7 +820,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     }
 
     private void saveCommercialSaleBtn() {
-
 
         btnSaveComDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -713,7 +850,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                                 && !TextUtils.isEmpty(et_empty_cyl.getText().toString())
                                 && !TextUtils.isEmpty(et_cash_amt.getText().toString())
                                 && !et_cash_amt.getText().toString().equalsIgnoreCase("")) {
-                            int totalAmt= new Double(et_total_amt.getText().toString()).intValue();
+                            int totalAmt=  new Double(et_total_amt.getText().toString()).intValue();
                             int cashAmt= new Double(et_cash_amt.getText().toString()).intValue();
                             if (et_full_cyl.getText().toString().equalsIgnoreCase(et_empty_cyl.getText().toString()) && totalAmt == cashAmt) {
 
@@ -838,20 +975,17 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 jsonObject.put("TotalAmount", Double.valueOf(et_total_amt.getText().toString()));
             }
 
-
             if (et_cash_amt.getText().toString().equalsIgnoreCase("")){
                 jsonObject.put("CashAmount", 0);
             }else {
                 jsonObject.put("CashAmount", Double.valueOf(et_cash_amt.getText().toString()));
             }
 
-
             if (et_credit_cyl.getText().toString().equalsIgnoreCase("")){
                 jsonObject.put("TotalPendingEmptyCyl", 0);
             }else {
                 jsonObject.put("TotalPendingEmptyCyl", Integer.parseInt(et_credit_cyl.getText().toString()));
             }
-
 
             if (et_balanced_credit_amt.getText().toString().equalsIgnoreCase("")){
                 jsonObject.put("TotalCreditAmount", 0);
@@ -923,7 +1057,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         @Override
                         public void onClick(String consumer, int i) {
 
-
                             selectedConsumer = consumerDBList.get(i);
 
                             String ConsumerName = consumer;
@@ -932,7 +1065,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                             com_product_name.setText("");
                             com_product_name.setEnabled(false);
                             et_cash_amt.setEnabled(true);
-
 
                             checkDefaultConsumer();
 
@@ -957,7 +1089,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                             // productId = productDBList.get(position).product_id;
                             Double discount = Double.valueOf(consumerDBList.get(i).discount);
                             Log.e("creditsssss::", selectedConsumer.product_name + "--:--" + selectedConsumer.credit_cylinder);
-
                         }
                     });
                 }
@@ -1005,8 +1136,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         com_product_name.setEnabled(true);
         com_product_name.isFocusable();
 
-
-
                 com_product_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -1048,7 +1177,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                                 if (userAssignedCylinderModel != null) {
                                     assignedCylinderQty = userAssignedCylinderModel.Qty;
 
-
                                     if (et_consumer_name.getText().toString() != null && !et_consumer_name.getText().toString().equalsIgnoreCase("")) {
                                         if (assignedCylinderQty > 0) {
                                             enabledViews();
@@ -1073,10 +1201,8 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                                     Toast.makeText(CommercialSaleActivity.this, "Cylinder Not Assigened to deliveryman yet"
                                             , Toast.LENGTH_SHORT).show();
                                 }
-
                                 //end
                             }
-
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -1099,8 +1225,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                     }
                     }
                 });
-
-
 
     }
 

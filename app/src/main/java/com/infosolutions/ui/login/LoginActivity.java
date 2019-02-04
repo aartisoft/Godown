@@ -353,7 +353,6 @@ public class LoginActivity extends BaseActivity {
         }
         else if (type.equals(VolleySingleton.CallType.UPDATE_LOCAL_DATA)) {
 
-
             RuntimeExceptionDao<DomesticDeliveryDB, Integer> daoDatabase =
                     getHelper().getDomesticRuntimeExceptionDao();
 
@@ -363,14 +362,12 @@ public class LoginActivity extends BaseActivity {
                 e.printStackTrace();
             }
 
-
             JSONArray jsonArray = jsonResult.optJSONArray("Table");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.optJSONObject(i);
                 DomesticDeliveryDB domesticDeliveryDB = new DomesticDeliveryDB(jsonObject);
                 daoDatabase.createOrUpdate(domesticDeliveryDB);
             }
-
 
             AppSettings.getInstance(this).updateDatabase(this);
             hideProgressDialog();
@@ -387,14 +384,12 @@ public class LoginActivity extends BaseActivity {
                 e.printStackTrace();
             }
 
-
             JSONArray jsonArray = jsonResult.optJSONArray("Table");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.optJSONObject(i);
                 CommercialDeliveryCreditDB commercialDeliveryCreditDB = new CommercialDeliveryCreditDB(jsonObject);
                 daoDatabase.createOrUpdate(commercialDeliveryCreditDB);
             }
-
 
             AppSettings.getInstance(this).updateLocalFromServer(this);
         }
@@ -410,7 +405,6 @@ public class LoginActivity extends BaseActivity {
                     if (responseCode.equalsIgnoreCase("200")) {
                         AGENCY_NAME= objectAgency.optString("Agency_Name");
                         tvAgencyName.setText(AGENCY_NAME);
-
                     }
                     /*JSONArray arrayDistributor = objectAgency.optJSONArray("ESS_MST_DISTRIBUTOR");
                     AGENCY_NAME = arrayDistributor.optJSONObject(0).optString("AGENCY_NAME");

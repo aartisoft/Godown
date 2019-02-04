@@ -44,11 +44,28 @@
             android:layout_alignParentRight="true"
             />
 
+
+            <com.infosolutions.ui.user.stock.AutoCompleteTextView
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:id="@+id/et_cash_sale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select cash/sale"
+                android:drawableLeft="@drawable/product"
+                android:drawablePadding="@dimen/activity_vertical_margin"
+                android:theme="@style/EditTextTheme"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                />
+
+
+
             <com.infosolutions.ui.user.stock.AutoCompleteTextView
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/et_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:hint="Select Area"
                 android:enabled="false"
                 android:drawableLeft="@drawable/product"
@@ -58,14 +75,16 @@
                 android:layout_alignParentRight="true"
                 />
 
+
+
             <com.infosolutions.ui.user.stock.AutoCompleteTextView
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/et_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Select Product"
+                android:visibility="gone"
                 android:focusable="false"
-                android:enabled="false"
                 android:drawableLeft="@drawable/product"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:theme="@style/EditTextTheme"
@@ -81,11 +100,11 @@
                 />
 
 
-
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_chalan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -105,6 +124,7 @@
             android:id="@+id/input_layout_bpcl_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -113,7 +133,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
                 android:hint="MRP"
-                android:enabled="true"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberDecimal"/>
@@ -124,6 +143,7 @@
             android:id="@+id/input_layout_Discount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -132,7 +152,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/percentage"
                 android:hint="Discount"
-                android:enabled="false"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberSigned|numberDecimal"/>
@@ -144,6 +163,7 @@
             android:id="@+id/input_layout_rate_for_party"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -152,7 +172,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
                 android:hint="Selling Price"
-                android:enabled="true"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberDecimal"/>
@@ -163,6 +182,7 @@
                 android:id="@+id/input_layout_total_credit_cyl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <EditText
@@ -171,7 +191,6 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
                     android:hint="Total Credit Cyl"
-                    android:enabled="true"
                     android:maxLength="3"
                     android:drawablePadding="@dimen/activity_vertical_margin"
                     android:inputType="number"/>
@@ -183,6 +202,7 @@
             android:id="@+id/input_layout_full_cyl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+                android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -191,7 +211,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
                 android:hint="Full Cyl"
-                android:enabled="true"
                 android:maxLength="3"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="number"/>
@@ -202,6 +221,7 @@
             android:id="@+id/input_layout_empty_cyl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -210,7 +230,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
                 android:hint="Empty Cyl"
-                android:enabled="true"
                 android:maxLength="3"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="number"/>
@@ -221,6 +240,7 @@
                 android:id="@+id/input_layout_sv_cyl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <EditText
@@ -229,7 +249,6 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
                     android:hint="SV"
-                    android:enabled="true"
                     android:maxLength="3"
                     android:drawablePadding="@dimen/activity_vertical_margin"
                     android:inputType="number"/>
@@ -241,6 +260,7 @@
             android:id="@+id/input_layout_credit_cyl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+                android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -249,7 +269,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
                 android:hint="Credit Cyl Balanced"
-                android:enabled="true"
                 android:maxLength="3"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="number"/>
@@ -260,6 +279,7 @@
             android:id="@+id/input_layout_total_amt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -268,7 +288,6 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
                 android:hint="Total Amt"
-                android:enabled="true"
                 android:maxLength="15"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberDecimal"/>
@@ -280,6 +299,7 @@
                 android:id="@+id/input_layout_cash_amt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <EditText
@@ -302,6 +322,7 @@
             android:id="@+id/input_layout_total_credit_amt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <EditText
@@ -321,6 +342,7 @@
                 android:id="@+id/input_layout_balanced_credit_amt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <EditText

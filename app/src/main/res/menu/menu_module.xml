@@ -22,4 +22,10 @@
         app:showAsAction="ifRoom"
         android:icon="@drawable/logout"
         android:title="Logout"/>
+
+    <item
+        android:id="@+id/action_info"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/info"
+        android:title="Info"/>
 </menu>

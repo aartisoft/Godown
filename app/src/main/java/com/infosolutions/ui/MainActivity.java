@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -51,6 +53,7 @@ import com.infosolutions.ui.user.stock.StockListActivity;
 import com.infosolutions.ui.user.stock.StockTransferActivity;
 import com.infosolutions.ui.user.tvdetails.TVDetailsActivity;
 import com.infosolutions.utils.AppSettings;
+import com.infosolutions.utils.Constant;
 import com.infosolutions.utils.GlobalVariables;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
@@ -233,6 +236,18 @@ public class MainActivity extends BaseActivity {
 
             case R.id.action_logout:
                 logout();
+                break;
+
+            case R.id.action_info:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Website......");
+                builder.setMessage(Constants.INFO);
+                //builder.setPositiveButton("OK", null);
+                AlertDialog dialog = builder.show();
+
+// Must call show() prior to fetching text view
+                TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+                messageView.setGravity(Gravity.CENTER);
                 break;
         }
         return true;
@@ -423,11 +438,13 @@ public class MainActivity extends BaseActivity {
             menu.findItem(R.id.action_transfer).setVisible(true);
             menu.findItem(R.id.action_setting).setVisible(true);
             menu.findItem(R.id.action_logout).setVisible(false);
+            menu.findItem(R.id.action_info).setVisible(true);
         }else{
             Log.d("loginType:",Constants.LOGIN_DELIVERYMAN);
             menu.findItem(R.id.action_transfer).setVisible(false);
             menu.findItem(R.id.action_setting).setVisible(false);
             menu.findItem(R.id.action_logout).setVisible(true);
+            menu.findItem(R.id.action_info).setVisible(true);
         }
         return true;
     }
