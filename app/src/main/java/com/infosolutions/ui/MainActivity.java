@@ -244,8 +244,6 @@ public class MainActivity extends BaseActivity {
                 builder.setMessage(Constants.INFO);
                 //builder.setPositiveButton("OK", null);
                 AlertDialog dialog = builder.show();
-
-// Must call show() prior to fetching text view
                 TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
                 messageView.setGravity(Gravity.CENTER);
                 break;

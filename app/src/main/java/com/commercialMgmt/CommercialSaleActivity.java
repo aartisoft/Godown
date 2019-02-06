@@ -204,7 +204,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     private CommercialProductModel commercialProductModel;
     private int sv_cyl = 0;
     private ProgressDialog pd;
-    private String[] cash_sale={"cash","sale"};
+    private String[] cash_sale={"Sale","Empty Received","Cash Received"};
 
     private ArrayAdapter<String> cash_sale_adapter;
 
@@ -248,12 +248,9 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         com_product_name.isClickable();
         disabledFocusFromET();
         getConsumer();
-
         CashSaleView();
 
         SetCreditTextColor();
-
-        saveCommercialSaleBtn();
         VolleySingleton.getInstance(getApplicationContext()).addResponseListener(VolleySingleton.CallType.COMMERCIAL_SAVE_CONSUMER_DELIVERY, this);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
@@ -270,22 +267,52 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position==0){
                     //cash views
+                    enabledViews();
+
+                    if (!et_consumer_name.getText().toString().equalsIgnoreCase("") &&
+                            !et_consumer_name.getText().toString().isEmpty()) {
+                        visibleSaleViews();
+                        getArea();
+                        Calculation();
+                        saveCommercialSaleBtn();
+                    }
+                    else{
+                        et_cash_sale.setText("");
+                        Toast.makeText(getApplicationContext(),R.string.Select_Consumer,Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                else if(position==1){
+                    enabledViews();
+
+                    if (!et_consumer_name.getText().toString().equalsIgnoreCase("") &&
+                            !et_consumer_name.getText().toString().isEmpty()) {
+                        visibleEmptyTakenViews();
+                        getArea();
+                        Calculation();
+                        saveCommercialSaleBtn();
+                    }
+                    else{
+                        et_cash_sale.setText("");
+                        Toast.makeText(getApplicationContext(),R.string.Select_Consumer,Toast.LENGTH_SHORT).show();
+                    }
+
+                }else if (position==2){
 
                     disabledViews();
-                    visibleCashViews();
                     et_area.setEnabled(false);
                     com_product_name.setEnabled(false);
                     et_cash_amt.setEnabled(true);
-                    onTextChange_CashAmtCalculation();
-                }
-                else if(position==1){
-                    //sale views
-
-                    enabledViews();
-                    visibleSaleViews();
-                    getArea();
-                    Calculation();
-                }else{
+                    if (!et_consumer_name.getText().toString().equalsIgnoreCase("") &&
+                            !et_consumer_name.getText().toString().isEmpty()) {
+                        visibleCashViews();
+                        onTextChange_CashAmtCalculation();
+                        saveCommercialCashBtn();
+                    }
+                    else{
+                        et_cash_sale.setText("");
+                        Toast.makeText(getApplicationContext(),R.string.Select_Consumer,Toast.LENGTH_SHORT).show();
+                    }
 
                 }
 
@@ -293,6 +320,19 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             }
         });
 
+    }
+
+    private void saveCommercialCashBtn() {
+        btnSaveComDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    if (!et_cash_amt.getText().toString().equalsIgnoreCase("") && !et_cash_amt.getText().toString().isEmpty()){
+                        saveConfirmation();
+                    }else{
+                        Toast.makeText(getApplicationContext(),R.string.Cash_Received,Toast.LENGTH_SHORT).show();
+                    }
+            }
+        });
     }
 
 
@@ -338,13 +378,11 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         com_product_name.setAdapter(spinAdapter);
 
                         com_product_name.setText("");
-                        Toast.makeText(CommercialSaleActivity.this, "Products Not Available", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CommercialSaleActivity.this, R.string.Products_Not_Available, Toast.LENGTH_SHORT).show();
                     }
                     else {
                         getProducts(areaId);
                     }
-
-
 
 
                     /*if (productSize > 0 && productDBList!=null) {
@@ -407,6 +445,28 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
     }
 
+
+    private void visibleEmptyTakenViews(){
+        et_area.setVisibility(View.VISIBLE);
+        com_product_name.setVisibility(View.VISIBLE);
+
+        //visible Text Input Layouts
+        input_layout_bpcl_rate.setVisibility(View.GONE);
+        input_layout_Discount.setVisibility(View.GONE);
+        input_layout_rate_for_party.setVisibility(View.GONE);
+        input_layout_total_credit_cyl.setVisibility(View.VISIBLE);
+        input_layout_full_cyl.setVisibility(View.GONE);
+        input_layout_empty_cyl.setVisibility(View.VISIBLE);
+        input_layout_sv_cyl.setVisibility(View.GONE);
+        input_layout_credit_cyl.setVisibility(View.VISIBLE);
+        input_layout_total_amt.setVisibility(View.GONE);
+
+        input_layout_chalan.setVisibility(View.GONE);
+        input_layout_cash_amt.setVisibility(View.VISIBLE);
+        input_layout_total_credit_amt.setVisibility(View.VISIBLE);
+        input_layout_balanced_credit_amt.setVisibility(View.VISIBLE);
+
+    }
 
     private void visibleCashViews(){
         et_area.setVisibility(View.GONE);
@@ -826,51 +886,76 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             public void onClick(View v) {
 
                 getETValues();
-
-                if (et_consumer_name.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(), "Consumer Not Selected", Toast.LENGTH_SHORT).show();
-                } else if (com_product_name.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(), "Product Not Selected", Toast.LENGTH_SHORT).show();
-                } else if (et_chalan.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(), "Enter Chalan Number", Toast.LENGTH_SHORT).show();
-                    et_chalan.requestFocus();
-                } else if (et_full_cyl.getText().toString().equalsIgnoreCase("")
-                        && et_cash_amt.getText().toString().equalsIgnoreCase("")
-                        && et_empty_cyl.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(), "Enter Full or Empty or Cash Amount", Toast.LENGTH_SHORT).show();
-                    et_full_cyl.requestFocus();
-                }  else {
-                    String consumer=et_consumer_name.getText().toString();
-                    if(consumer.contains("DEFAULT") || consumer.contains("Default") || consumer.contains("default")) {
-                        // Double totalAmt=Double.valueOf();
-                        //Double cashAmt=Double.valueOf(et_cash_amt.getText().toString());
-
-
-                        if (!TextUtils.isEmpty(et_full_cyl.getText().toString())
-                                && !TextUtils.isEmpty(et_empty_cyl.getText().toString())
-                                && !TextUtils.isEmpty(et_cash_amt.getText().toString())
-                                && !et_cash_amt.getText().toString().equalsIgnoreCase("")) {
-                            int totalAmt=  new Double(et_total_amt.getText().toString()).intValue();
-                            int cashAmt= new Double(et_cash_amt.getText().toString()).intValue();
-                            if (et_full_cyl.getText().toString().equalsIgnoreCase(et_empty_cyl.getText().toString()) && totalAmt == cashAmt) {
-
-                                saveConfirmation();
-                            } else {
-                                Toast.makeText(CommercialSaleActivity.this, "Please take full cash or Full cyl equals empty cyl", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else
-                        {
-                            Toast.makeText(CommercialSaleActivity.this,"Enter Full or Empty or Cash Amt",Toast.LENGTH_SHORT).show();
-                        }
+                if (!et_full_cyl.getText().toString().equalsIgnoreCase("")) {
+                    if (Integer.parseInt(et_full_cyl.getText().toString()) > 0) {
+                        getSaleEntries();
                     }
-                    else
-                    {
-                        saveConfirmation();
-                    }
+
+                }else{
+                    emptyTakenRecords();
                 }
+
             }
         });
+    }
+
+    private void emptyTakenRecords() {
+
+        if (et_consumer_name.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(getApplicationContext(), R.string.Consumer_Not_Selected, Toast.LENGTH_SHORT).show();
+        } else if (com_product_name.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(getApplicationContext(), R.string.Product_Not_Selected, Toast.LENGTH_SHORT).show();
+        }else if (et_empty_cyl.getText().toString().equalsIgnoreCase("") ||
+                et_empty_cyl.getText().toString().equalsIgnoreCase("0")) {
+            Toast.makeText(getApplicationContext(), R.string.Enter_Empty_Cylinder, Toast.LENGTH_SHORT).show();
+        } else{
+            saveConfirmation();
+        }
+    }
+
+    private void getSaleEntries() {
+        if (et_consumer_name.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(getApplicationContext(), R.string.Consumer_Not_Selected, Toast.LENGTH_SHORT).show();
+        } else if (com_product_name.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(getApplicationContext(), R.string.Product_Not_Selected, Toast.LENGTH_SHORT).show();
+        } else if (et_chalan.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(getApplicationContext(), R.string.Enter_Chalan_Number, Toast.LENGTH_SHORT).show();
+            et_chalan.requestFocus();
+        } else if (et_full_cyl.getText().toString().equalsIgnoreCase("")
+                && et_cash_amt.getText().toString().equalsIgnoreCase("")
+                && et_empty_cyl.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(getApplicationContext(), R.string.EnterFullEmptyCash, Toast.LENGTH_SHORT).show();
+            et_full_cyl.requestFocus();
+        }  else {
+            String consumer=et_consumer_name.getText().toString();
+            if(consumer.contains("DEFAULT") || consumer.contains("Default") || consumer.contains("default")) {
+                // Double totalAmt=Double.valueOf();
+                //Double cashAmt=Double.valueOf(et_cash_amt.getText().toString());
+
+
+                if (!TextUtils.isEmpty(et_full_cyl.getText().toString())
+                        && !TextUtils.isEmpty(et_empty_cyl.getText().toString())
+                        && !TextUtils.isEmpty(et_cash_amt.getText().toString())
+                        && !et_cash_amt.getText().toString().equalsIgnoreCase("")) {
+                    int totalAmt=  new Double(et_total_amt.getText().toString()).intValue();
+                    int cashAmt= new Double(et_cash_amt.getText().toString()).intValue();
+                    if (et_full_cyl.getText().toString().equalsIgnoreCase(et_empty_cyl.getText().toString()) && totalAmt == cashAmt) {
+
+                        saveConfirmation();
+                    } else {
+                        Toast.makeText(CommercialSaleActivity.this, R.string.full_cash_Equals_empty, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(CommercialSaleActivity.this,R.string.EnterFullEmptyCash,Toast.LENGTH_SHORT).show();
+                }
+            }
+            else
+            {
+                saveConfirmation();
+            }
+        }
     }
 
     private void getETValues() {
@@ -916,7 +1001,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     private void saveConfirmation() {
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Add Consumer");
+        alertDialog.setTitle("Commercial Sale");
         alertDialog.setMessage(getResources().getString(R.string.proceed_msg));
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "SAVE", new DialogInterface.OnClickListener() {
             @Override
@@ -949,14 +1034,27 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             jsonObject.put("ConsumerName", consumer_name);
             jsonObject.put("IdProduct", productId);
             jsonObject.put("ChallanNo", et_chalan.getText().toString());
-            jsonObject.put("MRP", Double.valueOf(et_bpcl_rate.getText().toString()));
+
+            if (et_bpcl_rate.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("MRP", 0);
+            }else {
+                jsonObject.put("MRP", Double.valueOf(et_bpcl_rate.getText().toString()));
+            }
+
+
             if (et_discount.getText().toString().equalsIgnoreCase("")){
                 jsonObject.put("Discount", 0);
             }else {
                 jsonObject.put("Discount", Double.valueOf(et_discount.getText().toString()));
             }
 
-            jsonObject.put("SellingPrice",Double.valueOf(et_selling_price.getText().toString()));
+            if (et_selling_price.getText().toString().equalsIgnoreCase("")){
+                jsonObject.put("SellingPrice", 0);
+            }else {
+                jsonObject.put("SellingPrice",Double.valueOf(et_selling_price.getText().toString()));
+            }
+
+
             if (et_full_cyl.getText().toString().equalsIgnoreCase("")){
                 jsonObject.put("FullCylQty", 0);
             }else {
@@ -994,7 +1092,12 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             }
 
             jsonObject.put("LedgerCode", selectedConsumer.LedgerCode);
-            jsonObject.put("Area", commercialProductModel.Area);
+            if (et_area.getText().toString().equalsIgnoreCase("")){
+            jsonObject.put("Area", "NULL");
+            }else{
+                jsonObject.put("Area", commercialProductModel.Area);
+            }
+
             jsonObject.put("YY", AppSettings.getYear());
             jsonObject.put("ModeOfEntry", "Mobile");
             if (et_sv_cyl.getText().toString().equalsIgnoreCase("")){
@@ -1002,7 +1105,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             }else {
                 jsonObject.put("sv", Integer.parseInt(et_sv_cyl.getText().toString()));
             }
-
+            jsonObject.put("operation", et_cash_sale.getText().toString());
             parentJsonObj.put("objCommercialSale", jsonObject);
             //Log.e("final JSON", parentJsonObj.toString());
             AppSettings.getInstance(this).saveCommercialConsumerDelivery(this, parentJsonObj);
@@ -1174,34 +1277,44 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                                 /*if (selectedConsumer != null && selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
                                  */
                                 userAssignedCylinderModel = getHelper().getUserAssignedCylinderModelRuntimeExceptionDao().queryBuilder().where().eq("PRODUCT_ID", productId).queryForFirst();
-                                if (userAssignedCylinderModel != null) {
-                                    assignedCylinderQty = userAssignedCylinderModel.Qty;
 
-                                    if (et_consumer_name.getText().toString() != null && !et_consumer_name.getText().toString().equalsIgnoreCase("")) {
-                                        if (assignedCylinderQty > 0) {
-                                            enabledViews();
-                                        } else if (selectedConsumer.credit_cylinder > 0) {
-                                            et_empty_cyl.setEnabled(true);
-                                            et_full_cyl.setEnabled(false);
-                                            et_sv_cyl.setEnabled(false);
+                                if (et_cash_sale.getText().toString().equalsIgnoreCase("Empty Received")){
+                                    et_empty_cyl.setEnabled(true);
+                                    et_full_cyl.setEnabled(false);
+                                    et_sv_cyl.setEnabled(false);
+                                }
+                                else {
+                                    if (userAssignedCylinderModel != null) {
+                                        assignedCylinderQty = userAssignedCylinderModel.Qty;
+
+                                        if (et_consumer_name.getText().toString() != null && !et_consumer_name.getText().toString().equalsIgnoreCase("")) {
+                                            if (assignedCylinderQty > 0) {
+                                                enabledViews();
+                                            } else if (selectedConsumer.credit_cylinder > 0) {
+                                                et_empty_cyl.setEnabled(true);
+                                                et_full_cyl.setEnabled(false);
+                                                et_sv_cyl.setEnabled(false);
+                                            } else {
+                                                disabledViews();
+                                            }
                                         } else {
                                             disabledViews();
                                         }
+
+                                        assigned_cylinder.setVisibility(View.VISIBLE);
+                                        assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
+
                                     } else {
+                                        com_product_name.setText("");
+                                        assigned_cylinder.setVisibility(View.GONE);
                                         disabledViews();
+                                        Toast.makeText(CommercialSaleActivity.this, R.string.Cyl_not_assigned
+                                                , Toast.LENGTH_SHORT).show();
                                     }
-
-                                    assigned_cylinder.setVisibility(View.VISIBLE);
-                                    assigned_cylinder.setText("Assigned Cylinders: " + Integer.toString(userAssignedCylinderModel.Qty));
-
-                                } else {
-                                    com_product_name.setText("");
-                                    assigned_cylinder.setVisibility(View.GONE);
-                                    disabledViews();
-                                    Toast.makeText(CommercialSaleActivity.this, "Cylinder Not Assigened to deliveryman yet"
-                                            , Toast.LENGTH_SHORT).show();
                                 }
                                 //end
+
+
                             }
                         } catch (SQLException e) {
                             e.printStackTrace();
@@ -1356,7 +1469,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 hideProgressDialog();
                 finish();
             } else {
-                Toast.makeText(CommercialSaleActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CommercialSaleActivity.this, R.string.Error_Occured, Toast.LENGTH_SHORT).show();
             }
 
         } catch (JSONException e) {

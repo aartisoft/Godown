@@ -228,12 +228,57 @@
     <string name="no_data_available">No data available</string>
     <string name="RecordError">Record already available</string>
 
+    //------------------------ Strings for commercial App  -------------------------------
+
+    <string name="Select_Consumer">Select Consumer</string>
+    <string name="Cash_Received">Enter Cash Received Amt</string>
+    <string name="Products_Not_Available">Products Not Available</string>
+    <string name="Consumer_Not_Selected">Consumer Not Selected</string>
+    <string name="Product_Not_Selected">Product Not Selected</string>
+    <string name="Enter_Empty_Cylinder">Enter Empty Cylinder</string>
+    <string name="Enter_Chalan_Number">Enter Chalan Number</string>
+    <string name="EnterFullEmptyCash">Enter Full or Empty or Cash Amount</string>
+    <string name="full_cash_Equals_empty">Please take cash or Full cyl equals empty cyl</string>
+    <string name="Cyl_not_assigned">Cylinder Not Assigened to deliveryman yet</string>
+    <string name="Error_Occured">Error Occured</string>
+    <string name="Enter_Consumer_Name">Enter Consumer Name</string>
+    <string name="Enter_Mobile_Number">Enter Mobile Number</string>
+    <string name="Mobile_Number_Error">Mobile Number Not Valid</string>
+    <string name="Select_Product">Select Product</string>
+    <string name="Select_State">Select State</string>
 
 
-    <string-array name="array_name">
-        <item>Truck Number 1</item>
-        <item>Truck Number 2</item>
-        <item>Truck Number 3</item>
-    </string-array>
+    // ---------------------------   Commercial MGMT Add New Consumer XML Strings  -------------------------
+
+    <string name="ConsumerName">Consumer Name</string>
+
+    <string name="MobileNumber">Mobile Number</string>
+    <string name="State">State</string>
+    <string name="Address">Address</string>
+    <string name="EmailId">Email Id</string>
+    <string name="Discount">Discount</string>
+    <string name="PAN_No">PAN No</string>
+    <string name="GSTIN">GSTIN</string>
+    <string name="Add_New_Consumer">Add New Consumer</string>
+
+
+    //---------------------------- Strings for Commercial Sale  -------------------------------------
+
+    <string name="Select_Operation">Select Operation</string>
+    <string name="Select_Area">Select Area</string>
+    <string name="Chalan_No">Chalan No</string>
+    <string name="MRP">MRP</string>
+    <string name="Selling_Price">Selling Price</string>
+    <string name="Total_Credit_Cyl">Total Credit Cyl</string>
+    <string name="Full_Cyl">Full Cyl</string>
+    <string name="Empty_Cyl">Empty Cyl</string>
+    <string name="SV">SV</string>
+    <string name="Credit_Cyl_Balanced">Credit Cyl Balanced</string>
+    <string name="Total_Amt">Total Amt</string>
+    <string name="CashReceived">Cash Received</string>
+    <string name="Total_Credit_Amt">Total Credit Amt</string>
+    <string name="Balanced_Credit_Amt">Balanced Credit Amt</string>
+    <string name="Submit">Submit</string>
+
 
 </resources>

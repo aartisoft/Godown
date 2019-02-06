@@ -164,9 +164,7 @@ public class ReportListItemsActivity extends AppCompatActivity {
                 intent.putExtra("header", Constants.ConsumerReportTitle);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-
             }
-
 
 
             else {
@@ -181,7 +179,7 @@ public class ReportListItemsActivity extends AppCompatActivity {
         listModel.add(new StockReportModel("Truck Received"));
         listModel.add(new StockReportModel("Truck Send"));
         listModel.add(new StockReportModel("TV Details"));
-        listModel.add(new StockReportModel("graph"));
+        //listModel.add(new StockReportModel("graph"));
     }
 
     private interface ClickListener {

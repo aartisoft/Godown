@@ -264,22 +264,22 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
             public void onClick(View v) {
 
                 if (com_consumer_name.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(),"Enter Consumer Name",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.Enter_Consumer_Name,Toast.LENGTH_SHORT).show();
                 }
                 else if (com_mobile_number.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(),"Enter Mobile Number",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.Enter_Mobile_Number,Toast.LENGTH_SHORT).show();
 
                 }
                 else if (!(com_mobile_number.getText().toString().length() ==10)) {
-                    Toast.makeText(getApplicationContext(),"Mobile Number Not Valid",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.Mobile_Number_Error,Toast.LENGTH_SHORT).show();
 
                 }
                 else if (com_product_name.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(),"Select Product",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.Select_Product,Toast.LENGTH_SHORT).show();
                 }
                 else if (et_state.getText().toString().equalsIgnoreCase(""))
                 {
-                    Toast.makeText(getApplicationContext(),"Select State",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.Select_State,Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

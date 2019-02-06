@@ -35,7 +35,7 @@
             android:id="@+id/et_consumer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Select Consumer"
+            android:hint="@string/Select_Consumer"
             android:drawableLeft="@drawable/product"
             android:drawablePadding="@dimen/activity_vertical_margin"
             android:focusableInTouchMode="false"
@@ -50,7 +50,7 @@
                 android:id="@+id/et_cash_sale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Select cash/sale"
+                android:hint="@string/Select_Operation"
                 android:drawableLeft="@drawable/product"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:theme="@style/EditTextTheme"
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:hint="Select Area"
+                android:hint="@string/Select_Area"
                 android:enabled="false"
                 android:drawableLeft="@drawable/product"
                 android:drawablePadding="@dimen/activity_vertical_margin"
@@ -82,7 +82,7 @@
                 android:id="@+id/et_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Select Product"
+                android:hint="@string/Select_Product"
                 android:visibility="gone"
                 android:focusable="false"
                 android:drawableLeft="@drawable/product"
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
-                android:hint="Chalan No"
+                android:hint="@string/Chalan_No"
                 android:enabled="true"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
@@ -132,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
-                android:hint="MRP"
+                android:hint="@string/MRP"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberDecimal"/>
@@ -151,7 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/percentage"
-                android:hint="Discount"
+                android:hint="@string/Discount"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberSigned|numberDecimal"/>
@@ -171,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
-                android:hint="Selling Price"
+                android:hint="@string/Selling_Price"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberDecimal"/>
@@ -190,7 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
-                    android:hint="Total Credit Cyl"
+                    android:hint="@string/Total_Credit_Cyl"
                     android:maxLength="3"
                     android:drawablePadding="@dimen/activity_vertical_margin"
                     android:inputType="number"/>
@@ -210,7 +210,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
-                android:hint="Full Cyl"
+                android:hint="@string/Full_Cyl"
                 android:maxLength="3"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="number"/>
@@ -229,7 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
-                android:hint="Empty Cyl"
+                android:hint="@string/Empty_Cyl"
                 android:maxLength="3"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="number"/>
@@ -248,7 +248,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
-                    android:hint="SV"
+                    android:hint="@string/SV"
                     android:maxLength="3"
                     android:drawablePadding="@dimen/activity_vertical_margin"
                     android:inputType="number"/>
@@ -268,7 +268,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
-                android:hint="Credit Cyl Balanced"
+                android:hint="@string/Credit_Cyl_Balanced"
                 android:maxLength="3"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="number"/>
@@ -287,7 +287,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
-                android:hint="Total Amt"
+                android:hint="@string/Total_Amt"
                 android:maxLength="15"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberDecimal"/>
@@ -307,7 +307,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
-                    android:hint="Cash Amt"
+                    android:hint="@string/CashReceived"
                     android:enabled="false"
                     android:maxLength="15"
                     android:drawablePadding="@dimen/activity_vertical_margin"
@@ -330,7 +330,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
-                android:hint="Total Credit Amt"
+                android:hint="@string/Total_Credit_Amt"
                 android:enabled="true"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
@@ -350,7 +350,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
-                    android:hint="Balanced Credit Amt"
+                    android:hint="@string/Balanced_Credit_Amt"
                     android:enabled="true"
                     android:maxLength="12"
                     android:drawablePadding="@dimen/activity_vertical_margin"
@@ -365,7 +365,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_lock_outline"
-                android:hint="GSTIN"
                 android:visibility="invisible"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 />
@@ -387,7 +386,7 @@
         android:textStyle="bold"
         android:textAppearance="?android:textAppearanceMedium"
         android:textAllCaps="true"
-        android:text="Submit" />
+        android:text="@string/Submit" />
 
 
 </RelativeLayout>
