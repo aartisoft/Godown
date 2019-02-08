@@ -288,6 +288,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                     if (!et_consumer_name.getText().toString().equalsIgnoreCase("") &&
                             !et_consumer_name.getText().toString().isEmpty()) {
                         visibleEmptyTakenViews();
+
                         getArea();
                         Calculation();
                         saveCommercialSaleBtn();
@@ -452,36 +453,56 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
         //visible Text Input Layouts
         input_layout_bpcl_rate.setVisibility(View.GONE);
+        et_bpcl_rate.setText("0");
         input_layout_Discount.setVisibility(View.GONE);
+        et_discount.setText("0");
         input_layout_rate_for_party.setVisibility(View.GONE);
+        et_selling_price.setText("0");
         input_layout_total_credit_cyl.setVisibility(View.VISIBLE);
         input_layout_full_cyl.setVisibility(View.GONE);
+        et_full_cyl.setText("0");
         input_layout_empty_cyl.setVisibility(View.VISIBLE);
         input_layout_sv_cyl.setVisibility(View.GONE);
+        et_sv_cyl.setText("0");
         input_layout_credit_cyl.setVisibility(View.VISIBLE);
         input_layout_total_amt.setVisibility(View.GONE);
+        et_total_amt.setText("0");
 
         input_layout_chalan.setVisibility(View.GONE);
+        et_chalan.setText("0");
         input_layout_cash_amt.setVisibility(View.VISIBLE);
         input_layout_total_credit_amt.setVisibility(View.VISIBLE);
         input_layout_balanced_credit_amt.setVisibility(View.VISIBLE);
+
+
 
     }
 
     private void visibleCashViews(){
         et_area.setVisibility(View.GONE);
+        et_area.setText("");
         com_product_name.setVisibility(View.GONE);
+        com_product_name.setText("");
 
         //visible/gone Text Input Layouts
         input_layout_bpcl_rate.setVisibility(View.GONE);
+        et_bpcl_rate.setText("0");
         input_layout_Discount.setVisibility(View.GONE);
+        et_discount.setText("0");
         input_layout_rate_for_party.setVisibility(View.GONE);
+        et_selling_price.setText("0");
         input_layout_total_credit_cyl.setVisibility(View.GONE);
+        et_total_credit_cyl.setText("0");
         input_layout_full_cyl.setVisibility(View.GONE);
+        et_full_cyl.setText("0");
         input_layout_empty_cyl.setVisibility(View.GONE);
+        et_empty_cyl.setText("0");
         input_layout_sv_cyl.setVisibility(View.GONE);
+        et_sv_cyl.setText("0");
         input_layout_credit_cyl.setVisibility(View.GONE);
+        et_credit_cyl.setText("0");
         input_layout_total_amt.setVisibility(View.GONE);
+        et_total_amt.setText("0");
 
         input_layout_chalan.setVisibility(View.VISIBLE);
         input_layout_cash_amt.setVisibility(View.VISIBLE);
@@ -514,7 +535,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         et_empty_cyl.setEnabled(true);
         et_sv_cyl.setEnabled(true);
         input_layout_full_cyl.setHintAnimationEnabled(true);
-
     }
 
     private void Calculation() {
@@ -885,7 +905,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             @Override
             public void onClick(View v) {
 
-                getETValues();
                 if (!et_full_cyl.getText().toString().equalsIgnoreCase("")) {
                     if (Integer.parseInt(et_full_cyl.getText().toString()) > 0) {
                         getSaleEntries();
@@ -962,39 +981,77 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         if (!TextUtils.isEmpty(et_consumer_name.getText())) {
             consumer_name = et_consumer_name.getText().toString();
         }
-        if (!TextUtils.isEmpty(et_chalan.getText())) {
-            Chalan = et_chalan.getText().toString();
-        }
-        if (!TextUtils.isEmpty(et_bpcl_rate.getText())) {
+
+
+        if (et_bpcl_rate.getText().toString().equalsIgnoreCase("")){
+            MRP = 0.0;
+        }else {
             MRP = Double.valueOf(et_bpcl_rate.getText().toString());
         }
-        if (!TextUtils.isEmpty(et_discount.getText())) {
+
+
+        if (et_discount.getText().toString().equalsIgnoreCase("")){
+            Discount = 0.0;
+        }else {
             Discount = Double.valueOf(et_discount.getText().toString());
         }
-        if (!TextUtils.isEmpty(et_selling_price.getText())) {
+
+        if (et_selling_price.getText().toString().equalsIgnoreCase("")){
+            Selling_price =0.0;
+        }else {
             Selling_price = Double.valueOf(et_selling_price.getText().toString());
         }
-        if (!TextUtils.isEmpty(et_total_amt.getText())) {
-            Total_Amt = Double.valueOf(et_total_amt.getText().toString());
-        }
-        if (!TextUtils.isEmpty(et_cash_amt.getText())) {
-            Cash_Amt = Double.valueOf(et_cash_amt.getText().toString());
-        }
-        if (!TextUtils.isEmpty(et_total_credit_amt.getText())) {
-            Total_credit_amt = Double.valueOf(et_balanced_credit_amt.getText().toString());
-        }
-        if (!TextUtils.isEmpty(et_full_cyl.getText())) {
+
+
+        if (et_full_cyl.getText().toString().equalsIgnoreCase("")){
+            full_cyl = 0;
+        }else {
             full_cyl = Integer.parseInt(et_full_cyl.getText().toString());
         }
-        if (!TextUtils.isEmpty(et_empty_cyl.getText())) {
+
+        if (et_empty_cyl.getText().toString().equalsIgnoreCase("")){
+            empty_cyl = 0;
+        }else {
             empty_cyl = Integer.parseInt(et_empty_cyl.getText().toString());
         }
-        if (!TextUtils.isEmpty(et_total_credit_cyl.getText())) {
+
+        if (et_total_amt.getText().toString().equalsIgnoreCase("")){
+            Total_Amt = 0.0;
+        }else {
+            Total_Amt = Double.valueOf(et_total_amt.getText().toString());
+        }
+
+        if (et_cash_amt.getText().toString().equalsIgnoreCase("")){
+            Cash_Amt = 0.0;
+        }else {
+            Cash_Amt = Double.valueOf(et_cash_amt.getText().toString());
+        }
+
+        if (et_credit_cyl.getText().toString().equalsIgnoreCase("")){
+            total_pending_cyl = 0;
+        }else {
             total_pending_cyl = Integer.parseInt(et_total_credit_cyl.getText().toString());
         }
-        if (!TextUtils.isEmpty(et_sv_cyl.getText())) {
+
+        if (et_balanced_credit_amt.getText().toString().equalsIgnoreCase("")){
+            Total_credit_amt = 0.0;
+        }else {
+            Total_credit_amt = Double.valueOf(et_balanced_credit_amt.getText().toString());
+        }
+
+        if (et_sv_cyl.getText().toString().equalsIgnoreCase("")){
+            sv_cyl = 0;
+        }else {
             sv_cyl = Integer.parseInt(et_sv_cyl.getText().toString());
         }
+
+
+
+
+
+
+        //--------------------------------------------------------------------------------------
+
 
     }
 
@@ -1029,83 +1086,37 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
         try {
 
+            getETValues();
+
+
             jsonObject.put("DeliveredBy", userId);
             //jsonObject.put("DATETIME",Constants.getDateTime());
             jsonObject.put("ConsumerName", consumer_name);
             jsonObject.put("IdProduct", productId);
             jsonObject.put("ChallanNo", et_chalan.getText().toString());
 
-            if (et_bpcl_rate.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("MRP", 0);
-            }else {
-                jsonObject.put("MRP", Double.valueOf(et_bpcl_rate.getText().toString()));
-            }
-
-
-            if (et_discount.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("Discount", 0);
-            }else {
-                jsonObject.put("Discount", Double.valueOf(et_discount.getText().toString()));
-            }
-
-            if (et_selling_price.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("SellingPrice", 0);
-            }else {
-                jsonObject.put("SellingPrice",Double.valueOf(et_selling_price.getText().toString()));
-            }
-
-
-            if (et_full_cyl.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("FullCylQty", 0);
-            }else {
-                jsonObject.put("FullCylQty", Integer.parseInt(et_full_cyl.getText().toString()));
-            }
-
-            if (et_empty_cyl.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("EmptyCylRec",0);
-            }else {
-                jsonObject.put("EmptyCylRec", Integer.parseInt(et_empty_cyl.getText().toString()));
-            }
-
-            if (et_total_amt.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("TotalAmount", 0);
-            }else {
-                jsonObject.put("TotalAmount", Double.valueOf(et_total_amt.getText().toString()));
-            }
-
-            if (et_cash_amt.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("CashAmount", 0);
-            }else {
-                jsonObject.put("CashAmount", Double.valueOf(et_cash_amt.getText().toString()));
-            }
-
-            if (et_credit_cyl.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("TotalPendingEmptyCyl", 0);
-            }else {
-                jsonObject.put("TotalPendingEmptyCyl", Integer.parseInt(et_credit_cyl.getText().toString()));
-            }
-
-            if (et_balanced_credit_amt.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("TotalCreditAmount", 0);
-            }else {
-                jsonObject.put("TotalCreditAmount", Double.valueOf(et_balanced_credit_amt.getText().toString()));
-            }
-
+            jsonObject.put("MRP", MRP);
+            jsonObject.put("Discount", Discount);
+            jsonObject.put("SellingPrice",Selling_price);
+            jsonObject.put("FullCylQty", full_cyl);
+            jsonObject.put("EmptyCylRec", empty_cyl);
+            jsonObject.put("TotalAmount", Total_Amt);
+            jsonObject.put("CashAmount", Cash_Amt);
+            jsonObject.put("TotalPendingEmptyCyl", total_pending_cyl);
+            jsonObject.put("TotalCreditAmount", Total_credit_amt);
             jsonObject.put("LedgerCode", selectedConsumer.LedgerCode);
+            jsonObject.put("sv", sv_cyl);
+            jsonObject.put("YY", AppSettings.getYear());
+            jsonObject.put("ModeOfEntry", "Mobile");
+            jsonObject.put("operation", et_cash_sale.getText().toString());
+
             if (et_area.getText().toString().equalsIgnoreCase("")){
-            jsonObject.put("Area", "NULL");
+                jsonObject.put("Area", "NULL");
             }else{
                 jsonObject.put("Area", commercialProductModel.Area);
             }
 
-            jsonObject.put("YY", AppSettings.getYear());
-            jsonObject.put("ModeOfEntry", "Mobile");
-            if (et_sv_cyl.getText().toString().equalsIgnoreCase("")){
-                jsonObject.put("sv", 0);
-            }else {
-                jsonObject.put("sv", Integer.parseInt(et_sv_cyl.getText().toString()));
-            }
-            jsonObject.put("operation", et_cash_sale.getText().toString());
+
             parentJsonObj.put("objCommercialSale", jsonObject);
             //Log.e("final JSON", parentJsonObj.toString());
             AppSettings.getInstance(this).saveCommercialConsumerDelivery(this, parentJsonObj);

@@ -3,6 +3,7 @@ package com.commercialMgmt;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,6 +56,8 @@ import butterknife.ButterKnife;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 import khangtran.preferenceshelper.PreferencesHelper;
+import module.infosolutions.others.AddDeliveryActivity;
+
 import com.infosolutions.network.*;
 
 public class AddNewConsumerActivity extends AppCompatActivity implements ResponseListener{
@@ -406,6 +409,10 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
                         JSONObject jsonObject = jsonArray.optJSONObject(0);
                         if (jsonObject != null) {
                             saveConsumerToLocalDB(new ConsumerModel(1, jsonObject));
+
+                            Intent intent = new Intent(getApplicationContext(), CommercialSaleActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.popup_show, R.anim.popup_hide);
                         }
                     }
                     hideProgressDialog();
