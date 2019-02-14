@@ -266,6 +266,8 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
             @Override
             public void onClick(View v) {
 
+
+
                 if (com_consumer_name.getText().toString().equalsIgnoreCase("")) {
                     Toast.makeText(getApplicationContext(),R.string.Enter_Consumer_Name,Toast.LENGTH_SHORT).show();
                 }
@@ -320,6 +322,7 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "SAVE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                btn_addConsumer.setClickable(false);
                 showProgressDialog();
                 //isValidMail(com_consumer_email_id.getText().toString());
                 progress_bar_container.setVisibility(View.VISIBLE);
@@ -331,6 +334,7 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alertDialog.dismiss();
+                btn_addConsumer.setClickable(true);
             }
         });
         alertDialog.show();
@@ -410,9 +414,9 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
                         if (jsonObject != null) {
                             saveConsumerToLocalDB(new ConsumerModel(1, jsonObject));
 
-                            Intent intent = new Intent(getApplicationContext(), CommercialSaleActivity.class);
+                          /*  Intent intent = new Intent(getApplicationContext(), CommercialSaleActivity.class);
                             startActivity(intent);
-                            overridePendingTransition(R.anim.popup_show, R.anim.popup_hide);
+                            overridePendingTransition(R.anim.popup_show, R.anim.popup_hide);*/
                         }
                     }
                     hideProgressDialog();

@@ -333,7 +333,6 @@ public class VolleySingleton {
 
     /**
      * jsonSyncData is JSON Data we push to server
-     * @param jsonSyncData
      * @param type
      * @param url
      * */

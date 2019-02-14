@@ -532,23 +532,25 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 stockcontainer.setVisibility(View.VISIBLE);
                 consumerContainer.setVisibility(View.GONE);
 
-                fullcyl_textview.setText("FullCyl: ");
-                fullcyl_textview_value.setText(Integer.toString(childModel.FullCyl));
+                opening_textview.setText("Assigned Cyl : ");
+                opening_textview_value.setText(Integer.toString(childModel.Opening));
 
-                emptycyl_textview.setText("EmptyCyl: ");
-                emptycyl_textview_value.setText(Integer.toString(childModel.EmptyCyl));
-
-                sv_cyl_textview.setText("SV: ");
-                sv_cyl_textview_value.setText(Integer.toString(childModel.sv));
-
-                credit_textview.setText("Credit: ");
+                credit_textview.setText("Credit : ");
                 credit_textview_value.setText(Integer.toString(childModel.Credit));
 
-                closing_textview.setText("Closing: ");
+                fullcyl_textview.setText("FullCyl : ");
+                fullcyl_textview_value.setText(Integer.toString(childModel.FullCyl));
+
+                emptycyl_textview.setText("EmptyCyl : ");
+                emptycyl_textview_value.setText(Integer.toString(childModel.EmptyCyl));
+
+                sv_cyl_textview.setText("SV : ");
+                sv_cyl_textview_value.setText(Integer.toString(childModel.sv));
+
+                closing_textview.setText("Closing Stock : ");
                 closing_textview_value.setText(Integer.toString(childModel.Closing));
 
-                opening_textview.setText("Opening: ");
-                opening_textview_value.setText(Integer.toString(childModel.Opening));
+
 
             }
             return  convertView;

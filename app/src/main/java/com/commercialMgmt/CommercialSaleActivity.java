@@ -274,6 +274,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         visibleSaleViews();
                         getArea();
                         Calculation();
+                        //onChangeSellingPrice_Calculation();
                         saveCommercialSaleBtn();
                     }
                     else{
@@ -291,6 +292,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
                         getArea();
                         Calculation();
+                        //onChangeSellingPrice_Calculation();
                         saveCommercialSaleBtn();
                     }
                     else{
@@ -317,6 +319,52 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
                 }
 
+
+            }
+        });
+
+    }
+
+    private void onChangeSellingPrice_Calculation() {
+        // --------------------  discount calculation on selling price change  ----------------------
+
+        et_selling_price.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                Double calSellingAmt=0.0;
+                Double calMRP=0.0;
+                Double calDiscountPrice=0.0;
+                calMRP = Double.valueOf(et_bpcl_rate.getText().toString());
+
+
+                if (!TextUtils.isEmpty(et_selling_price.getText()) ) {
+                    if(et_selling_price.getText().toString().equalsIgnoreCase(".")){
+                        et_selling_price.setText(String.valueOf(calMRP));
+                    }else {
+                        calSellingAmt = Double.valueOf(et_selling_price.getText().toString());
+                        calDiscountPrice = calMRP - calSellingAmt;
+                        et_discount.setText(String.valueOf(calDiscountPrice));
+                        if (calSellingAmt > calMRP) {
+                            et_selling_price.setError("selling price can't more than MRP");
+                            et_selling_price.setText(String.valueOf(calMRP));
+                            et_discount.setText("0");
+                        } else {
+                            //et_discount.setText(String.valueOf(calDiscountPrice));
+                        }
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
 
             }
         });
@@ -363,7 +411,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
                 et_area.setText(areaDBList.get(position).AreaName);
                 et_area.clearFocus();
-
+                assigned_cylinder.setVisibility(View.GONE);
                 RuntimeExceptionDao<CommercialProductModel, Integer> comProductDB = getHelper().getComProductRTExceptionDao();
                 try {
                     productDBList = comProductDB.queryBuilder().where().eq("Area",areaId).query();
@@ -385,7 +433,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         getProducts(areaId);
                     }
 
-
                     /*if (productSize > 0 && productDBList!=null) {
                         for (CommercialProductModel item : productDBList)
                             if (Integer.toString(areaId).equalsIgnoreCase(Integer.toString(item.Area))) {
@@ -394,7 +441,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
                         spinAdapter = new ArrayAdapter<String>(CommercialSaleActivity.this, android.R.layout.simple_spinner_dropdown_item, spinItems);
                         com_product_name.setAdapter(spinAdapter);
-
 
                         com_product_name.setText("");
                         com_product_name.setEnabled(true);
@@ -452,57 +498,56 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         com_product_name.setVisibility(View.VISIBLE);
 
         //visible Text Input Layouts
+        et_bpcl_rate.setText("");
+        et_sv_cyl.setText("");
+        et_selling_price.setText("");
+        et_total_amt.setText("");
+        et_full_cyl.setText("");
+
         input_layout_bpcl_rate.setVisibility(View.GONE);
-        et_bpcl_rate.setText("0");
         input_layout_Discount.setVisibility(View.GONE);
-        et_discount.setText("0");
         input_layout_rate_for_party.setVisibility(View.GONE);
-        et_selling_price.setText("0");
         input_layout_total_credit_cyl.setVisibility(View.VISIBLE);
         input_layout_full_cyl.setVisibility(View.GONE);
-        et_full_cyl.setText("0");
         input_layout_empty_cyl.setVisibility(View.VISIBLE);
         input_layout_sv_cyl.setVisibility(View.GONE);
-        et_sv_cyl.setText("0");
         input_layout_credit_cyl.setVisibility(View.VISIBLE);
         input_layout_total_amt.setVisibility(View.GONE);
-        et_total_amt.setText("0");
 
         input_layout_chalan.setVisibility(View.GONE);
-        et_chalan.setText("0");
         input_layout_cash_amt.setVisibility(View.VISIBLE);
         input_layout_total_credit_amt.setVisibility(View.VISIBLE);
         input_layout_balanced_credit_amt.setVisibility(View.VISIBLE);
 
 
-
     }
 
     private void visibleCashViews(){
-        et_area.setVisibility(View.GONE);
+
         et_area.setText("");
-        com_product_name.setVisibility(View.GONE);
         com_product_name.setText("");
 
-        //visible/gone Text Input Layouts
+        //et_bpcl_rate.setText("0");
+        et_selling_price.setText("");
+        et_total_credit_cyl.setText("");
+        et_full_cyl.setText("");
+        et_empty_cyl.setText("");
+        et_sv_cyl.setText("");
+        et_credit_cyl.setText("");
+        et_total_amt.setText("");
+
+        //visible gone Text Input Layouts
+        et_area.setVisibility(View.GONE);
+        com_product_name.setVisibility(View.GONE);
         input_layout_bpcl_rate.setVisibility(View.GONE);
-        et_bpcl_rate.setText("0");
         input_layout_Discount.setVisibility(View.GONE);
-        et_discount.setText("0");
         input_layout_rate_for_party.setVisibility(View.GONE);
-        et_selling_price.setText("0");
         input_layout_total_credit_cyl.setVisibility(View.GONE);
-        et_total_credit_cyl.setText("0");
         input_layout_full_cyl.setVisibility(View.GONE);
-        et_full_cyl.setText("0");
         input_layout_empty_cyl.setVisibility(View.GONE);
-        et_empty_cyl.setText("0");
         input_layout_sv_cyl.setVisibility(View.GONE);
-        et_sv_cyl.setText("0");
         input_layout_credit_cyl.setVisibility(View.GONE);
-        et_credit_cyl.setText("0");
         input_layout_total_amt.setVisibility(View.GONE);
-        et_total_amt.setText("0");
 
         input_layout_chalan.setVisibility(View.VISIBLE);
         input_layout_cash_amt.setVisibility(View.VISIBLE);
@@ -549,26 +594,57 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                Double calDiscount=0.0;
                 Double calMRP=0.0;
-                Double calDiscount = 0.0;
+
                 calMRP = Double.valueOf(et_bpcl_rate.getText().toString());
 
 
-                if (!TextUtils.isEmpty(et_discount.getText()) ) {
+                if (!TextUtils.isEmpty(et_discount.getText())
+                        || !et_discount.getText().toString().equalsIgnoreCase("")) {
                     if(et_discount.getText().toString().equalsIgnoreCase(".")){
                         et_discount.setText("0");
                     }
-                    {
+                    else {
                         calDiscount = Double.valueOf(et_discount.getText().toString());
                         calSellingPrice = calMRP - calDiscount;
                     }
                     if (calDiscount >= calMRP) {
                         et_discount.setError("You can't enter discount more than MRP");
-                        et_discount.setText("0");
+                    //    et_discount.setText("0");
                         et_selling_price.setText(String.valueOf(calMRP));
                     } else {
                         et_selling_price.setText(String.valueOf(calSellingPrice));
                     }
+
+                        //---------------  cyl calculation ---------------------
+
+                    if(!et_full_cyl.getText().toString().equalsIgnoreCase("")){
+                        Double TotalAmt = Double.valueOf(et_selling_price.getText().toString()) * Double.valueOf(et_full_cyl.getText().toString());
+                        et_total_amt.setText(String.valueOf(TotalAmt));
+
+
+                        Double balancedCreditAmt = 0.0;
+                        Double totalCreditAmt = 0.0, totalAmt = 0.0, cashAmt = 0.0;
+
+
+                        if (!TextUtils.isEmpty(et_total_credit_amt.getText().toString())&& !TextUtils.isEmpty(et_total_amt.getText().toString())) {
+                            totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
+                            totalAmt = Double.valueOf(et_total_amt.getText().toString());
+                            if(Integer.parseInt(et_total_credit_amt.getText().toString()) < 0){
+                                balancedCreditAmt = totalCreditAmt - totalAmt;
+                            }else {
+                                balancedCreditAmt = totalCreditAmt + totalAmt;
+                            }
+                            et_balanced_credit_amt.setText(String.valueOf(balancedCreditAmt));
+                        } else {
+                            et_balanced_credit_amt.setText("0");
+                        }
+
+                    }else{
+                        et_total_amt.setText("0");
+                    }
+
                 }
                 else
                 {
@@ -576,10 +652,11 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 }
             }
 
-            @Override
+                @Override
             public void afterTextChanged(Editable s) {
             }
         });
+
 
 
         // Calculation on change full cyl edittext
@@ -669,7 +746,12 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         full = Integer.parseInt(et_full_cyl.getText().toString());
                     }
                     int empty = Integer.parseInt(et_empty_cyl.getText().toString());
-                    int credit = Integer.parseInt(et_total_credit_cyl.getText().toString())+full;
+                    int credit;
+                    if (et_total_credit_cyl.getText().toString().equalsIgnoreCase("")){
+                        credit=0;
+                    }else {
+                        credit = Integer.parseInt(et_total_credit_cyl.getText().toString()) + full;
+                    }
                     if (empty > credit) {
                         Toast.makeText(CommercialSaleActivity.this, "You can't enter more than credit cyl", Toast.LENGTH_SHORT).show();
                         et_empty_cyl.setText("");
@@ -1063,7 +1145,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "SAVE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                btnSaveComDelivery.setClickable(false);
                 showProgressDialog();
                 //progress_bar_container.setVisibility(View.VISIBLE);
                 saveCommercialSale();
@@ -1073,6 +1155,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alertDialog.dismiss();
+                btnSaveComDelivery.setClickable(true);
             }
         });
         alertDialog.show();

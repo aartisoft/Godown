@@ -68,8 +68,7 @@ public class Constants {
     Cloud
      */
 
-/*
-    public static final String dbname = "EVITA_PROD";
+    /*public static final String dbname = "EVITA_PROD";
      public static final  String INFO ="android.evitasoftsolutions.com";
     public static final String GET_ALL_REPORT = "http://android.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://android.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
@@ -90,12 +89,15 @@ public class Constants {
     public static final String OWNER_DETAIL_REPORT = "http://android.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
 */
 
+
+
     /*
     production
     * */
 
 
-    /*public static final String dbname = "EVITA_PROD";
+    /*
+    public static final String dbname = "EVITA_PROD";
     public static final  String INFO ="192.168.1.177";
     public static final String GET_ALL_REPORT = "http://103.31.144.174/Reports/GetAndrReportAll";
     public static final String get_url = "http://103.31.144.174/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";

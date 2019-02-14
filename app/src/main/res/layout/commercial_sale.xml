@@ -311,7 +311,7 @@
                     android:enabled="false"
                     android:maxLength="15"
                     android:drawablePadding="@dimen/activity_vertical_margin"
-                    android:inputType="numberSigned|numberDecimal"/>
+                    android:inputType="numberDecimal"/>
 
             </android.support.design.widget.TextInputLayout>
 
