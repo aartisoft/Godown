@@ -139,7 +139,33 @@ public class Constants {
     public static final String AGENCY_NAME="http://192.168.1.177/Masters/GetAndrPrimaryCompany";
     public static final String STOCK_REPORT="http://192.168.1.177/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://192.168.1.177/Inventory/GetAndrOwnerReports";
+    public static final String SV_CONSUMERS = "http://192.168.1.177/Masters/GetAndrSvDetails";
 
+
+
+// ESS
+
+
+  /*  public static final String dbname = "EVITA_PROD";
+    public static final String INFO ="ess.evitasoftsolutions.com";
+    public static final String GET_ALL_REPORT = "http://ess.evitasoftsolutions.com/Reports/GetAndrReportAll";
+    public static final String get_url = "http://ess.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
+    public static final String post_url = "http://ess.evitasoftsolutions.com/Purchase/SaveDomesticDeliveryAndrA";
+    public static final String COMMERCIAL_DELIVERY_COUNT = "http://ess.evitasoftsolutions.com/Purchase/GetCreditCommCyl";
+    public static final String GET_CONSUMER_DETAILS ="http://ess.evitasoftsolutions.com/Purchase/GetAndrConsumerDetails";
+    public static final String GET_STOCKS_URL = "http://ess.evitasoftsolutions.com/Purchase/GetStockDetials";
+    public static final String POST_STOCKS_URL = "http://ess.evitasoftsolutions.com/Purchase/SaveTransfer";
+    public static final String GET_PURCHASE_ERV = "http://ess.evitasoftsolutions.com/Purchase/GetAndrPurchaseERV";
+    public static final String LOGIN_URL = "http://ess.evitasoftsolutions.com/login/validateLogin";
+    public static final String COMMERCIAL_REPORTS = "http://ess.evitasoftsolutions.com/Purchase/GetAndrReport";
+    public static final String COMMERCIAL_GET_CONSUMER_DETAILS = "http://ess.evitasoftsolutions.com/Masters/GetAndrCommConsumer";
+    public static final String COMMERCIAL_SAVE_CONSUMER_DELIVERY = "http://ess.evitasoftsolutions.com/CommercialMng/SaveAndrCommercial";
+    public static final String SAVE_CONSUMER_DETAILS="http://ess.evitasoftsolutions.com/masters/SaveCommercialParty";
+    public static final String GET_AVAILABLE_CYLINDERS="http://ess.evitasoftsolutions.com/masters/GetAndrAvilableCylinders";
+    public static final String AGENCY_NAME="http://ess.evitasoftsolutions.com/Masters/GetAndrPrimaryCompany";
+    public static final String STOCK_REPORT="http://ess.evitasoftsolutions.com/Inventory/GetAndrGodownWiseStocks";
+    public static final String OWNER_DETAIL_REPORT = "http://ess.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
+*/
 
 /*
   evita

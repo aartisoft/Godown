@@ -261,28 +261,6 @@
 
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/input_layout_retun_sv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_vertical_margin">
-
-                        <EditText
-                            android:id="@+id/input_return_sv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_lock_outline"
-                            android:hint="@string/sv"
-                            android:selectAllOnFocus="true"
-                            android:maxLength="3"
-                            android:drawablePadding="@dimen/activity_vertical_margin"
-                            android:inputType="number"/>
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-
-
-                    <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_retun_defective"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -300,10 +278,6 @@
                             android:inputType="number"/>
 
                     </android.support.design.widget.TextInputLayout>
-
-
-
-
 
 
                     <android.support.design.widget.TextInputLayout
@@ -373,8 +347,76 @@
 
 
 
+                </LinearLayout>
+
+               <!-- <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+
+                    >-->
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_sv"
+                android:weightSum="2"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_retun_sv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                        <EditText
+                            android:id="@+id/input_return_sv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_lock_outline"
+                            android:hint="@string/sv"
+                            android:selectAllOnFocus="true"
+                            android:maxLength="3"
+                            android:drawablePadding="@dimen/activity_vertical_margin"
+                            android:inputType="number"/>
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="#4472C4"
+                        >
+
+                    <Button
+                        android:id="@+id/btnConsumerSV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="10dp"
+                        android:background="@drawable/btn_background"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textAllCaps="true"
+                        android:text="SV CONSUMER" />
+
+                </LinearLayout>
                 </LinearLayout>
 
 
@@ -422,6 +464,34 @@
         android:textAllCaps="true"
         android:text="TAP TO SUBMIT" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_Consumer_Data"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ConsumerNo"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/noOfCyl"
+
+            />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Consumer_checkbox"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>
 

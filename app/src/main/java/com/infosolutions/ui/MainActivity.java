@@ -39,6 +39,7 @@ import com.infosolutions.core.EvitaApplication;
 import com.infosolutions.database.CommercialDeliveryCreditDB;
 import com.infosolutions.database.DatabaseHelper;
 import com.infosolutions.database.DomesticDeliveryDB;
+import com.infosolutions.database.SVConsumersDB;
 import com.infosolutions.event.EvitaEvent;
 import com.infosolutions.evita.R;
 import com.infosolutions.factory.IntentFactory;
@@ -107,6 +108,22 @@ public class MainActivity extends BaseActivity {
         }
     };
     private String login_type;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getSVConsumersList();
+    }
+
+    private void getSVConsumersList() {
+
+        VolleySingleton.getInstance(getApplicationContext())
+                .addResponseListener(VolleySingleton.CallType.GET_SVCONSUMERS, this);
+
+        VolleySingleton.getInstance(getApplicationContext())
+                .apiGetSVConsumers(VolleySingleton.CallType.GET_SVCONSUMERS, Constants.SV_CONSUMERS);
+
+    }
 
     @Override
     public void onSuccess(VolleySingleton.CallType type, String response) {
@@ -553,6 +570,48 @@ public class MainActivity extends BaseActivity {
 
             AppSettings.getInstance(this).updateLocalFromServer(this);
         }
+
+        else if (type.equals(VolleySingleton.CallType.GET_SVCONSUMERS)) {
+            JSONArray arrayPRODUCT = jsonResult.optJSONArray("SvDetails");
+            RuntimeExceptionDao<SVConsumersDB, Integer> productDB = getHelper().getSVConsumersRTExceptionDao();
+            try {
+                productDB.deleteBuilder().delete();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            if(arrayPRODUCT != null) {
+                for (int product = 0; product < arrayPRODUCT.length(); product++) {
+                    JSONObject objectProduct = arrayPRODUCT.optJSONObject(product);
+
+                    SVConsumersDB commercialProductModel = new SVConsumersDB(objectProduct);
+                    productDB.create(commercialProductModel);
+                }
+            }
+        }
+
+        /*else if (type.equals(VolleySingleton.CallType.GET_SVCONSUMERS)) {
+
+
+            RuntimeExceptionDao<SVConsumersDB, Integer> daoDatabase =
+                    getHelper().getSVConsumersRTExceptionDao();
+
+            try {
+                daoDatabase.deleteBuilder().delete();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if (jsonResult.optString("ResponseCode").equalsIgnoreCase("200")) {
+                JSONArray jsonArray = jsonResult.optJSONArray("SvDetails");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.optJSONObject(i);
+                    SVConsumersDB svConsumersDB = new SVConsumersDB(jsonObject);
+                    daoDatabase.createOrUpdate(svConsumersDB);
+                }
+
+                AppSettings.getInstance(this).getSVConsumersFromServer(this);
+            }
+        }*/
     }
 
     private void serverFailResponse(VolleyError error) {

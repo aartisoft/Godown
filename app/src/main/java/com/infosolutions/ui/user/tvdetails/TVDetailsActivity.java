@@ -134,7 +134,7 @@ public class TVDetailsActivity extends BaseActivity {
 
 
         VolleySingleton.getInstance(getApplicationContext()).addResponseListener(VolleySingleton.CallType.CONSUMER_DETAILS, this);
-        input_number_of_cylinders.setEnabled(false);
+        //input_number_of_cylinders.setEnabled(false);
         consumer_name.setEnabled(false);
         btnSubmit.setEnabled(false);
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
@@ -305,7 +305,7 @@ public class TVDetailsActivity extends BaseActivity {
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
-        mTitle.setText("TV Details");
+        mTitle.setText("TV Out/Surrender");
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

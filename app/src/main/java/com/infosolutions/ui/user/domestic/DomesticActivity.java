@@ -1,5 +1,6 @@
 package com.infosolutions.ui.user.domestic;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,16 +36,15 @@ import com.infosolutions.database.DatabaseHelper;
 import com.infosolutions.database.DomesticDeliveryDB;
 import com.infosolutions.database.EmployeeDB;
 import com.infosolutions.database.ProductDB;
+import com.infosolutions.database.SVConsumersDB;
 import com.infosolutions.evita.R;
 import com.infosolutions.network.Constants;
 import com.infosolutions.network.VolleySingleton;
-import com.infosolutions.ui.user.tvdetails.TVDetailsActivity;
 import com.infosolutions.utils.AppSettings;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.UpdateBuilder;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,7 +53,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import butterknife.BindView;
@@ -61,8 +61,6 @@ import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 
-import static com.infosolutions.network.Constants.MODULE_AVAILABLE_CYL;
-import static com.infosolutions.network.Constants.PRODUCT_ID;
 import static com.infosolutions.network.Constants.getSharedPrefWithKEY;
 import static com.infosolutions.network.Constants.saveWithSharedPreferences;
 import static java.lang.Integer.parseInt;
@@ -109,12 +107,26 @@ public class DomesticActivity extends BaseActivity {
     LinearLayout layout_fresh;
     @BindView(R.id.layout_return)
     LinearLayout layout_return;
+    @BindView(R.id.layout_sv)
+    LinearLayout layout_sv;
     @BindView(R.id.layout_cylinder)
     RelativeLayout layout_cylinder;
     @BindView(R.id.tv_available_cyl)
     TextView tv_available_cyl;
     @BindView(R.id.cyl_count)
     CountAnimationTextView cyl_count;
+
+    @BindView(R.id.btnConsumerSV)
+    Button btnConsumerSV;
+    @BindView(R.id.layout_Consumer_Data)
+    LinearLayout layout_Consumer_Data;
+    @BindView(R.id.ConsumerNo)
+    TextView ConsumerNo;
+    @BindView(R.id.noOfCyl)
+    TextView noOfCyl;
+    @BindView(R.id.Consumer_checkbox)
+    CheckBox Consumer_checkbox;
+
 
 
     private ChipSelectionAdapter chipAdapter;
@@ -129,6 +141,12 @@ public class DomesticActivity extends BaseActivity {
     private int TOTAL_AVAILABLE_CYL = 0;
     private List<Integer> empIds = new ArrayList<>();
     private DomesticDeliveryDB currentDomesticDeliveryDB;
+
+    private ArrayList<String> svconsumerListItems;
+    private List<SVConsumersDB> svconsumerDBList;
+    private String[] consumerArr;
+    private String selectetdVal = " ";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -308,12 +326,14 @@ public class DomesticActivity extends BaseActivity {
             if (VIEW_TYPE.equalsIgnoreCase("FRESH")){
                 layout_return.setVisibility(View.GONE);
                 layout_fresh.setVisibility(View.VISIBLE);
+                //layout_sv.setVisibility(View.VISIBLE);
                 initFreshLayout(getTripNumber());
 
             }else if (VIEW_TYPE.equalsIgnoreCase("RETURN"))
             {
                 layout_fresh.setVisibility(View.GONE);
                 layout_return.setVisibility(View.VISIBLE);
+                layout_sv.setVisibility(View.VISIBLE);
                 initReturnLayout(getTripNumber());
             }
         }
@@ -520,6 +540,7 @@ public class DomesticActivity extends BaseActivity {
     private void initReturnLayout(final int tripNumber, final int... fullCylinderCount) {
 
         layout_return.setVisibility(View.VISIBLE);
+        layout_sv.setVisibility(View.VISIBLE);
         layout_fresh.setVisibility(View.GONE);
         btnSubmit.setVisibility(View.VISIBLE);
         btnSubmit.setText("Submit Return Trip");
@@ -601,6 +622,7 @@ public class DomesticActivity extends BaseActivity {
     private void new_initReturnLayout(final DomesticDeliveryDB domesticDeliveryDB) {
 
         layout_return.setVisibility(View.VISIBLE);
+        layout_sv.setVisibility(View.VISIBLE);
         layout_fresh.setVisibility(View.GONE);
         btnSubmit.setVisibility(View.VISIBLE);
         btnSubmit.setText("Submit Return Trip");
@@ -620,6 +642,87 @@ public class DomesticActivity extends BaseActivity {
         input_full.setText(Integer.toString(domesticDeliveryDB.fresh_full_cylinder));
 
         input_full.setEnabled(false);
+
+
+        // -------------------------------------------------------------------------------------
+
+        btnConsumerSV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                svconsumerListItems = new ArrayList<>();
+                RuntimeExceptionDao<SVConsumersDB, Integer> comConsumerDB = getHelper().getSVConsumersRTExceptionDao();
+                svconsumerDBList = comConsumerDB.queryForAll();
+                int consumerSize = svconsumerDBList.size();
+                svconsumerListItems.clear();
+
+                //consumerArr = new String[svconsumerDBList.size()];
+                for (int i = 0; i < svconsumerDBList.size(); i++) {
+
+                    svconsumerListItems.add(svconsumerDBList.get(i).ConsumerNo + " : " + svconsumerDBList.get(i).CylQty);
+                    consumerArr= svconsumerListItems.toArray(new String[i]);
+                }
+                final boolean[] checkedItems=new boolean[consumerArr.length];
+                final ArrayList itemsSelected = new ArrayList();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(DomesticActivity.this);
+
+                builder.setCancelable(false);
+                builder.setTitle("New Consumer's List");
+                builder.setMultiChoiceItems( consumerArr,checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
+
+                        if (isChecked) {
+
+                            checkedItems[i] = isChecked;
+                            /*if (!itemsSelected.contains(i)){
+                                itemsSelected.add(i);
+                            }*/
+
+                        } else if (itemsSelected.contains(i)) {
+                            itemsSelected.remove(Integer.valueOf(i));
+                        }
+                    }
+                }).setPositiveButton("SAVE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+
+
+                        for (int i = 0; i < consumerArr.length; i++)
+                        {
+                            if (checkedItems[i])
+                            {
+                                selectetdVal = selectetdVal + consumerArr[i]+ ";";
+                                checkedItems[i]=false;
+                            }
+                        }
+                        Toast.makeText(DomesticActivity.this, selectetdVal+"\n",Toast.LENGTH_SHORT).show();
+
+                        String[] items = selectetdVal.split(";");
+                        for (String item : items)
+                        {
+                            Toast.makeText(DomesticActivity.this, item,Toast.LENGTH_SHORT).show();
+                        }
+
+
+                        //Toast.makeText(DomesticActivity.this,itemsSelected.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                    }
+                });
+                Dialog dialog;
+                dialog = builder.create();
+                dialog.show();
+
+            }
+        });
+
+        //-------------------------------------------------------------------------------------
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

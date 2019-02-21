@@ -43,6 +43,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private RuntimeExceptionDao<ProductDB, Integer>
 			productRTExceptionDao = null;
 
+	private Dao<SVConsumersDB, Integer> SVConsumersDao = null;
+	private RuntimeExceptionDao<SVConsumersDB, Integer>
+			SVConsumersRTExceptionDao = null;
+
 	private Dao<CommercialProductModel, Integer> comProductDao = null;
 	private RuntimeExceptionDao<CommercialProductModel, Integer>
 			comProductRTExceptionDao = null;
@@ -136,6 +140,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, AreaModel.class);
 			TableUtils.createTable(connectionSource, CommercialStockModel.class);
 			TableUtils.createTable(connectionSource, UserAssignedCylinderModel.class);
+			TableUtils.createTable(connectionSource, SVConsumersDB.class);
 			//TableUtils.createTable(connectionSource, CommercialConsumerModel.class);
 
 		} catch (SQLException e) {
@@ -189,6 +194,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, AreaModel.class,true);
 			TableUtils.dropTable(connectionSource, CommercialStockModel.class,true);
 			TableUtils.dropTable(connectionSource, UserAssignedCylinderModel.class,true);
+			TableUtils.dropTable(connectionSource, SVConsumersDB.class,true);
 			//TableUtils.dropTable(connectionSource, CommercialConsumerModel.class,true);
 
 			onCreate(sqliteDatabase, connectionSource);
@@ -280,6 +286,16 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		}
 		return productRTExceptionDao;
 	}
+
+	public RuntimeExceptionDao<SVConsumersDB, Integer> getSVConsumersRTExceptionDao() {
+
+		if (SVConsumersRTExceptionDao == null) {
+			SVConsumersRTExceptionDao = getRuntimeExceptionDao(SVConsumersDB.class);
+		}
+		return SVConsumersRTExceptionDao;
+	}
+
+
 
 	public RuntimeExceptionDao<CommercialProductModel, Integer> getComProductRTExceptionDao() {
 

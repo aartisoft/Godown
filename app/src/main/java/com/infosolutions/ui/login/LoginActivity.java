@@ -436,7 +436,7 @@ public class LoginActivity extends BaseActivity {
                 try {
                     String responseCode = jsonResult.optString(Constants.responseCcode);
                     login_type = LOGIN_DELIVERYMAN;
-                    saveLoginTypePreference(login_type);
+                        saveLoginTypePreference(login_type);
                     if(responseCode.equalsIgnoreCase("500")){
                         hideProgressDialog();
                         serverSuccessResponse(response);
