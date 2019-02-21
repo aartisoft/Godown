@@ -700,14 +700,12 @@ public class DomesticActivity extends BaseActivity {
                         }
                         Toast.makeText(DomesticActivity.this, selectetdVal+"\n",Toast.LENGTH_SHORT).show();
 
-                        String[] items = selectetdVal.split(";");
+                        /*String[] items = selectetdVal.split(";");
                         for (String item : items)
                         {
                             Toast.makeText(DomesticActivity.this, item,Toast.LENGTH_SHORT).show();
                         }
-
-
-                        //Toast.makeText(DomesticActivity.this,itemsSelected.toString(),Toast.LENGTH_SHORT).show();
+                        */
                     }
                 }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
