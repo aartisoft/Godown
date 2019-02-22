@@ -68,6 +68,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private RuntimeExceptionDao<TVDetailsDB, Integer>
 			tvDetailRTExceptionDao = null;
 
+	private Dao<NewConsumerDB, Integer> newConsumerDao = null;
+	private RuntimeExceptionDao<NewConsumerDB, Integer>
+			newConsumerRTExceptionDao = null;
+
 	private Dao<TruckDetailsDB, Integer> truckDetailsDao = null;
 	private RuntimeExceptionDao<TruckDetailsDB, Integer>
 			truckDetailRTExceptionDao = null;
@@ -141,6 +145,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, CommercialStockModel.class);
 			TableUtils.createTable(connectionSource, UserAssignedCylinderModel.class);
 			TableUtils.createTable(connectionSource, SVConsumersDB.class);
+			TableUtils.createTable(connectionSource, NewConsumerDB.class);
 			//TableUtils.createTable(connectionSource, CommercialConsumerModel.class);
 
 		} catch (SQLException e) {
@@ -195,6 +200,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, CommercialStockModel.class,true);
 			TableUtils.dropTable(connectionSource, UserAssignedCylinderModel.class,true);
 			TableUtils.dropTable(connectionSource, SVConsumersDB.class,true);
+			TableUtils.dropTable(connectionSource, NewConsumerDB.class,true);
+
 			//TableUtils.dropTable(connectionSource, CommercialConsumerModel.class,true);
 
 			onCreate(sqliteDatabase, connectionSource);
@@ -364,6 +371,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		return tvDetailRTExceptionDao;
 	}
 
+	public RuntimeExceptionDao<NewConsumerDB, Integer> saveNewConsumerRTExceptionDao() {
+
+		if (newConsumerRTExceptionDao == null) {
+			newConsumerRTExceptionDao = getRuntimeExceptionDao(NewConsumerDB.class);
+		}
+		return newConsumerRTExceptionDao;
+	}
 
 	/**
 	 * @return

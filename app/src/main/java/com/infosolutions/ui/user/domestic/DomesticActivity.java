@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -35,8 +36,10 @@ import com.infosolutions.core.EvitaApplication;
 import com.infosolutions.database.DatabaseHelper;
 import com.infosolutions.database.DomesticDeliveryDB;
 import com.infosolutions.database.EmployeeDB;
+import com.infosolutions.database.NewConsumerDB;
 import com.infosolutions.database.ProductDB;
 import com.infosolutions.database.SVConsumersDB;
+import com.infosolutions.database.TVDetailsDB;
 import com.infosolutions.evita.R;
 import com.infosolutions.network.Constants;
 import com.infosolutions.network.VolleySingleton;
@@ -660,7 +663,7 @@ public class DomesticActivity extends BaseActivity {
                 //consumerArr = new String[svconsumerDBList.size()];
                 for (int i = 0; i < svconsumerDBList.size(); i++) {
 
-                    svconsumerListItems.add(svconsumerDBList.get(i).ConsumerNo + " : " + svconsumerDBList.get(i).CylQty);
+                    svconsumerListItems.add(svconsumerDBList.get(i).ConsumerNo);
                     consumerArr= svconsumerListItems.toArray(new String[i]);
                 }
                 final boolean[] checkedItems=new boolean[consumerArr.length];
@@ -677,12 +680,6 @@ public class DomesticActivity extends BaseActivity {
                         if (isChecked) {
 
                             checkedItems[i] = isChecked;
-                            /*if (!itemsSelected.contains(i)){
-                                itemsSelected.add(i);
-                            }*/
-
-                        } else if (itemsSelected.contains(i)) {
-                            itemsSelected.remove(Integer.valueOf(i));
                         }
                     }
                 }).setPositiveButton("SAVE", new DialogInterface.OnClickListener() {
@@ -694,18 +691,21 @@ public class DomesticActivity extends BaseActivity {
                         {
                             if (checkedItems[i])
                             {
-                                selectetdVal = selectetdVal + consumerArr[i]+ ";";
+
+                                selectetdVal =  selectetdVal+consumerArr[i]+ ";";
                                 checkedItems[i]=false;
                             }
+
                         }
-                        Toast.makeText(DomesticActivity.this, selectetdVal+"\n",Toast.LENGTH_SHORT).show();
+
 
                         /*String[] items = selectetdVal.split(";");
                         for (String item : items)
                         {
                             Toast.makeText(DomesticActivity.this, item,Toast.LENGTH_SHORT).show();
                         }
-                        */
+
+*/
                     }
                 }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
@@ -761,6 +761,8 @@ public class DomesticActivity extends BaseActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         new_saveReturnData(domesticDeliveryDB);
+
+
                                     }
                                 });
                         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "CANCEL", new DialogInterface.OnClickListener() {
@@ -847,9 +849,6 @@ public class DomesticActivity extends BaseActivity {
 
             DatabaseHelper databaseHelper = new DatabaseHelper(DomesticActivity.this);
 
-            /*if(databaseHelper.CheckIsDataAlreadyAvailableDBorNot(ts))
-
-            {*/
             /******************************************************************************************************************/
             RuntimeExceptionDao<DomesticDeliveryDB, Integer> domesticDao = getHelper().getDomesticRuntimeExceptionDao();
             UpdateBuilder<DomesticDeliveryDB, Integer> updateBuilder = domesticDao.updateBuilder();
@@ -878,24 +877,34 @@ public class DomesticActivity extends BaseActivity {
 
             updateBuilder.update();
             /******************************************************************************************************************/
+
+            RuntimeExceptionDao<NewConsumerDB, Integer>  newConsumerDB = getHelper().saveNewConsumerRTExceptionDao();
+            String[] items = selectetdVal.split(";");
+            for (String item : items)
+            {
+                Toast.makeText(DomesticActivity.this, item,Toast.LENGTH_SHORT).show();
+                newConsumerDB.create(new NewConsumerDB(1, item,"N"));
+                Log.e("New Consumers",item);
+            }
+
+            /******************************************************************************************************************/
             String updateTripNumber = String.valueOf(domesticDeliveryDB.trip_number + 1);
             savePreferences(KEY_DOMESTIC_TRIP_NO, updateTripNumber);
             savePreferences(KEY_DOMESTIC_FULL_CYLINDER, "0");
             savePreferences(KEY_LAYOUT_TYPE, "FRESH");
 
+
             clearAllFields();
             showToast(getResources().getString(R.string.saved_success_msg));
             finish();
-           /* }
-            else
-            {
-                showToast(getResources().getString(R.string.error_occured));
-            }*/
 
         }catch (Exception ex){
             showErrorToast(DomesticActivity.this,"Error",getResources().getString(R.string.taken_from_different_godown));
             ex.printStackTrace();
         }
+
+
+
     }
 
     private int returnTotalCalculation() {

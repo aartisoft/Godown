@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.infosolutions.database.CommercialDeliveryDB;
 import com.infosolutions.database.DatabaseHelper;
 import com.infosolutions.database.DomesticDeliveryDB;
+import com.infosolutions.database.NewConsumerDB;
 import com.infosolutions.database.TVDetailsDB;
 import com.infosolutions.database.TruckDetailsDB;
 import com.infosolutions.database.TruckSendDetailsDB;
@@ -63,6 +64,7 @@ public class AppSettings {
     private static JSONArray jsonArrayCommercial;
     private static JSONArray jsonArrayTVDetails;
     private static JSONArray jsonArrayTruckDetails;
+    private static JSONArray jsonArrayNewConsumers;
 
 
     private static AppSettings _appsettings;
@@ -209,7 +211,12 @@ public class AppSettings {
         if (allTruckSendDetails.size() > 0) {
             Log.e("Truck Send Details", allTruckSendDetails.toString());
         }
-
+        /*********************************************************************************************************/
+        RuntimeExceptionDao<NewConsumerDB, Integer> newConsumerDB = getHelper(context).saveNewConsumerRTExceptionDao();
+        List<NewConsumerDB> allNewConsumerDB = newConsumerDB.queryForEq("is_sync", "N");
+        if (allNewConsumerDB.size() > 0) {
+            Log.e("New Consumers Details", allNewConsumerDB.toString());
+        }
 
         jsonArrayDomestic = new JSONArray();
 
@@ -492,11 +499,28 @@ public class AppSettings {
         }
 
 
+        jsonArrayNewConsumers = new JSONArray();
+        if (allNewConsumerDB.size() > 0) {
+            for (NewConsumerDB cn : allNewConsumerDB) {
+                try {
+                    JSONObject newConsumerDetailObject = new JSONObject();
+                    newConsumerDetailObject.put("ConsumerNo", cn.ConsumerNo);
+
+                    jsonArrayNewConsumers.put(newConsumerDetailObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+
         try {
             localJSON_DATA = new JSONObject();
 
 
-            if (jsonArrayTruckDetails != null && jsonArrayTVDetails != null && jsonArrayDomestic != null && jsonArrayCommercial != null && jsonArrayTruckSendDetails != null) {
+            if (jsonArrayTruckDetails != null && jsonArrayTVDetails != null && jsonArrayDomestic != null
+                    && jsonArrayCommercial != null && jsonArrayTruckSendDetails != null && jsonArrayNewConsumers!=null) {
 
                 try {
                     localJSON_DATA.put("ESS_ERV_DETAILS", new JSONArray(jsonArrayTruckSendDetails.toString()));
@@ -504,6 +528,7 @@ public class AppSettings {
                     localJSON_DATA.put("ESS_TV_DETAILS", new JSONArray(jsonArrayTVDetails.toString()));
                     localJSON_DATA.put("ESS_DOMESTIC_DELIVERY", new JSONArray(jsonArrayDomestic.toString()));
                     localJSON_DATA.put("ESS_COMMERCIAL_DELIVERY", new JSONArray(jsonArrayCommercial.toString()));
+                    localJSON_DATA.put("ESS_NEW_CONSUMERS", new JSONArray(jsonArrayNewConsumers.toString()));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -520,7 +545,7 @@ public class AppSettings {
 
     public boolean isBodyJsonEmpy() {
         if (jsonArrayDomestic.length() == 0 && jsonArrayCommercial.length() == 0 && jsonArrayTVDetails.length() == 0 && jsonArrayTruckDetails.length() == 0 && jsonArrayTruckSendDetails.length() == 0) {
-            // Notification(getApplicationContext(), "No data to sync");
+            //Notification(getApplicationContext(), "No data to sync");
             Log.e("DataSync", "No Data To Sync");
             return true;
         } else {

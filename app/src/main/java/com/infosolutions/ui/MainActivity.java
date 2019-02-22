@@ -581,11 +581,13 @@ public class MainActivity extends BaseActivity {
             }
 
             if(arrayPRODUCT != null) {
+
                 for (int product = 0; product < arrayPRODUCT.length(); product++) {
                     JSONObject objectProduct = arrayPRODUCT.optJSONObject(product);
 
                     SVConsumersDB commercialProductModel = new SVConsumersDB(objectProduct);
                     productDB.create(commercialProductModel);
+
                 }
             }
         }
