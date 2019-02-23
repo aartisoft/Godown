@@ -910,10 +910,6 @@ public class VolleySingleton {
         addToRequestQueue(request); }
 
 
-
-
-
-
     /**
      * Check Login validation for Login
      * */
