@@ -656,7 +656,11 @@ public class DomesticActivity extends BaseActivity {
 
                 svconsumerListItems = new ArrayList<>();
                 RuntimeExceptionDao<SVConsumersDB, Integer> comConsumerDB = getHelper().getSVConsumersRTExceptionDao();
-                svconsumerDBList = comConsumerDB.queryForAll();
+                try {
+                    svconsumerDBList = comConsumerDB.queryBuilder().where().eq("is_sync","N").query();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 int consumerSize = svconsumerDBList.size();
                 svconsumerListItems.clear();
 
@@ -664,16 +668,19 @@ public class DomesticActivity extends BaseActivity {
                 for (int i = 0; i < svconsumerDBList.size(); i++) {
 
                     svconsumerListItems.add(svconsumerDBList.get(i).ConsumerNo);
-                    consumerArr= svconsumerListItems.toArray(new String[i]);
+                    consumerArr = svconsumerListItems.toArray(new String[i]);
                 }
-                final boolean[] checkedItems=new boolean[consumerArr.length];
+
+                if ( consumerArr!=null){
+
+                final boolean[] checkedItems = new boolean[consumerArr.length];
                 final ArrayList itemsSelected = new ArrayList();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(DomesticActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DomesticActivity.this);
 
                 builder.setCancelable(false);
                 builder.setTitle("New Consumer's List");
-                builder.setMultiChoiceItems( consumerArr,checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                builder.setMultiChoiceItems(consumerArr, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
 
@@ -687,13 +694,11 @@ public class DomesticActivity extends BaseActivity {
                     public void onClick(DialogInterface dialogInterface, int which) {
 
 
-                        for (int i = 0; i < consumerArr.length; i++)
-                        {
-                            if (checkedItems[i])
-                            {
+                        for (int i = 0; i < consumerArr.length; i++) {
+                            if (checkedItems[i]) {
 
-                                selectetdVal =  selectetdVal+consumerArr[i]+ ";";
-                                checkedItems[i]=false;
+                                selectetdVal = selectetdVal + consumerArr[i] + ";";
+                                checkedItems[i] = false;
                             }
 
                         }
@@ -710,12 +715,17 @@ public class DomesticActivity extends BaseActivity {
                 }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
+                        dialogInterface.dismiss();
                     }
                 });
                 Dialog dialog;
                 dialog = builder.create();
                 dialog.show();
+
+            } // if condition closed
+                else{
+                        Toast.makeText(DomesticActivity.this,"New Consumer Not Available",Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -883,7 +893,7 @@ public class DomesticActivity extends BaseActivity {
             for (String item : items)
             {
                 Toast.makeText(DomesticActivity.this, item,Toast.LENGTH_SHORT).show();
-                newConsumerDB.create(new NewConsumerDB(1, item,"N"));
+                newConsumerDB.create(new NewConsumerDB(1, item.trim(),"N"));
                 Log.e("New Consumers",item);
             }
 

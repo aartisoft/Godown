@@ -18,6 +18,7 @@ import com.infosolutions.database.CommercialDeliveryDB;
 import com.infosolutions.database.DatabaseHelper;
 import com.infosolutions.database.DomesticDeliveryDB;
 import com.infosolutions.database.NewConsumerDB;
+import com.infosolutions.database.SVConsumersDB;
 import com.infosolutions.database.TVDetailsDB;
 import com.infosolutions.database.TruckDetailsDB;
 import com.infosolutions.database.TruckSendDetailsDB;
@@ -504,7 +505,7 @@ public class AppSettings {
             for (NewConsumerDB cn : allNewConsumerDB) {
                 try {
                     JSONObject newConsumerDetailObject = new JSONObject();
-                    newConsumerDetailObject.put("ConsumerNo", cn.ConsumerNo);
+                    newConsumerDetailObject.put("consumer_no", cn.ConsumerNo);
 
                     jsonArrayNewConsumers.put(newConsumerDetailObject);
                 } catch (JSONException e) {
@@ -582,8 +583,8 @@ public class AppSettings {
                     getHelper(context).getTruckDetailSendRTExceptionDao();
             updateTruckSendDetailDB(truckSendDetails);
 
-            RuntimeExceptionDao<NewConsumerDB, Integer> newConsumerDetails =
-                    getHelper(context).saveNewConsumerRTExceptionDao();
+            RuntimeExceptionDao<SVConsumersDB, Integer> newConsumerDetails =
+                    getHelper(context).getSVConsumersRTExceptionDao();
             updateNewConsumerDetailDB(newConsumerDetails);
 
 
@@ -627,9 +628,9 @@ public class AppSettings {
         updateDomesticBuilder.updateColumnValue("is_sync", "Y");
         updateDomesticBuilder.update();
     }
-    private void updateNewConsumerDetailDB(RuntimeExceptionDao<NewConsumerDB, Integer> daoDatabase) throws SQLException {
+    private void updateNewConsumerDetailDB(RuntimeExceptionDao<SVConsumersDB, Integer> daoDatabase) throws SQLException {
 
-        UpdateBuilder<NewConsumerDB, Integer> updateNewConsumerBuilder = daoDatabase.updateBuilder();
+        UpdateBuilder<SVConsumersDB, Integer> updateNewConsumerBuilder = daoDatabase.updateBuilder();
         updateNewConsumerBuilder.updateColumnValue("is_sync", "Y");
         updateNewConsumerBuilder.update();
     }

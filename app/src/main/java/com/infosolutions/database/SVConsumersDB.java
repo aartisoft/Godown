@@ -15,7 +15,7 @@ public class SVConsumersDB implements Serializable {
     }
 
     public SVConsumersDB(int SVConsumerId, String ConsumerNo, String SvNo,
-                         String ConsumerName, String SVDate,int CylQty,int ProductID) {
+                         String ConsumerName, String SVDate,int CylQty,int ProductID,String is_sync) {
         this.SVConsumerId = SVConsumerId;
         this.ConsumerNo = ConsumerNo;
         this.SvNo = SvNo;
@@ -23,6 +23,7 @@ public class SVConsumersDB implements Serializable {
         this.SVDate = SVDate;
         this.CylQty = CylQty;
         this.ProductID = ProductID;
+        this.is_sync=is_sync;
     }
 
     @DatabaseField(generatedId = true, columnName = "SVConsumerId")
@@ -40,6 +41,8 @@ public class SVConsumersDB implements Serializable {
     public int CylQty;
     @DatabaseField
     public int ProductID;
+    @DatabaseField
+    public String is_sync;
 
     public SVConsumersDB(JSONObject joDomestic) {
         if (joDomestic != null) {
@@ -49,6 +52,7 @@ public class SVConsumersDB implements Serializable {
             SVDate = joDomestic.optString("SVDate");
             CylQty = joDomestic.optInt("CylQty");
             ProductID = joDomestic.optInt("ProductID");
+            is_sync="N";
             }
     }
 
@@ -62,6 +66,7 @@ public class SVConsumersDB implements Serializable {
                 ", SVDate='" + SVDate + '\'' +
                 ", CylQty='" + CylQty + '\'' +
                 ", ProductID='" + ProductID + '\'' +
+                ", is_sync='" + is_sync + '\'' +
                 '}';
     }
 
