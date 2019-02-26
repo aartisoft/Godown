@@ -18,12 +18,12 @@
         android:textSize="20dp"
         android:id="@+id/toolbar_title"
         >
-        <ImageView
+       <!-- <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:id="@+id/imageViewplaces"
             android:src="@drawable/cyl_five_kg"
-            />
+            />-->
     </TextView>
 
 </android.support.v7.widget.Toolbar>

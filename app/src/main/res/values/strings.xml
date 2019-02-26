@@ -266,7 +266,7 @@
 
     <string name="Select_Operation">Select Operation</string>
     <string name="Select_Area">Select Area</string>
-    <string name="Chalan_No">Chalan No</string>
+    <string name="Chalan_No">Challan No</string>
     <string name="MRP">MRP</string>
     <string name="Selling_Price">Selling Price</string>
     <string name="Total_Credit_Cyl">Total Credit Cyl</string>
@@ -279,6 +279,8 @@
     <string name="Total_Credit_Amt">Last Credit Amt</string>
     <string name="Balanced_Credit_Amt">Balanced Credit Amt</string>
     <string name="Submit">Submit</string>
+
+
 
 
 </resources>

@@ -408,6 +408,9 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 areaId = areaDBList.get(position).AreaID;
                 //com_product_name.clearListSelection();
+                et_bpcl_rate.setText("0");
+                et_selling_price.setText("0");
+                com_product_name.setText("");
 
                 et_area.setText(areaDBList.get(position).AreaName);
                 et_area.clearFocus();
@@ -987,12 +990,9 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             @Override
             public void onClick(View v) {
 
-                if (!et_full_cyl.getText().toString().equalsIgnoreCase("")) {
-                    if (Integer.parseInt(et_full_cyl.getText().toString()) > 0) {
-                        getSaleEntries();
-                    }
-
-                }else{
+                if (et_cash_sale.getText().toString().equalsIgnoreCase("Sale")){
+                    getSaleEntries();
+                }else if (et_cash_sale.getText().toString().equalsIgnoreCase("Empty Received")){
                     emptyTakenRecords();
                 }
 
@@ -1019,10 +1019,10 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             Toast.makeText(getApplicationContext(), R.string.Consumer_Not_Selected, Toast.LENGTH_SHORT).show();
         } else if (com_product_name.getText().toString().equalsIgnoreCase("")) {
             Toast.makeText(getApplicationContext(), R.string.Product_Not_Selected, Toast.LENGTH_SHORT).show();
-        } else if (et_chalan.getText().toString().equalsIgnoreCase("")) {
+        } /*else if (et_chalan.getText().toString().equalsIgnoreCase("")) {
             Toast.makeText(getApplicationContext(), R.string.Enter_Chalan_Number, Toast.LENGTH_SHORT).show();
             et_chalan.requestFocus();
-        } else if (et_full_cyl.getText().toString().equalsIgnoreCase("")
+        }*/ else if (et_full_cyl.getText().toString().equalsIgnoreCase("")
                 && et_cash_amt.getText().toString().equalsIgnoreCase("")
                 && et_empty_cyl.getText().toString().equalsIgnoreCase("")) {
             Toast.makeText(getApplicationContext(), R.string.EnterFullEmptyCash, Toast.LENGTH_SHORT).show();
@@ -1414,6 +1414,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                             e.printStackTrace();
                         }
                         et_bpcl_rate.setText(String.valueOf(BPCLrate));
+                        et_selling_price.setText(String.valueOf(BPCLrate));
                         et_discount.setEnabled(true);
                         try {
                         if (!TextUtils.isEmpty(et_consumer_name.getText())) {
@@ -1487,6 +1488,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_backspace);
     }
 
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -1523,6 +1525,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         return true;
     }
 
+*/
 
     @Override
     public void onSuccess(VolleySingleton.CallType type, String response) {

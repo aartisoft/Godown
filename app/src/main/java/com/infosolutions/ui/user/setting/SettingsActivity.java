@@ -420,7 +420,7 @@ public class SettingsActivity extends BaseActivity implements ResponseListener {
 
 
     private void logout() {
-        BottomDialog dialog = BottomDialog.newInstance("Are you sure do you want logout ?", "Dismiss", new String[]{"YES", "NO"});
+        BottomDialog dialog = BottomDialog.newInstance("Do you want to Logout ?", "Dismiss", new String[]{"YES", "NO"});
         dialog.show(getSupportFragmentManager(), "dialog");
         dialog.setListener(new BottomDialog.OnClickListener() {
             @Override

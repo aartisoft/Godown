@@ -269,7 +269,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void logout() {
-        BottomDialog dialog = BottomDialog.newInstance("Are you sure do you want logout ?", "Dismiss", new String[]{"YES", "NO"});
+        BottomDialog dialog = BottomDialog.newInstance("Do you want to Logout ?", "Dismiss", new String[]{"YES", "NO"});
         dialog.show(getSupportFragmentManager(), "dialog");
         dialog.setListener(new BottomDialog.OnClickListener() {
             @Override
@@ -433,8 +433,8 @@ public class MainActivity extends BaseActivity {
             TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
             mTitle.setText(R.string.godown);
 
-            ImageView imageView=toolbar.findViewById(R.id.imageview);
-            imageView.setVisibility(View.INVISIBLE);
+            /*ImageView imageView=toolbar.findViewById(R.id.imageview);
+            imageView.setVisibility(View.INVISIBLE);*/
 
             String SELECTED_GODOWN_NAME = PreferencesHelper.getInstance().getStringValue(KEY_GODOWN_NAME, "Empty");
             String SELECTED_GODOWN_CODE = PreferencesHelper.getInstance().getStringValue(KEY_GODOWN, "Empty");

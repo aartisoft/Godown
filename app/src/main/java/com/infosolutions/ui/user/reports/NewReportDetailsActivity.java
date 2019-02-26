@@ -409,7 +409,7 @@ public class NewReportDetailsActivity extends AppCompatActivity implements Respo
                 return_full_textview.setText("RETURN FULL : ");
                 return_full_textview_value.setText(childModel.return_full);
 
-                full_cylinder_textview.setText("FULL CYLLINDER : ");
+                full_cylinder_textview.setText("FULL CYLINDER : ");
                 full_cylinder_textview_value.setText(childModel.full_cylinder);
 
                 empty_textview.setText("EMPTY : ");

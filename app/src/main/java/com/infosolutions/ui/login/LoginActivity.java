@@ -31,6 +31,7 @@ import com.infosolutions.database.ConsumerDetails;
 import com.infosolutions.database.DatabaseHelper;
 import com.infosolutions.database.DomesticDeliveryDB;
 import com.infosolutions.database.EmployeeDB;
+import com.infosolutions.database.NewConsumerDB;
 import com.infosolutions.database.ProductDB;
 import com.infosolutions.database.TVDetailsDB;
 import com.infosolutions.database.TruckDetailsDB;
@@ -733,7 +734,10 @@ public class LoginActivity extends BaseActivity {
         RuntimeExceptionDao<TruckSendDetailsDB, Integer> truckSendDetails = getHelper().getTruckDetailSendRTExceptionDao();
         List<TruckSendDetailsDB> allTruckSendDetails = truckSendDetails.queryForAll();
         truckSendDetails.delete(allTruckSendDetails);
-
+        /*********************************************************************************************************/
+        RuntimeExceptionDao<NewConsumerDB, Integer> newConsumerDBDetails = getHelper().saveNewConsumerRTExceptionDao();
+        List<NewConsumerDB> allnewConsumerDetails = newConsumerDBDetails.queryForAll();
+        newConsumerDBDetails.delete(allnewConsumerDetails);
     }
 
     private void storeCommercialCredit(JSONArray ess_commercial_delivery_credit) throws JSONException {

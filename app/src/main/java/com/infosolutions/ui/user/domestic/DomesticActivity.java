@@ -170,8 +170,8 @@ public class DomesticActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
         mTitle.setText("Domestic");
-        ImageView imageView=toolbar.findViewById(R.id.imageview);
-        imageView.setImageResource(R.drawable.domestic);
+        /*ImageView imageView=toolbar.findViewById(R.id.imageview);
+        imageView.setImageResource(R.drawable.domestic);*/
         setSupportActionBar(toolbar);
 
 

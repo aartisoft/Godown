@@ -14,7 +14,7 @@
         android:title="@string/action_settings"/>
     <item
         android:id="@+id/action_transfer"
-        app:showAsAction="ifRoom"
+        app:showAsAction="collapseActionView"
         android:icon="@drawable/transfer"
         android:title="Stock Transfer"/>
     <item
@@ -25,7 +25,7 @@
 
     <item
         android:id="@+id/action_info"
-        app:showAsAction="ifRoom"
+        app:showAsAction="collapseActionView"
         android:icon="@drawable/info"
         android:title="Info"/>
 </menu>

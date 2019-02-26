@@ -508,10 +508,9 @@ public class AppSettings {
 
                     jsonArrayNewConsumers.put(newConsumerDetailObject);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    e.printStackTrace();//
                 }
             }
-
         }
 
 
@@ -583,6 +582,10 @@ public class AppSettings {
                     getHelper(context).getTruckDetailSendRTExceptionDao();
             updateTruckSendDetailDB(truckSendDetails);
 
+            RuntimeExceptionDao<NewConsumerDB, Integer> newConsumerDetails =
+                    getHelper(context).saveNewConsumerRTExceptionDao();
+            updateNewConsumerDetailDB(newConsumerDetails);
+
 
         } catch (SQLException e) {
             Toast.makeText(context, "Invalid data received", Toast.LENGTH_SHORT).show();
@@ -623,6 +626,12 @@ public class AppSettings {
         UpdateBuilder<DomesticDeliveryDB, Integer> updateDomesticBuilder = daoDatabase.updateBuilder();
         updateDomesticBuilder.updateColumnValue("is_sync", "Y");
         updateDomesticBuilder.update();
+    }
+    private void updateNewConsumerDetailDB(RuntimeExceptionDao<NewConsumerDB, Integer> daoDatabase) throws SQLException {
+
+        UpdateBuilder<NewConsumerDB, Integer> updateNewConsumerBuilder = daoDatabase.updateBuilder();
+        updateNewConsumerBuilder.updateColumnValue("is_sync", "Y");
+        updateNewConsumerBuilder.update();
     }
 
 
