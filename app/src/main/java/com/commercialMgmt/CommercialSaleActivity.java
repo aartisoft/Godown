@@ -275,7 +275,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         getArea();
                         Calculation();
                         //onChangeSellingPrice_Calculation();
-                        saveCommercialSaleBtn();
+                        saveCommercialSaleBtn(position);
                     }
                     else{
                         et_cash_sale.setText("");
@@ -293,7 +293,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         getArea();
                         Calculation();
                         //onChangeSellingPrice_Calculation();
-                        saveCommercialSaleBtn();
+                        saveCommercialSaleBtn(position);
                     }
                     else{
                         et_cash_sale.setText("");
@@ -651,6 +651,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 }
                 else
                 {
+                    et_discount.setText("0");
                     et_selling_price.setText(String.valueOf(calMRP));
                 }
             }
@@ -984,17 +985,23 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         //AppSettings.hideKeyboard(this);
     }
 
-    private void saveCommercialSaleBtn() {
+    private void saveCommercialSaleBtn(final int position) {
 
         btnSaveComDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (et_cash_sale.getText().toString().equalsIgnoreCase("Sale")){
+                if (position==0){
+                    getSaleEntries();
+                }else if (position==1){
+                    emptyTakenRecords();
+                }
+
+                /*if (et_cash_sale.getText().toString().equalsIgnoreCase("Sale")){
                     getSaleEntries();
                 }else if (et_cash_sale.getText().toString().equalsIgnoreCase("Empty Received")){
                     emptyTakenRecords();
-                }
+                }*/
 
             }
         });
@@ -1488,7 +1495,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_backspace);
     }
 
-/*
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -1498,6 +1505,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
@@ -1520,12 +1528,14 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         menu.findItem(R.id.action_setting).setVisible(false);
         menu.findItem(R.id.action_logout).setVisible(false);
         menu.findItem(R.id.action_list_view).setVisible(false);
+        menu.findItem(R.id.action_info).setVisible(false);
+        item.setTitle("Get Consumers");
         item.setIcon(R.drawable.consumer_refresh_icon);
 
         return true;
     }
 
-*/
+
 
     @Override
     public void onSuccess(VolleySingleton.CallType type, String response) {
