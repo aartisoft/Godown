@@ -608,7 +608,7 @@ public class LoginActivity extends BaseActivity {
                     LAST_NAME = "";
                 }
 
-                String FULL_NAME = TITLE + " " + FIRST_NAME + " " + MIDDLE_NAME + " " + LAST_NAME;
+                String FULL_NAME = /*TITLE + " " +*/ FIRST_NAME + " " + MIDDLE_NAME + " " + LAST_NAME;
                 int EMP_CODE = Integer.parseInt(objectEmployee.optString("EMP_CODE"));
 
                 Log.e("CREDIT_GIVEN: ", CREDIT_GIVEN);
@@ -707,28 +707,21 @@ public class LoginActivity extends BaseActivity {
 
     private void clearTablesData() {
         /*********************************************************************************************************/
-        RuntimeExceptionDao<DomesticDeliveryDB, Integer> domesticDB =
-                getHelper().getDomesticRuntimeExceptionDao();
-        List<DomesticDeliveryDB> allDomesticLocalData =
-                domesticDB.queryForAll();
+        RuntimeExceptionDao<DomesticDeliveryDB, Integer> domesticDB = getHelper().getDomesticRuntimeExceptionDao();
+        List<DomesticDeliveryDB> allDomesticLocalData = domesticDB.queryForAll();
         domesticDB.delete(allDomesticLocalData);
 
         /*********************************************************************************************************/
-        RuntimeExceptionDao<CommercialDeliveryDB, Integer> commercialDB =
-                getHelper().getCommercialRuntimeExceptionDao();
-        List<CommercialDeliveryDB> allCommercialLocalData =
-                commercialDB.queryForAll();
+        RuntimeExceptionDao<CommercialDeliveryDB, Integer> commercialDB = getHelper().getCommercialRuntimeExceptionDao();
+        List<CommercialDeliveryDB> allCommercialLocalData = commercialDB.queryForAll();
         commercialDB.delete(allCommercialLocalData);
         /*********************************************************************************************************/
-        RuntimeExceptionDao<TVDetailsDB, Integer> tvDetails =
-                getHelper().getTVDetailRTExceptionDao();
-        List<TVDetailsDB> allTvDetails =
-                tvDetails.queryForAll();
+        RuntimeExceptionDao<TVDetailsDB, Integer> tvDetails = getHelper().getTVDetailRTExceptionDao();
+        List<TVDetailsDB> allTvDetails = tvDetails.queryForAll();
         tvDetails.delete(allTvDetails);
         /*********************************************************************************************************/
         RuntimeExceptionDao<TruckDetailsDB, Integer> truckDetails = getHelper().getTruckDetailRTExceptionDao();
-        List<TruckDetailsDB> allTruckDetails =
-                truckDetails.queryForAll();
+        List<TruckDetailsDB> allTruckDetails = truckDetails.queryForAll();
         truckDetails.delete(allTruckDetails);
         /*********************************************************************************************************/
         RuntimeExceptionDao<TruckSendDetailsDB, Integer> truckSendDetails = getHelper().getTruckDetailSendRTExceptionDao();
@@ -736,8 +729,8 @@ public class LoginActivity extends BaseActivity {
         truckSendDetails.delete(allTruckSendDetails);
         /*********************************************************************************************************/
         RuntimeExceptionDao<NewConsumerDB, Integer> newConsumerDBDetails = getHelper().saveNewConsumerRTExceptionDao();
-        List<NewConsumerDB> allnewConsumerDetails = newConsumerDBDetails.queryForAll();
-        newConsumerDBDetails.delete(allnewConsumerDetails);
+        List<NewConsumerDB> allNewConsumerDetails = newConsumerDBDetails.queryForAll();
+        newConsumerDBDetails.delete(allNewConsumerDetails);
     }
 
     private void storeCommercialCredit(JSONArray ess_commercial_delivery_credit) throws JSONException {

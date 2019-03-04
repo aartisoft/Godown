@@ -152,6 +152,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/percentage"
                 android:hint="@string/Discount"
+                android:selectAllOnFocus="true"
                 android:maxLength="12"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="numberSigned|numberDecimal"/>
@@ -211,6 +212,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
                 android:hint="@string/Full_Cyl"
+                android:selectAllOnFocus="true"
                 android:maxLength="3"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="number"/>
@@ -231,6 +233,7 @@
                 android:drawableLeft="@drawable/email"
                 android:hint="@string/Empty_Cyl"
                 android:maxLength="3"
+                android:selectAllOnFocus="true"
                 android:drawablePadding="@dimen/activity_vertical_margin"
                 android:inputType="number"/>
 
@@ -249,6 +252,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/email"
                     android:hint="@string/SV"
+                    android:selectAllOnFocus="true"
                     android:maxLength="3"
                     android:drawablePadding="@dimen/activity_vertical_margin"
                     android:inputType="number"/>
@@ -310,6 +314,7 @@
                     android:hint="@string/CashReceived"
                     android:enabled="false"
                     android:maxLength="15"
+                    android:selectAllOnFocus="true"
                     android:drawablePadding="@dimen/activity_vertical_margin"
                     android:inputType="numberDecimal"/>
 

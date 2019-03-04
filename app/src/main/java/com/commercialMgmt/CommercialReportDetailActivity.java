@@ -497,7 +497,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 discount_textview.setText("Discount: ");
                 discount_textview_value.setText(Integer.toString(childModel.Discount));
 
-                creditcyl_textview.setText("CredityCyl: ");
+                creditcyl_textview.setText("Credity Cyl: ");
                 creditcyl_textview_value.setText(Integer.toString(childModel.CreditCyl));
 
                 amount_textview.setText("Amount: ");
@@ -518,10 +518,10 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 challan_textview.setText("Challan No: ");
                 challan_textview_value.setText(childModel.ChallanNo);
 
-                consumer_fullcyl_textview.setText("FullCyl: ");
+                consumer_fullcyl_textview.setText("Full Cyl: ");
                 consumer_fullcyl_textview_value.setText(Integer.toString(childModel.FullCyl));
 
-                consumer_emptycyl_textview.setText("EmptyCyl: ");
+                consumer_emptycyl_textview.setText("Empty Cyl: ");
                 consumer_emptycyl_textview_value.setText(Integer.toString(childModel.EmptyCyl));
 
                 consumer_sv_cyl_textview.setText("SV: ");
@@ -538,10 +538,10 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 credit_textview.setText("Credit : ");
                 credit_textview_value.setText(Integer.toString(childModel.Credit));
 
-                fullcyl_textview.setText("FullCyl : ");
+                fullcyl_textview.setText("Full Cyl : ");
                 fullcyl_textview_value.setText(Integer.toString(childModel.FullCyl));
 
-                emptycyl_textview.setText("EmptyCyl : ");
+                emptycyl_textview.setText("Empty Cyl : ");
                 emptycyl_textview_value.setText(Integer.toString(childModel.EmptyCyl));
 
                 sv_cyl_textview.setText("SV : ");
