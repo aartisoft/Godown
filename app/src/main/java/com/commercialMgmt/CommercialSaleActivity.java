@@ -51,6 +51,7 @@ import com.infosolutions.network.Constants;
 import com.infosolutions.network.ResponseListener;
 import com.infosolutions.network.VolleySingleton;
 import com.infosolutions.service.GetCommercialConsumerService;
+import com.infosolutions.ui.MainActivity;
 import com.infosolutions.utils.AppSettings;
 //import com.infosolutions.utils.Constant;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -354,6 +355,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                             et_selling_price.setError("selling price can't more than MRP");
                             et_selling_price.setText(String.valueOf(calMRP));
                             et_discount.setText("0");
+
                         } else {
                             //et_discount.setText(String.valueOf(calDiscountPrice));
                         }
@@ -585,6 +587,15 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         input_layout_full_cyl.setHintAnimationEnabled(true);
     }
 
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
     private void Calculation() {
 
         // Calculation on changing dicount edittext
@@ -614,7 +625,8 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                     }
                     if (calDiscount >= calMRP) {
                         et_discount.setError("You can't enter discount more than MRP");
-                    //    et_discount.setText("0");
+                        et_discount.setText("0");
+                        hideSoftKeyboard(CommercialSaleActivity.this);
                         et_selling_price.setText(String.valueOf(calMRP));
                     } else {
                         et_selling_price.setText(String.valueOf(calSellingPrice));
@@ -652,6 +664,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 else
                 {
                     et_discount.setText("0");
+                    hideSoftKeyboard(CommercialSaleActivity.this);
                     et_selling_price.setText(String.valueOf(calMRP));
                 }
             }
