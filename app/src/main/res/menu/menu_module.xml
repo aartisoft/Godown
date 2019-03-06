@@ -16,16 +16,23 @@
         android:id="@+id/action_transfer"
         app:showAsAction="collapseActionView"
         android:icon="@drawable/transfer"
-        android:title="Stock Transfer"/>
+        android:title="@string/Stock_Transfer"/>
     <item
         android:id="@+id/action_logout"
         app:showAsAction="ifRoom"
         android:icon="@drawable/logout"
-        android:title="Logout"/>
+        android:title="@string/logout"/>
 
     <item
         android:id="@+id/action_info"
         app:showAsAction="collapseActionView"
         android:icon="@drawable/info"
-        android:title="Info"/>
+        android:title="@string/Info"/>
+
+    <item
+        android:id="@+id/action_language"
+        app:showAsAction="collapseActionView"
+        android:icon="@drawable/language"
+        android:title="@string/change_lang"/>
+
 </menu>

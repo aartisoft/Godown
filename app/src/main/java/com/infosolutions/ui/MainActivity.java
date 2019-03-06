@@ -2,10 +2,14 @@ package com.infosolutions.ui;
 
 import android.Manifest;
 import android.Manifest.permission;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
@@ -70,6 +74,7 @@ import org.json.JSONObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -141,6 +146,7 @@ public class MainActivity extends BaseActivity {
         //PreferencesHelper.initHelper(this, "SharedPref");
         login_type = PreferencesHelper.getInstance().getStringValue(Constants.LOGIN_TYPE,"");
         Log.d("oncreate_logintype",login_type);
+        loadLocale();
         loadToolbar();
         loadModuleList();
         initialiseUI();
@@ -264,9 +270,65 @@ public class MainActivity extends BaseActivity {
                 TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
                 messageView.setGravity(Gravity.CENTER);
                 break;
+            case R.id.action_language:
+                changeLanguage();
+                break;
+
+
         }
         return true;
     }
+
+    private void changeLanguage() {
+        final String[] lang={"हिंदी","मराठी","English"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose Language");
+        builder.setSingleChoiceItems(lang, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               showProgressDialog();
+                if (i==0){
+                    //Hindi
+                    setLocale("hi");
+                    recreate();
+                }else if (i==1) {
+                    //Marathi
+                    setLocale("mr");
+                    recreate();
+                }else if (i==2) {
+                    //English
+                    setLocale("en");
+                    recreate();
+                }
+                dialogInterface.dismiss();
+            }
+        });
+            AlertDialog alertDialog=builder.create();
+            alertDialog.show();
+    }
+
+    // Change Language method
+    private void setLocale(String lang) {
+        Locale locale=new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config=new Configuration();
+        config.locale=locale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+
+        SharedPreferences.Editor editor=getSharedPreferences("Language",MODE_PRIVATE).edit();
+        editor.putString("My_Lang",lang);
+        editor.apply();
+        hideProgressDialog();
+    }
+
+    public void loadLocale(){
+        SharedPreferences preferences=getSharedPreferences("Language",Activity.MODE_PRIVATE);
+        String language=preferences.getString("My_Lang","");
+        setLocale(language);
+    }
+
+
 
     private void logout() {
         BottomDialog dialog = BottomDialog.newInstance("Do you want to Logout ?", "Dismiss", new String[]{"YES", "NO"});
@@ -536,12 +598,13 @@ public class MainActivity extends BaseActivity {
 
 
             JSONArray jsonArray = jsonResult.optJSONArray("Table");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.optJSONObject(i);
-                DomesticDeliveryDB domesticDeliveryDB = new DomesticDeliveryDB(jsonObject);
-                daoDatabase.createOrUpdate(domesticDeliveryDB);
+            if (jsonArray!=null){
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.optJSONObject(i);
+                    DomesticDeliveryDB domesticDeliveryDB = new DomesticDeliveryDB(jsonObject);
+                    daoDatabase.createOrUpdate(domesticDeliveryDB);
+                }
             }
-
 
             AppSettings.getInstance(this).updateDatabase(this);
             //AppSettings.getInstance(this).notification(getApplicationContext(), responseMsg);

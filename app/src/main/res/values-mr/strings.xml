@@ -11,31 +11,31 @@
     <string name="err_msg_password">Invalid password</string>
     <string name="password">Password</string>
     <string name="load_list">Load Domestic Users</string>
-    <string name="trip_no">Trip Number</string>
-    <string name="full">Full Cylinder</string>
-    <string name="empty">Empty</string>
-    <string name="sv">SV Cylinder</string>
-    <string name="dbc">DBC</string>
-    <string name="return_full">Return Full Cylinder</string>
-    <string name="defective">Defective Cylinder</string>
-    <string name="btn_submit">Submit</string>
+    <string name="trip_no">ट्रिप नंबर</string>
+    <string name="full">फुल सिलिंडर</string>
+    <string name="empty">एम्प्टी</string>
+    <string name="sv">एस वि सिलिंडर</string>
+    <string name="dbc">डीबीसी</string>
+    <string name="return_full">रिटर्न फुल सिलिंडर</string>
+    <string name="defective">दोषरहित सिलिंडर</string>
+    <string name="btn_submit">सबमिट करां</string>
     <string name="title_activity_commercial">Commercial</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">सेटिंग</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="Complete">Login Successful</string>
     <string name="Error">Error Login</string>
     <string name="Upload">Loading...</string>
-    <string name="credit_given">Credit Given</string>
+    <string name="credit_given">दिलेेेेले क्रेडीट</string>
     <string name="load_all_list">Load Users</string>
     <string name="godown">Evita Godown</string>
-    <string name="add">Add</string>
-    <string name="invoice_no">Invoice Number</string>
-    <string name="sound">Sound</string>
-    <string name="customerId">Customer No</string>
-    <string name="consumerName">Consumer Name</string>
-    <string name="erv_no">ERV Number</string>
-    <string name="kg19">19 KG</string>
-    <string name="kg14Kg">14.2 KG</string>
+    <string name="add">जोडा</string>
+    <string name="invoice_no">इन्वॉइस् नम्बर</string>
+    <string name="sound">साउन्ड</string>
+    <string name="customerId">ग्राहक क्रमांक</string>
+    <string name="consumerName">ग्राहकांचे नाव</string>
+    <string name="erv_no">ई आर वि नम्बर</string>
+    <string name="kg19">19 केजी</string>
+    <string name="kg14Kg">14.2 केजी</string>
     <string name="evita_login">Evita Login</string>
     <string name="syncing_text">Syncing....</string>
     <string name="notification">Notification</string>
@@ -46,19 +46,19 @@
     <string name="select_godown">Select Godown</string>
     <string name="delivery">Delivery</string>
     <string name="cyldr_type">Cylinder Type</string>
-    <string name="no_of_cylinder">No Of Cylinder</string>
-    <string name="pco">PCO</string>
-    <string name="own">OWN</string>
-    <string name="empty_cylnr">Empty Cylinder</string>
+    <string name="no_of_cylinder">ससिलेंडर संख्या</string>
+    <string name="pco">पीसीओ</string>
+    <string name="own">स्वत:चे</string>
+    <string name="empty_cylnr">रिक्त सिलिंडर</string>
     <string name="enter_trip_number">Please do check with the trip number, Perhaps you have not processed with Empty Cylinders. Fresh trip is not done</string>
     <string name="enter_full_cylnr">Enter Full Cylinder</string>
     <string name="enter_cylnr_type">Enter Cylinder Type</string>
     <string name="enter_return_empty_cylndr">Enter Return Cylinder</string>
     <string name="enter_sv">Enter SV</string>
     <string name="enter_defective">Defective </string>
-    <string name="enter_bc">Enter BC</string>
-    <string name="fresh">Fresh Trip</string>
-    <string name="return_string">Return</string>
+    <string name="enter_bc">Enter DBC</string>
+    <string name="fresh">नवीन ट्रिप</string>
+    <string name="return_string">रिटर्न</string>
     <string name="signup_mechanical">Don\'t have account ? Signup</string>
     <string name="btn_signup">SignUp</string>
     <string name="consumer_no">Consumer Number</string>
@@ -67,17 +67,17 @@
     <string name="contact_number">Contact Number</string>
     <string name="mechanic_login">Mechanic Login</string>
     <string name="signup_mechanical_title">Mechanical SignUp</string>
-    <string name="load_delivery_man">Select Deliveryman</string>
-    <string name="select_truck">Select Truck Number</string>
+    <string name="load_delivery_man">डिलीवरीमैन का चयन करें</string>
+    <string name="select_truck">ट्रक का चयन करें</string>
     <string name="no_network_available">No Network Available</string>
     <string name="key_shared_pref_module_list">moduleList</string>
     <string name="sp_default_value">No Preference Found</string>
     <string name="invalid_user">Invalid User</string>
     <string name="went_something_wrong">Went Something Wrong, Please try later</string>
     <string name="server_not_responding">Seems, Internet connection is slow. Please try again latter</string>
-    <string name="title_activity_settings">Setting</string>
+    <string name="title_activity_settings">सेटिंग</string>
     <string name="storage">Offline Storage</string>
-    <string name="logout">Logout</string>
+    <string name="logout">लॉग आउट</string>
     <string name="title_empty"> </string>
     <string name="select_complaint_type">Select Complaint Type</string>
     <string name="action_normal_leakage_complaint">Normal Leakage Complaint</string>
@@ -136,12 +136,12 @@
     <string name="fix_value">0</string>
     <string name="enter_lost_cyl">Lost</string>
     <string name="version">Beta verion 1.0.0</string>
-    <string name="out">OUT</string>
-    <string name="in">IN</string>
+    <string name="out">आउट</string>
+    <string name="in">ईन</string>
     <string name="zero_not_allowed">Invalid ! Zero Is Not Allowed</string>
     <string name="proceed_msg">Do you really want to save data ?</string>
     <string name="save">SAVE</string>
-    <string name="cancel">Cancle</string>
+    <string name="cancel">Cancel</string>
     <string name="error_while_exporing_data">Error while exporting file</string>
     <string name="export_data">Export SV File</string>
     <string name="data_saved_to_local_disk">SV File has been saved to File System</string>
@@ -230,56 +230,58 @@
 
     //------------------------ Strings for commercial App  -------------------------------
 
-    <string name="Select_Consumer">Select Consumer</string>
-    <string name="Cash_Received">Enter Cash Received Amt</string>
-    <string name="Products_Not_Available">Products Not Available</string>
-    <string name="Consumer_Not_Selected">Consumer Not Selected</string>
-    <string name="Product_Not_Selected">Product Not Selected</string>
-    <string name="Enter_Empty_Cylinder">Enter Empty Cylinder</string>
-    <string name="Enter_Chalan_Number">Enter Chalan Number</string>
-    <string name="EnterFullEmptyCash">Enter Full or Empty or Cash Amount</string>
-    <string name="full_cash_Equals_empty">Please take cash or Full cyl equals empty cyl</string>
-    <string name="Cyl_not_assigned">Cylinder Not Assigened to deliveryman yet</string>
-    <string name="Error_Occured">Error Occured</string>
-    <string name="Enter_Consumer_Name">Enter Consumer Name</string>
-    <string name="Enter_Mobile_Number">Enter Mobile Number</string>
-    <string name="Mobile_Number_Error">Mobile Number Not Valid</string>
-    <string name="Select_Product">Select Product</string>
-    <string name="Select_State">Select State</string>
+    <string name="Select_Consumer">ग्राहक निवडा</string>
+    <string name="Cash_Received">रोख प्राप्तं</string>
+    <string name="Products_Not_Available">प्रोडक्ट उपलब्ध नाही</string>
+    <string name="Consumer_Not_Selected">ग्राहक निवडले नाही</string>
+    <string name="Product_Not_Selected">प्रोडक्ट निवडले नाही</string>
+    <string name="Enter_Empty_Cylinder">रिक्त सिलेंडर प्रविष्ट करा</string>
+    <string name="Enter_Chalan_Number">चलन क्रमांक प्रविष्ट करां</string>
+    <string name="EnterFullEmptyCash">कृपया पूर्ण सिलेंडर किंवा रिक्त सिलेंडर किंवा रोख प्रविष्ट करा</string>
+    <string name="full_cash_Equals_empty">कृपया पैसे मिळवा किंवा रिक्त सिलेंडर पूर्ण सिलेंडर बरोबर असणे आवश्यक आहे</string>
+    <string name="Cyl_not_assigned">डिलिवरी माणसांना सिलेंडर दिलेला नाही</string>
+    <string name="Error_Occured">ऐरर् आल</string>
+    <string name="Enter_Consumer_Name">ग्राहक नाव प्रविष्ट करा</string>
+    <string name="Enter_Mobile_Number">मोबाइल नंबर प्रविष्ट करा</string>
+    <string name="Mobile_Number_Error">मोबाइल नंबर वैध नाही</string>
+    <string name="Select_Product">प्रोडक्ट निवडा</string>
+    <string name="Select_State">राज्य निवडा</string>
 
 
     // ---------------------------   Commercial MGMT Add New Consumer XML Strings  -------------------------
 
-    <string name="ConsumerName">Consumer Name</string>
+    <string name="ConsumerName">ग्राहकाचे नाव</string>
 
-    <string name="MobileNumber">Mobile Number</string>
-    <string name="State">State</string>
-    <string name="Address">Address</string>
-    <string name="EmailId">Email Id</string>
-    <string name="Discount">Discount</string>
-    <string name="PAN_No">PAN No</string>
-    <string name="GSTIN">GSTIN</string>
-    <string name="Add_New_Consumer">Add New Consumer</string>
+    <string name="MobileNumber">मोबाइल नंबर</string>
+    <string name="State">राज्य</string>
+    <string name="Address">पत्ता</string>
+    <string name="EmailId">ईमेल आईडी</string>
+    <string name="Discount">सवलत</string>
+    <string name="PAN_No">पॅन नंबर</string>
+    <string name="GSTIN">जीएसटी नंबर</string>
+    <string name="Add_New_Consumer">नवीन ग्राहक जोडा</string>
 
 
     //---------------------------- Strings for Commercial Sale  -------------------------------------
 
-    <string name="Select_Operation">Select Operation</string>
-    <string name="Select_Area">Select Area</string>
-    <string name="Chalan_No">Chalan No</string>
-    <string name="MRP">MRP</string>
-    <string name="Selling_Price">Selling Price</string>
-    <string name="Total_Credit_Cyl">Total Credit Cyl</string>
-    <string name="Full_Cyl">Full Cyl</string>
-    <string name="Empty_Cyl">Empty Cyl</string>
-    <string name="SV">SV</string>
-    <string name="Credit_Cyl_Balanced">Credit Cyl Balanced</string>
-    <string name="Total_Amt">Total Amt</string>
-    <string name="CashReceived">Cash Received</string>
-    <string name="Total_Credit_Amt">Last Credit Amt</string>
-    <string name="Balanced_Credit_Amt">Balanced Credit Amt</string>
-    <string name="Submit">Submit</string>
-
+    <string name="Select_Operation">ऑपरेशन निवडा</string>
+    <string name="Select_Area">क्षेत्र निवडा</string>
+    <string name="Chalan_No">चलन क्रमांक</string>
+    <string name="MRP">एमआरपी</string>
+    <string name="Selling_Price">वविक्री किंमत</string>
+    <string name="Total_Credit_Cyl">एकूण क्रेडिट सिलेंडर</string>
+    <string name="Full_Cyl">भरलेला सिलेंडर</string>
+    <string name="Empty_Cyl">रिक्त सिलेंडर</string>
+    <string name="SV">एस वि</string>
+    <string name="Credit_Cyl_Balanced">बैलेंस क्रेडिट सिलेंडर</string>
+    <string name="Total_Amt">एकूण रक्कम</string>
+    <string name="CashReceived">प्राप्त रक्कम</string>
+    <string name="Total_Credit_Amt">एकूण क्रेडिट रक्कम</string>
+    <string name="Balanced_Credit_Amt">बैलेंस ऋण राशि</string>
+    <string name="Submit">जमा करा</string>
+    <string name="change_lang">भाषा बदला</string>
+    <string name="Info">माहिती</string>
+    <string name="Stock_Transfer">स्टॉक हस्तांतरित करा</string>
 
 
 </resources>

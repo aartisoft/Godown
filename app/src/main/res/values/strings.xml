@@ -279,8 +279,9 @@
     <string name="Total_Credit_Amt">Last Credit Amt</string>
     <string name="Balanced_Credit_Amt">Balanced Credit Amt</string>
     <string name="Submit">Submit</string>
-
-
+    <string name="change_lang">Change language</string>
+    <string name="Info">Info</string>
+    <string name="Stock_Transfer">Stock Transfer</string>
 
 
 </resources>
