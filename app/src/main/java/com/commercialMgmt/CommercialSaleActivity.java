@@ -642,7 +642,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         Double balancedCreditAmt = 0.0;
                         Double totalCreditAmt = 0.0, totalAmt = 0.0, cashAmt = 0.0;
 
-
                         if (!TextUtils.isEmpty(et_total_credit_amt.getText().toString())&& !TextUtils.isEmpty(et_total_amt.getText().toString())) {
                             totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
                             totalAmt = Double.valueOf(et_total_amt.getText().toString());
@@ -675,7 +674,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         });
 
 
-
         // Calculation on change full cyl edittext
 
         et_full_cyl.addTextChangedListener(new TextWatcher() {
@@ -700,7 +698,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                     }
                 }
 
-
                 if (et_full_cyl.getText().toString().equalsIgnoreCase("")) {
                     full_cyl = 0;
                     empty_cyl = 0;
@@ -712,7 +709,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                 // Credit amt calculattion without calculation
                 Double balancedCreditAmt = 0.0;
                 Double totalCreditAmt = 0.0, totalAmt = 0.0, cashAmt = 0.0;
-
 
                 if (!TextUtils.isEmpty(et_total_credit_amt.getText().toString())&& !TextUtils.isEmpty(et_total_amt.getText().toString())) {
                     totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
