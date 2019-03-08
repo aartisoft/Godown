@@ -133,7 +133,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:text="Get Cylinder" />
+                            android:text="@string/Get_Cylinder" />
 
                     </android.support.design.widget.TextInputLayout>
                     <android.support.design.widget.TextInputLayout
@@ -190,7 +190,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@drawable/btn_background"
-        android:text="Submit"
+        android:text="@string/btn_submit"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/white"
         android:visibility="visible" />

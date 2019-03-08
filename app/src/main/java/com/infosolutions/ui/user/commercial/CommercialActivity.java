@@ -343,7 +343,7 @@ public class CommercialActivity extends BaseActivity {
         layout_return.setVisibility(View.GONE);
 
         clearAllFields();
-        btnSubmit.setText("Submit Fresh Trip");
+        btnSubmit.setText(R.string.submit_fresh_trip);
         btnSubmit.setVisibility(View.VISIBLE);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -438,7 +438,7 @@ public class CommercialActivity extends BaseActivity {
 
         clearAllFields();
         btnSubmit.setVisibility(View.VISIBLE);
-        btnSubmit.setText("Submit Return Trip");
+        btnSubmit.setText(R.string.submit_return_trip);
         input_empty_cylinder.requestFocus();
 
 

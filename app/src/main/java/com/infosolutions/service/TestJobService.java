@@ -199,7 +199,6 @@ public class TestJobService extends JobService implements ResponseListener {
         @Override
         protected void onPostExecute(JobParameters param) {
             Log.e("onPostExecute...", sync_finished);
-
             myService.jobFinished(param, false);
         }
 
@@ -277,7 +276,7 @@ public class TestJobService extends JobService implements ResponseListener {
             updateLocalFromServer();
             return;
         }
-/*
+        /*
         if (jsonArrayDomestic.length() == 0 && jsonArrayCommercial.length() == 0 && jsonArrayTVDetails.length() == 0 && jsonArrayTruckDetails.length() == 0 && jsonArrayTruckSendDetails.length() == 0) {
             Notification(getApplicationContext(), "No data to sync");
             return;

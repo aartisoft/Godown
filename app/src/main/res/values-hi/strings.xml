@@ -32,7 +32,7 @@
     <string name="invoice_no">इन्वॉइस् नम्बर</string>
     <string name="sound">साउन्ड</string>
     <string name="customerId">उपभोक्ता क्रमांक</string>
-    <string name="consumerName">उपभोक्ता नाम</string>
+    <string name="consumerName">उपभोक्ता का नाम</string>
     <string name="erv_no">ई आर वि नम्बर</string>
     <string name="kg19">19 केजी</string>
     <string name="kg14Kg">14.2 केजी</string>
@@ -62,7 +62,7 @@
     <string name="signup_mechanical">Don\'t have account ? Signup</string>
     <string name="btn_signup">SignUp</string>
     <string name="consumer_no">Consumer Number</string>
-    <string name="customer_name">Consumer Name</string>
+    <string name="customer_name">उपभोक्ता का नाम</string>
     <string name="address">Address</string>
     <string name="contact_number">Contact Number</string>
     <string name="mechanic_login">Mechanic Login</string>
@@ -97,7 +97,7 @@
     <string name="rate_bpcl">Rate(BPCL)</string>
     <string name="rate_for_party">Rate For Party</string>
     <string name="total_amount">Total Amount</string>
-    <string name="empty_clndr">Empty Cylinder</string>
+    <string name="empty_clndr">खाली सिलेंडर</string>
     <string name="credit_clndr">Credit Cylinder</string>
     <string name="amnt_of_credit_cylinr">Amount Of Credit Cylnr</string>
     <string name="total_credit_clndr">Total Credit Cylnr</string>
@@ -128,9 +128,9 @@
     <string name="cylinder_type">Cylinder Type</string>
     <string name="search_select_truck">Search and Select Truck</string>
     <string name="quantity">Quantity</string>
-    <string name="enter_truck_number">Enter Truck Number</string>
+    <string name="enter_truck_number">ट्रक नंबर दर्ज करें</string>
     <string name="bottom_sheet_title">Please Select Your Godown</string>
-    <string name="lost_cylinder">Lost</string>
+    <string name="lost_cylinder">खोया हुआ सिलेंडर</string>
     <string name="lost_defective">Defective</string>
     <string name="offline_storage">Offline Storage</string>
     <string name="fix_value">0</string>
@@ -246,6 +246,12 @@
     <string name="Mobile_Number_Error">मोबाइल नंबर अमान्य है</string>
     <string name="Select_Product">प्रोडक्ट का चयन करें</string>
     <string name="Select_State">राज्य चुनें</string>
+    <string name="NEW_CONSUMER">नए उपभोक्ता</string>
+    <string name="submit_fresh_trip">नया ट्रिप सबमिट करें</string>
+    <string name="submit_return_trip">रिटर्न ट्रिप जमा करें</string>
+    <string name="Get_Cylinder">सिलेंडर प्राप्त करे</string>
+    <string name="Quantity">संख्या</string>
+    <string name="Defective">दोषपूर्ण</string>
 
 
     // ---------------------------   Commercial MGMT Add New Consumer XML Strings  -------------------------

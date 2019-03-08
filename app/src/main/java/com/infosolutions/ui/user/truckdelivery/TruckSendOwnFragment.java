@@ -354,7 +354,13 @@ public class TruckSendOwnFragment extends Fragment {
                             //pos = --pos;
                             productsAddRemoveCommon(pos, selectedItem);
                         } catch (Exception e) {
-                            listSpinItems.add(pos, selectedItem);
+                            try{
+
+                                listSpinItems.add(pos, selectedItem);
+
+                            }catch (NullPointerException en){
+                                en.printStackTrace();
+                            }
                         }
 
                     }

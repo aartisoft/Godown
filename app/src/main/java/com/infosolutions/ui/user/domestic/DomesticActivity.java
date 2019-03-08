@@ -391,7 +391,7 @@ public class DomesticActivity extends BaseActivity {
         layout_return.setVisibility(View.GONE);
 
         clearAllFields();
-        btnSubmit.setText("Submit Fresh Trip");
+        btnSubmit.setText(R.string.submit_fresh_trip);
         btnSubmit.setVisibility(View.VISIBLE);
 
         input_fresh_trip_no.setText(String.valueOf(tripNumber));
@@ -461,31 +461,36 @@ public class DomesticActivity extends BaseActivity {
 
         SimpleDateFormat simpleDateFormat = null;
         Date date = null;
+        String dates=null;
         try {
             DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
             date = formatter.parse(new Date().toString());
             simpleDateFormat= new SimpleDateFormat("yyyy-MM-dd");
+            dates=simpleDateFormat.format(date);
         }catch (Exception ex){
             ex.printStackTrace();
         }
 
-        return simpleDateFormat.format(date);
+        return dates;
     }
 
     private static String currentDateTime() {
 
         SimpleDateFormat simpleDateFormat = null;
         Date date = null;
+        String dates=null;
         try {
             DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
             date = (Date)formatter.parse(new Date().toString());
             simpleDateFormat= new SimpleDateFormat("yyyyMMdd");
+            Log.e("Domestic Delivery Date",simpleDateFormat.format(date));
+            dates=simpleDateFormat.format(date);
         }catch (Exception ex){
 
             ex.printStackTrace();
         }
 
-        return simpleDateFormat.format(date);
+        return dates;
     }
 
     public String getTodayDate() {
@@ -546,7 +551,7 @@ public class DomesticActivity extends BaseActivity {
         layout_sv.setVisibility(View.VISIBLE);
         layout_fresh.setVisibility(View.GONE);
         btnSubmit.setVisibility(View.VISIBLE);
-        btnSubmit.setText("Submit Return Trip");
+        btnSubmit.setText(R.string.submit_return_trip);
         clearAllFields();
         input_return_trip_no.setText(String.valueOf(tripNumber));
         input_return_trip_no.setEnabled(false);
@@ -628,7 +633,7 @@ public class DomesticActivity extends BaseActivity {
         layout_sv.setVisibility(View.VISIBLE);
         layout_fresh.setVisibility(View.GONE);
         btnSubmit.setVisibility(View.VISIBLE);
-        btnSubmit.setText("Submit Return Trip");
+        btnSubmit.setText(R.string.submit_return_trip);
         clearAllFields();
         input_return_trip_no.setText(String.valueOf(domesticDeliveryDB.trip_number));
         input_return_trip_no.setEnabled(false);

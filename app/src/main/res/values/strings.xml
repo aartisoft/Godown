@@ -222,7 +222,7 @@
     <string name="action_sync">Sync</string>
     <string name="test">Test</string>
     <string name="notificationtext">Evita Synced data to server</string>
-    <string name="notificationtitle">Synced Successfully</string>
+    <string name="notificationtitle">New Consumer</string>
     <string name="exception_message">Hi User, We have received invalid response from the server, Please contact to server administrator</string>
     <string name="select_product_type">Please Select Product Type</string>
     <string name="no_data_available">No data available</string>
@@ -246,6 +246,12 @@
     <string name="Mobile_Number_Error">Mobile Number Not Valid</string>
     <string name="Select_Product">Select Product</string>
     <string name="Select_State">Select State</string>
+    <string name="NEW_CONSUMER">NEW CONSUMER</string>Submit Fresh Trip
+    <string name="submit_fresh_trip">Submit Fresh Trip</string>
+    <string name="submit_return_trip">Submit Return Trip</string>
+    <string name="Get_Cylinder">Get Cylinder</string>
+    <string name="Quantity">Quantity</string>
+    <string name="Defective">Defective</string>
 
 
     // ---------------------------   Commercial MGMT Add New Consumer XML Strings  -------------------------

@@ -638,8 +638,8 @@ public class AppSettings {
 
     public void notification(Context mContext, String stringContent) {
 
-        /*NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
-                .setSmallIcon(R.drawable.evita_logo)
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
+                .setSmallIcon(R.drawable.customer)
                 .setContentTitle(mContext.getString(R.string.notificationtitle))
                 .setContentText(stringContent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
@@ -651,10 +651,9 @@ public class AppSettings {
             mBuilder.setChannelId(CHANNEL_ID);
             notificationmanager.createNotificationChannel(notificationChannel);
         }
-
-
-        notificationmanager.notify(0, mBuilder.build());*/
+        notificationmanager.notify(0, mBuilder.build());
     }
+
 
     public void exportDatabase(Context context) {
         try {
@@ -768,15 +767,17 @@ public class AppSettings {
 
         SimpleDateFormat simpleDateFormat = null;
         Date date = null;
+        String dates=null;
         try {
             DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
             date = (Date)formatter.parse(new Date().toString());
             simpleDateFormat= new SimpleDateFormat("yyyyMMdd");
+            dates=simpleDateFormat.format(date);
         }catch (Exception ex){
             ex.printStackTrace();
         }
 
-        return simpleDateFormat.format(date);
+        return dates;
     }
 
 }

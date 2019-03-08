@@ -414,7 +414,7 @@
                         android:textStyle="bold"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textAllCaps="true"
-                        android:text="SV CONSUMER" />
+                        android:text="@string/NEW_CONSUMER" />
 
                 </LinearLayout>
                 </LinearLayout>

@@ -635,7 +635,11 @@ public class MainActivity extends BaseActivity {
         }
 
         else if (type.equals(VolleySingleton.CallType.GET_SVCONSUMERS)) {
+
             JSONArray arrayPRODUCT = jsonResult.optJSONArray("SvDetails");
+
+            AppSettings.getInstance(this).notification(getApplicationContext(), "notification success");
+
             RuntimeExceptionDao<SVConsumersDB, Integer> productDB = getHelper().getSVConsumersRTExceptionDao();
             try {
                 productDB.deleteBuilder().delete();
