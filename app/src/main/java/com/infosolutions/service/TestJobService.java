@@ -141,15 +141,12 @@ public class TestJobService extends JobService implements ResponseListener {
                 e.printStackTrace();
             }
 
-
-
             JSONArray jsonArray = jsonResult.optJSONArray("Table");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.optJSONObject(i);
                 DomesticDeliveryDB domesticDeliveryDB = new DomesticDeliveryDB(jsonObject);
                 daoDatabase.createOrUpdate(domesticDeliveryDB);
             }
-
 
             updateDatabase();
             Notification(getApplicationContext(), responseMsg);

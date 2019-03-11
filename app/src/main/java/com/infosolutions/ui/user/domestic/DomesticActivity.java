@@ -236,7 +236,9 @@ public class DomesticActivity extends BaseActivity {
         setSelectedProductName(selectedProductName);
 
         /* Hide All Layout */
-        layout_return.setVisibility(View.GONE); layout_fresh.setVisibility(View.GONE);
+        layout_return.setVisibility(View.GONE);
+        layout_fresh.setVisibility(View.GONE);
+        layout_sv.setVisibility(View.GONE);
 
         if (productId != null && !productId.equalsIgnoreCase("")) {
             btnDeliveryMan.setVisibility(View.VISIBLE);
@@ -329,7 +331,7 @@ public class DomesticActivity extends BaseActivity {
             if (VIEW_TYPE.equalsIgnoreCase("FRESH")){
                 layout_return.setVisibility(View.GONE);
                 layout_fresh.setVisibility(View.VISIBLE);
-                //layout_sv.setVisibility(View.VISIBLE);
+                layout_sv.setVisibility(View.GONE);
                 initFreshLayout(getTripNumber());
 
             }else if (VIEW_TYPE.equalsIgnoreCase("RETURN"))
@@ -389,6 +391,7 @@ public class DomesticActivity extends BaseActivity {
 
         layout_fresh.setVisibility(View.VISIBLE);
         layout_return.setVisibility(View.GONE);
+        layout_sv.setVisibility(View.GONE);
 
         clearAllFields();
         btnSubmit.setText(R.string.submit_fresh_trip);
