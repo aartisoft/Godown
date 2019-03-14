@@ -3,17 +3,11 @@ package com.infosolutions.utils;
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Environment;
-import android.provider.ContactsContract;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.google.gson.JsonObject;
 import com.infosolutions.database.CommercialDeliveryDB;
 import com.infosolutions.database.DatabaseHelper;
 import com.infosolutions.database.DomesticDeliveryDB;
@@ -25,8 +19,6 @@ import com.infosolutions.database.TruckSendDetailsDB;
 import com.infosolutions.evita.R;
 import com.infosolutions.network.Constants;
 import com.infosolutions.network.VolleySingleton;
-import com.infosolutions.ui.MainActivity;
-import com.infosolutions.ui.splash.SplashActivity;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.UpdateBuilder;
@@ -35,14 +27,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -672,7 +659,6 @@ public class AppSettings {
 
                 backupDB = new File(sd, backupDBPath);
               /*  //test
-
 
                 File file = new File(currentDBPath);
                 FileInputStream fis = new FileInputStream(file);

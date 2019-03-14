@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -72,11 +75,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import javax.inject.Inject;
 
@@ -262,13 +269,10 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_info:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Website......");
-                builder.setMessage(Constants.INFO);
-                //builder.setPositiveButton("OK", null);
-                AlertDialog dialog = builder.show();
-                TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
-                messageView.setGravity(Gravity.CENTER);
+
+                getInfo();
+
+
                 break;
             case R.id.action_language:
                 changeLanguage();
@@ -278,6 +282,44 @@ public class MainActivity extends BaseActivity {
         }
         return true;
     }
+
+    private void getInfo() {
+        try {
+
+            PackageManager pm = getPackageManager();
+            PackageInfo packageInfo = null;
+            try {
+                packageInfo = pm.getPackageInfo(getPackageName(), 0);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            // install datetime
+            String appInstallDate = DateUtils.getDate(
+                    "dd-MM-yyyy hh:mm:ss.SSS", packageInfo.lastUpdateTime);
+
+            // build datetime
+           /* String appBuildDate = DateUtils.getDate("yyyy/MM/dd hh:mm:ss.SSS",
+                    DateUtils.getBuildDate(this));
+
+            Log.i("", "appBuildDate = " + appBuildDate);
+            Log.i("", "appInstallDate = " + appInstallDate);*/
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("App Info......");
+            builder.setMessage("Web Site :-- "+Constants.INFO +"\n App Installed Date :-- "+appInstallDate);
+            //builder.setPositiveButton("OK", null);
+            AlertDialog dialog = builder.show();
+            TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+            messageView.setGravity(Gravity.CENTER);
+
+        } catch (Exception e) {
+        }
+
+
+    }
+
+
 
     private void changeLanguage() {
         final String[] lang={"हिंदी","मराठी","English"};
@@ -638,7 +680,7 @@ public class MainActivity extends BaseActivity {
 
             JSONArray arrayPRODUCT = jsonResult.optJSONArray("SvDetails");
 
-            AppSettings.getInstance(this).notification(getApplicationContext(), "notification success");
+            //AppSettings.getInstance(this).notification(getApplicationContext(), "notification success");
 
             RuntimeExceptionDao<SVConsumersDB, Integer> productDB = getHelper().getSVConsumersRTExceptionDao();
             try {
@@ -763,5 +805,39 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    static class DateUtils {
+
+        public static String getDate(String dateFormat) {
+            Calendar calendar = Calendar.getInstance();
+            return new SimpleDateFormat(dateFormat, Locale.getDefault())
+                    .format(calendar.getTime());
+        }
+
+        public static String getDate(String dateFormat, long currenttimemillis) {
+            return new SimpleDateFormat(dateFormat, Locale.getDefault())
+                    .format(currenttimemillis);
+        }
+
+       /* public static long getBuildDate(Context context) {
+
+            try {
+                ApplicationInfo ai = context.getPackageManager()
+                        .getApplicationInfo(context.getPackageName(), 0);
+                ZipFile zf = new ZipFile(ai.sourceDir);
+                ZipEntry ze = zf.getEntry("classes.dex");
+                long time = ze.getTime();
+
+                return time;
+
+            } catch (Exception e) {
+            }
+
+            return 0l;
+        }*/
+    }
+
+
 }
+
+
 

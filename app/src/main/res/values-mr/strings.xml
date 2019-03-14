@@ -145,7 +145,7 @@
     <string name="error_while_exporing_data">Error while exporting file</string>
     <string name="export_data">Export SV File</string>
     <string name="data_saved_to_local_disk">SV File has been saved to File System</string>
-    <string name="select_deliveryman">Select Deliveryman</string>
+    <string name="select_deliveryman">डिलिव्हरीमेन निवडा</string>
     <string name="select_truck_no">Select Truck Number</string>
     <string name="select_erv_no">Select ERV Number</string>
     <string name="saved_success_msg">Saved Successfully</string>
@@ -249,7 +249,7 @@
     <string name="NEW_CONSUMER">नवीन ग्राहक</string>
     <string name="submit_fresh_trip">नवीन ट्रिप सबमिट करा</string>
     <string name="submit_return_trip">रिटर्न ट्रिप सबमिट करा</string>
-    <string name="Get_Cylinder">सिलेंडर मिळवा</string>
+    <string name="Get_Cylinder">माहिती मिळवा</string>
     <string name="Quantity">संख्या</string>
     <string name="Defective">दोषपूर्ण</string>
 

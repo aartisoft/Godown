@@ -32,7 +32,6 @@
         android:protectionLevel="signature"
         android:roundIcon="@drawable/login_logo_1"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
 
@@ -174,7 +173,9 @@
             android:name="com.commercialMgmt.CommercialSaleActivity" />
         <activity
             android:label=""
-            android:name="com.commercialMgmt.CommercialReportDetailActivity" />
+            android:name="com.commercialMgmt.CommercialReportDetailActivity"
+            android:configChanges="orientation|screenSize"
+            />
         <activity
             android:name="com.commercialMgmt.graph.graphReport"
             android:label="" >
