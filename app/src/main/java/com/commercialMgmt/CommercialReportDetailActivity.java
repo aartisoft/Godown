@@ -145,7 +145,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_backspace);
 
 
-        VolleySingleton.getInstance(getApplicationContext())
+            VolleySingleton.getInstance(getApplicationContext())
                 .addResponseListener(VolleySingleton.CallType.COMMERCIAL_REPORT_STOCK, this);
 
         VolleySingleton.getInstance(getApplicationContext())
@@ -194,15 +194,10 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                         get_commercial_report(VolleySingleton.CallType.COMMERCIAL_REPORT_CONSUMER, getRequestType(),date,
                                 Constants.COMMERCIAL_REPORTS);
             }
-
-
         } else {
             Toast.makeText(getApplicationContext(), R.string.no_network_available, Toast.LENGTH_SHORT).show();
         }
-
     }
-
-
 
 
     public int GetPixelFromDips(float pixels) {
@@ -219,7 +214,6 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
     public void setRequestType(String requestType) {
         this.requestType = requestType;
     }
-
 
     @Override
     public void onSuccess(VolleySingleton.CallType type, String response) {
@@ -497,17 +491,17 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 discount_textview.setText("Discount: ");
                 discount_textview_value.setText(Integer.toString(childModel.Discount));
 
-                creditcyl_textview.setText("Credity Cyl: ");
+                creditcyl_textview.setText("Credit Cyl: ");
                 creditcyl_textview_value.setText(Integer.toString(childModel.CreditCyl));
 
                 amount_textview.setText("Amount: ");
                 amount_textview_value.setText(Integer.toString(childModel.Amount));
 
                 received_amount_textview.setText("Received Amount: ");
-                received_amount_textview_value.setText(Double.toString(childModel.ReceivedAmount));
+                received_amount_textview_value.setText(String.valueOf(childModel.ReceivedAmount));
 
                 credit_amount_textview.setText("Credit Amount: ");
-                credit_amount_textview_value.setText(Integer.toString(childModel.CreditAmount));
+                credit_amount_textview_value.setText(String.valueOf(childModel.CreditAmount));
 
                 payment_mode_textview.setText("Payment Mode: ");
                 payment_mode_textview_value.setText(childModel.PaymentMode);
@@ -550,8 +544,6 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 closing_textview.setText("Closing Stock : ");
                 closing_textview_value.setText(Integer.toString(childModel.Closing));
 
-
-
             }
             return  convertView;
         }
@@ -580,6 +572,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
             }
             notifyDataSetChanged();
         }*/
+
         public void filter(String charText) {
             charText = charText.toLowerCase(Locale.getDefault());
             stocksmodel.clear();
@@ -593,13 +586,11 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 }
             }
             notifyDataSetChanged();
-
         }
-
     }
 
 
-        @Override
+    @Override
     public void onFailure(VolleySingleton.CallType type, VolleyError error) {
         progressBar.setVisibility(View.GONE);
     }

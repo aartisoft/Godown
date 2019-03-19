@@ -68,7 +68,8 @@ public class Constants {
     Cloud
      */
 
-    /*public static final String dbname = "EVITA_PROD";
+/*
+    public static final String dbname = "EVITA_PROD";
     public static final String INFO ="android.evitasoftsolutions.com";
     public static final String GET_ALL_REPORT = "http://android.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://android.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
@@ -89,7 +90,6 @@ public class Constants {
     public static final String OWNER_DETAIL_REPORT = "http://android.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
     public static final String SV_CONSUMERS = "http://android.evitasoftsolutions.com/Masters/GetAndrSvDetails";
 */
-
 
     /*
     production
@@ -241,8 +241,8 @@ public class Constants {
     public static final String COMMERCIAL_REPORTS = "http://103.31.144.174:82/Purchase/GetAndrReport";
     public static final String COMMERCIAL_GET_CONSUMER_DETAILS = "http://103.31.144.174:82/Masters/GetAndrCommConsumer";
     public static final String COMMERCIAL_SAVE_CONSUMER_DELIVERY = "http://103.31.144.174:82/CommercialMng/SaveAndrCommercial";
-    public static final  String SAVE_CONSUMER_DETAILS="http://103.31.144.174:82/masters/SaveCommercialParty";
-    public static final  String GET_AVAILABLE_CYLINDERS="http://103.31.144.174:82/masters/GetAndrAvilableCylinders";
+    public static final String SAVE_CONSUMER_DETAILS="http://103.31.144.174:82/masters/SaveCommercialParty";
+    public static final String GET_AVAILABLE_CYLINDERS="http://103.31.144.174:82/masters/GetAndrAvilableCylinders";
     public static final String AGENCY_NAME="http://103.31.144.174:82/Masters/GetAndrPrimaryCompany";
     public static final String STOCK_REPORT="http://103.31.144.174:82/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://103.31.144.174:82/Inventory/GetAndrOwnerReports";

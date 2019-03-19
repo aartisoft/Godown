@@ -275,7 +275,7 @@
     <string name="Chalan_No">चालान नंबर</string>
     <string name="MRP">एमआरपी</string>
     <string name="Selling_Price">विक्रय मूल्य</string>
-    <string name="Total_Credit_Cyl">कुल क्रेडिट सिलेंडर</string>
+    <string name="Total_Credit_Cyl">पिछला क्रेडिट सिलेंडर</string>
     <string name="Full_Cyl">भरा हुआ सिलेंडर</string>
     <string name="Empty_Cyl">खाली सिलेंडर</string>
     <string name="SV">एस वि</string>
@@ -288,6 +288,7 @@
     <string name="change_lang">भाषा बदलो</string>
     <string name="Info">जानकारी</string>
     <string name="Stock_Transfer">स्टॉक ट्रांसफर करें</string>
-
+    <string name="EnterFullCyl">भरा हुआ सिलेंडर दर्ज करें</string>
+    <string name="EnterCashAmt">नकद राशि दर्ज करें</string>
 
 </resources>

@@ -50,7 +50,7 @@ public class ConsumerModel implements Serializable {
     public int user_id;
 
     @DatabaseField
-    public int amount_credit_cylinder;
+    public Double amount_credit_cylinder;
 
     public ConsumerModel(){}
 
@@ -69,7 +69,7 @@ public class ConsumerModel implements Serializable {
             gstin = jsonObject.optString("gstin");
             credit_cylinder = jsonObject.optInt("credit_cylinder");
             user_id = jsonObject.optInt("user_id");
-            amount_credit_cylinder = jsonObject.optInt("amount_credit_cylinder");
+            amount_credit_cylinder = jsonObject.optDouble("amount_credit_cylinder");
 
         }
     }

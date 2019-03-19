@@ -106,7 +106,6 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
     private  ArrayList<String> state ;
     private List<CommercialProductModel> results;
 
-
     private int[] productArr;
     private List<CommercialProductModel> productDBList;
     private String[] State={"Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
@@ -267,28 +266,34 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
             public void onClick(View v) {
 
 
-
                 if (com_consumer_name.getText().toString().equalsIgnoreCase("")) {
                     Toast.makeText(getApplicationContext(),R.string.Enter_Consumer_Name,Toast.LENGTH_SHORT).show();
                 }
                 else if (com_mobile_number.getText().toString().equalsIgnoreCase("")) {
                     Toast.makeText(getApplicationContext(),R.string.Enter_Mobile_Number,Toast.LENGTH_SHORT).show();
-
                 }
                 else if (!(com_mobile_number.getText().toString().length() ==10)) {
                     Toast.makeText(getApplicationContext(),R.string.Mobile_Number_Error,Toast.LENGTH_SHORT).show();
-
-                }
-                else if (com_product_name.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(),R.string.Select_Product,Toast.LENGTH_SHORT).show();
-                }
-                else if (et_state.getText().toString().equalsIgnoreCase(""))
+                }else if (et_state.getText().toString().equalsIgnoreCase(""))
                 {
                     Toast.makeText(getApplicationContext(),R.string.Select_State,Toast.LENGTH_SHORT).show();
+                } else if (com_product_name.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(getApplicationContext(),R.string.Select_Product,Toast.LENGTH_SHORT).show();
                 }
+
                 else
                 {
-                    saveConfirmation_consumer();
+                    /*if (!com_mobile_number.getText().toString().isEmpty()){
+                        if (Integer.parseInt(com_mobile_number.getText().toString())==0){
+                            Toast.makeText(getApplicationContext(),R.string.Mobile_Number_Error,Toast.LENGTH_SHORT).show();
+                        }
+                        else{*/
+                            saveConfirmation_consumer();
+                      //  }
+
+
+
+
 
                 }
             }
@@ -387,7 +392,7 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
-        mTitle.setText("Add Customer");
+        mTitle.setText("Add Consumer");
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

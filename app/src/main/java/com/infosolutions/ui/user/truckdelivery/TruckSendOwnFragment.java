@@ -277,9 +277,15 @@ public class TruckSendOwnFragment extends Fragment {
             etEnterTruckNo.setText("");
         }*/
         spinItemsCount = -1;
-        for (int i = 0; i < purchaseERVProduct.size(); i++) {
-            loadDynamicProducts(purchaseERVProduct.get(i), true);
+        if (purchaseERVProduct!=null) {
+            for (int i = 0; i < purchaseERVProduct.size(); i++) {
+                loadDynamicProducts(purchaseERVProduct.get(i), true);
+            }
         }
+        else{
+            Toast.makeText(getContext(),"Data not available",Toast.LENGTH_SHORT).show();
+        }
+
 
 
     }
@@ -360,6 +366,8 @@ public class TruckSendOwnFragment extends Fragment {
 
                             }catch (NullPointerException en){
                                 en.printStackTrace();
+                            } catch (IndexOutOfBoundsException index){
+                                index.printStackTrace();
                             }
                         }
 
@@ -436,6 +444,8 @@ public class TruckSendOwnFragment extends Fragment {
                     listSpinItems.set(pos, selectedItem);
 
                 }
+            } catch (IndexOutOfBoundsException index){
+                index.printStackTrace();
             } catch (Exception e) {
                 listSpinItems.add(pos, selectedItem);
             }

@@ -51,7 +51,7 @@ public class CommercialConsumerStockReport implements Serializable {
     public int Amount;
 
     @DatabaseField
-    public int CreditAmount;
+    public Double CreditAmount;
 
     @DatabaseField
     public String PaymentMode;
@@ -77,8 +77,6 @@ public class CommercialConsumerStockReport implements Serializable {
     @DatabaseField
     public Double ReceivedAmount;
 
-
-
     public CommercialConsumerStockReport(){}
 
     public CommercialConsumerStockReport(JSONObject jsonObject, VolleySingleton.CallType type){
@@ -97,7 +95,7 @@ public class CommercialConsumerStockReport implements Serializable {
                 Discount = jsonObject.optInt("Discount");
                 CreditCyl = jsonObject.optInt("CreditCyl");
                 Amount = jsonObject.optInt("Amount");
-                CreditAmount = jsonObject.optInt("CreditAmount");
+                CreditAmount = jsonObject.optDouble("CreditAmount");
                 PaymentMode = jsonObject.optString("PaymentMode");
                 PaymentStatus = jsonObject.optString("PaymentStatus");
                 ChallanNo = jsonObject.optString("ChallanNo");
@@ -111,15 +109,6 @@ public class CommercialConsumerStockReport implements Serializable {
                 sv = jsonObject.optInt("sv");
             }
         }
-    }
-
-
-
-
-
-
-
-
-
+}
 
 }

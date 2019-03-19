@@ -275,7 +275,7 @@
     <string name="Chalan_No">Challan No</string>
     <string name="MRP">MRP</string>
     <string name="Selling_Price">Selling Price</string>
-    <string name="Total_Credit_Cyl">Total Credit Cyl</string>
+    <string name="Total_Credit_Cyl">Previous Credit Cyl</string>
     <string name="Full_Cyl">Full Cyl</string>
     <string name="Empty_Cyl">Empty Cyl</string>
     <string name="SV">SV</string>
@@ -288,6 +288,8 @@
     <string name="change_lang">Change language</string>
     <string name="Info">Info</string>
     <string name="Stock_Transfer">Stock Transfer</string>
+    <string name="EnterFullCyl">Enter Full Cylinder</string>
+    <string name="EnterCashAmt">Enter Cash Amount</string>
 
 
 </resources>
