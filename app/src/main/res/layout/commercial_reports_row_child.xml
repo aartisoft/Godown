@@ -263,7 +263,7 @@
                 android:textSize="15sp" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp">
@@ -285,7 +285,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -438,7 +438,7 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
         </RelativeLayout>
-        <RelativeLayout
+       <!-- <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp">
@@ -460,7 +460,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <RelativeLayout
             android:layout_width="match_parent"

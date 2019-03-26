@@ -109,6 +109,5 @@ public class CommercialConsumerStockReport implements Serializable {
                 sv = jsonObject.optInt("sv");
             }
         }
-}
-
+    }
 }

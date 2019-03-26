@@ -848,6 +848,9 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             totalCreditAmt = Double.valueOf(et_total_credit_amt.getText().toString());
             totalAmt = Double.valueOf(et_total_amt.getText().toString());
             Double cash =0.0;
+            if(et_cash_amt.getText().toString().equalsIgnoreCase(".")){
+                et_cash_amt.setText("");
+            }
             if (et_cash_amt.getText().toString().equalsIgnoreCase("")) {
                 cash =0.0;
             }
@@ -1129,11 +1132,16 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
             total_pending_cyl = Integer.parseInt(et_total_credit_cyl.getText().toString());
         }
 
-        if (et_balanced_credit_amt.getText().toString().equalsIgnoreCase("")){
-            Total_credit_amt = 0.0;
-        }else {
-            Total_credit_amt = Double.valueOf(et_balanced_credit_amt.getText().toString());
-        }
+
+            if (et_balanced_credit_amt.getText().toString().equalsIgnoreCase("")) {
+                Total_credit_amt = 0.0;
+            } else {
+                try {
+                    Total_credit_amt = new Double(et_balanced_credit_amt.getText().toString());
+                }catch (NumberFormatException e){
+                    e.printStackTrace();
+                }
+            }
 
        /* if (et_sv_cyl.getText().toString().equalsIgnoreCase("")){
             sv_cyl = 0;
@@ -1215,7 +1223,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
 
             parentJsonObj.put("objCommercialSale", jsonObject);
-            //Log.e("final JSON", parentJsonObj.toString());
             AppSettings.getInstance(this).saveCommercialConsumerDelivery(this, parentJsonObj);
 
             progress_bar_container.setVisibility(View.GONE);
@@ -1576,8 +1583,10 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                     }
 
 
-                } catch (SQLException e) {
+                }catch (SQLException e) {
                     e.printStackTrace();
+                }catch (NumberFormatException num){
+                    num.printStackTrace();
                 }
 
 

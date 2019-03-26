@@ -248,7 +248,6 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     private void reportWiseData(JSONObject jsonObject, VolleySingleton.CallType type) {
@@ -325,8 +324,8 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
         private TextView closing_textview_value;
         private TextView opening_textview;
         private TextView opening_textview_value;
-        private TextView sv_cyl_textview, sv_cyl_textview_value;
-        private TextView consumer_sv_cyl_textview, consumer_sv_cyl_textview_value;
+        //private TextView sv_cyl_textview, sv_cyl_textview_value;
+        //private TextView consumer_sv_cyl_textview, consumer_sv_cyl_textview_value;
         private TextView consumer_fullcyl_textview, consumer_fullcyl_textview_value, consumer_emptycyl_textview, consumer_emptycyl_textview_value;
         private TextView received_amount_textview, received_amount_textview_value;
 
@@ -419,8 +418,10 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
             mrp_textview = convertView.findViewById(R.id.mrp_textview);
             mrp_textview_value = convertView.findViewById(R.id.mrp_textview_value);
 
+/*
             sv_cyl_textview = convertView.findViewById(R.id.sv_cyl_textview);
             sv_cyl_textview_value = convertView.findViewById(R.id.sv_cyl_textview_value);
+*/
 
             consumer_fullcyl_textview = convertView.findViewById(R.id.consumer_fullcyl_textview);
             consumer_fullcyl_textview_value = convertView.findViewById(R.id.consumer_fullcyl_textview_value );
@@ -428,9 +429,9 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
             consumer_emptycyl_textview = convertView.findViewById(R.id.consumer_emptycyl_textview);
             consumer_emptycyl_textview_value = convertView.findViewById(R.id.consumer_emptycyl_textview_value);
 
-            consumer_sv_cyl_textview = convertView.findViewById(R.id.consumer_sv_cyl_textview);
+           /* consumer_sv_cyl_textview = convertView.findViewById(R.id.consumer_sv_cyl_textview);
             consumer_sv_cyl_textview_value = convertView.findViewById(R.id.consumer_sv_cyl_textview_value);
-
+*/
             discount_textview = convertView.findViewById(R.id.discount_textview);
             discount_textview_value = convertView.findViewById(R.id.discount_textview_value);
 
@@ -518,8 +519,8 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 consumer_emptycyl_textview.setText("Empty Cyl: ");
                 consumer_emptycyl_textview_value.setText(Integer.toString(childModel.EmptyCyl));
 
-                consumer_sv_cyl_textview.setText("SV: ");
-                consumer_sv_cyl_textview_value.setText(Integer.toString(childModel.sv));
+  /*            consumer_sv_cyl_textview.setText("SV: ");
+                consumer_sv_cyl_textview_value.setText(Integer.toString(childModel.sv));*/
 
             }else if (this.type.equalsIgnoreCase(VolleySingleton.CallType.COMMERCIAL_REPORT_STOCK.toString())) {
 
@@ -538,8 +539,8 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 emptycyl_textview.setText("Empty Cyl : ");
                 emptycyl_textview_value.setText(Integer.toString(childModel.EmptyCyl));
 
-                sv_cyl_textview.setText("SV : ");
-                sv_cyl_textview_value.setText(Integer.toString(childModel.sv));
+               /* sv_cyl_textview.setText("SV : ");
+                sv_cyl_textview_value.setText(Integer.toString(childModel.sv)); */
 
                 closing_textview.setText("Closing Stock : ");
                 closing_textview_value.setText(Integer.toString(childModel.Closing));
