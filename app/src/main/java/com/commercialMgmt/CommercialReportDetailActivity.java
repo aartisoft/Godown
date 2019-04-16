@@ -487,7 +487,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 prod_name_textview_value.setText(childModel.ProdName);
 
                 mrp_textview.setText("MRP: ");
-                mrp_textview_value.setText(Integer.toString(childModel.MRP));
+                mrp_textview_value.setText(String.valueOf(childModel.MRP));
 
                 discount_textview.setText("Discount: ");
                 discount_textview_value.setText(Integer.toString(childModel.Discount));
@@ -496,7 +496,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 creditcyl_textview_value.setText(Integer.toString(childModel.CreditCyl));
 
                 amount_textview.setText("Amount: ");
-                amount_textview_value.setText(Integer.toString(childModel.Amount));
+                amount_textview_value.setText(String.valueOf(childModel.Amount));
 
                 received_amount_textview.setText("Received Amount: ");
                 received_amount_textview_value.setText(String.valueOf(childModel.ReceivedAmount));

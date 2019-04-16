@@ -188,6 +188,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     private int userId;
     private String selectedDeliveryManId;
     private ConsumerModel selectedConsumer;
+    private ConsumerModel consumerModel;
     private int min = 10;
     private int max = 110;
     private String uniqueId_AddConsumer;
@@ -255,6 +256,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     }
 
     private void CashSaleView() {
+
 
         cash_sale_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cash_sale);
         et_cash_sale.setAdapter(cash_sale_adapter);
@@ -608,6 +610,15 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
         // Calculation on changing dicount edittext
 
+        String product_name=com_product_name.getText().toString().trim();
+
+        RuntimeExceptionDao<ConsumerModel, Integer> comConsumerDB = getHelper().getComConsumerRTExceptionDao();
+        try {
+            consumerModel = comConsumerDB.queryBuilder().where().eq("product_name",product_name).queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         et_discount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -698,7 +709,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                     /*if(userAssignedCylinderModel != null) {
                         userAssignedCylinderModel.Qty = availableStock;
                     }*/
-                    if (selectedConsumer != null) {
+                    if (consumerModel != null) {
                         if (Integer.parseInt(et_full_cyl.getText().toString()) > assignedCylinderQty){
                             et_full_cyl.setError("Please Assigned Cylinder First Then Enter Qty");
                             et_full_cyl.setText("");
@@ -909,12 +920,16 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
     private void calculateCreditCylinder() {
 
+        if (consumerModel!=null){
         if (!TextUtils.isEmpty(et_full_cyl.getText().toString())) {
-            full_cyl = Integer.parseInt(et_full_cyl.getText().toString()) + selectedConsumer.credit_cylinder;
+            full_cyl = Integer.parseInt(et_full_cyl.getText().toString()) + consumerModel.credit_cylinder;
 
         } else {
-            full_cyl =  selectedConsumer.credit_cylinder;
+            full_cyl =  consumerModel.credit_cylinder;
         }
+        }
+
+
         if (!TextUtils.isEmpty(et_empty_cyl.getText().toString())) {
             empty_cyl = Integer.parseInt(et_empty_cyl.getText().toString());
 
@@ -1351,10 +1366,15 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         //com_product_name.setText("");
         com_product_name.setEnabled(true);
         com_product_name.isFocusable();
+        et_full_cyl.setText("");
+        et_total_amt.setText("0");
 
                 com_product_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        et_full_cyl.setText("");
+
                         int areaId;
                         et_empty_cyl.setText("");
 
@@ -1363,11 +1383,13 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                             productId = productDBList.get(position).product_id;
                             BPCLrate = productDBList.get(position).bpcl_rate;
                             areaId = productDBList.get(position).Area;
+
                         }
                         catch (IndexOutOfBoundsException e)
                         {
                             e.printStackTrace();
                         }
+
 
                         try {
                             // areaModel=getHelper().getCommercialAreaModelExceptionDao().queryBuilder().where().eq("AreaID",areaId).queryForFirst();

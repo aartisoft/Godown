@@ -33,7 +33,7 @@ public class CommercialConsumerStockReport implements Serializable {
     public int BPCLRate;
 
     @DatabaseField
-    public int MRP;
+    public Double MRP;
 
     @DatabaseField
     public int Discount;
@@ -48,7 +48,7 @@ public class CommercialConsumerStockReport implements Serializable {
     public int CreditCyl;
 
     @DatabaseField
-    public int Amount;
+    public Double Amount;
 
     @DatabaseField
     public Double CreditAmount;
@@ -91,10 +91,10 @@ public class CommercialConsumerStockReport implements Serializable {
                 ConsumerNo = jsonObject.optString("ConsumerNo");
                 ConsumerName = jsonObject.optString("ConsumerName");
                 BPCLRate = jsonObject.optInt("BPCLRate");
-                MRP = jsonObject.optInt("MRP");
+                MRP = jsonObject.optDouble("MRP");
                 Discount = jsonObject.optInt("Discount");
                 CreditCyl = jsonObject.optInt("CreditCyl");
-                Amount = jsonObject.optInt("Amount");
+                Amount = jsonObject.optDouble("Amount");
                 CreditAmount = jsonObject.optDouble("CreditAmount");
                 PaymentMode = jsonObject.optString("PaymentMode");
                 PaymentStatus = jsonObject.optString("PaymentStatus");
