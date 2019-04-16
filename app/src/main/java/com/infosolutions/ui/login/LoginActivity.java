@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.android.volley.VolleyError;
@@ -462,6 +463,9 @@ public class LoginActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                /*hideProgressDialog();
+                Toast.makeText(LoginActivity.this,"You can't Login with Commercial deliveryman ID",Toast.LENGTH_SHORT).show();
+*/
             }else if(!TextUtils.isEmpty(usertype) && usertype.equalsIgnoreCase(Constants.owner)){
                 hideProgressDialog();
                 String ownerType = jsonResult.optString("OWNER_DATA");

@@ -699,7 +699,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         userAssignedCylinderModel.Qty = availableStock;
                     }*/
                     if (selectedConsumer != null) {
-                        if (Integer.parseInt(et_full_cyl.getText().toString()) > assignedCylinderQty){ //+ selectedConsumer.credit_cylinder)) {
+                        if (Integer.parseInt(et_full_cyl.getText().toString()) > assignedCylinderQty){
                             et_full_cyl.setError("Please Assigned Cylinder First Then Enter Qty");
                             et_full_cyl.setText("");
                         }
@@ -891,8 +891,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
         }
 
 
-        /*Double d = new Double(et_balanced_credit_amt.getText().toString());
-        selectedConsumer.amount_credit_cylinder = d.intValue();*/
+
     }
 
     private void calculateTotalAmt() {

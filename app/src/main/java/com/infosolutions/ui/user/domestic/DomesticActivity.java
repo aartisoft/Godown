@@ -121,6 +121,7 @@ public class DomesticActivity extends BaseActivity {
 
     @BindView(R.id.btnConsumerSV)
     Button btnConsumerSV;
+
     @BindView(R.id.layout_Consumer_Data)
     LinearLayout layout_Consumer_Data;
     @BindView(R.id.ConsumerNo)

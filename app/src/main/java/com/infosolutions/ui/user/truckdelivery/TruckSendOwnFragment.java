@@ -173,7 +173,6 @@ public class TruckSendOwnFragment extends Fragment {
             for (ProductDB item : productDBList)
                 spinItems.add(item.product_description);
         }
-
         spinItems.add(0, default_str);
         spinAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinItems);
         spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -286,11 +285,10 @@ public class TruckSendOwnFragment extends Fragment {
             Toast.makeText(getContext(),"Data not available",Toast.LENGTH_SHORT).show();
         }
 
-
-
     }
 
     private void loadDynamicProducts(PurchaseERVProduct purchaseERVProduct, boolean isAutofill) {
+
         if (listSpinItems.contains(default_str)) {
             Toast.makeText(getActivity(), "Please Enter valid Product Id", Toast.LENGTH_SHORT).show();
             return;
@@ -318,8 +316,8 @@ public class TruckSendOwnFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                //Log.d("onItemSelected",Integer.toString(spinItemsCount));
                 String selectedItem = spinner.getSelectedItem().toString();
+
                 spinItemsCount = Integer.parseInt(spinner.getTag().toString());
                 int pos = spinItemsCount;
                 if (listSpinItems.contains(selectedItem)) {

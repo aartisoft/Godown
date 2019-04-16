@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
 import com.infosolutions.evita.R;
 
 import java.util.ArrayList;
@@ -50,6 +51,14 @@ public class ModuleGridAdapter extends
                 .load(album.getModuleIconImage())
                 .placeholder(R.drawable.ic_background_image)
                 .into(holder.ivImageModule);
+
+        /*Glide
+                .with(mContext)
+                .load(album.getModuleIconImage())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_background_image)
+                        .fitCenter())
+                .into(holder.ivImageModule);*/
         holder.ivImageModule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

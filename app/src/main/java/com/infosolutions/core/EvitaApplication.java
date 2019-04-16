@@ -5,6 +5,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
+//import com.infosolutions.dagger.DaggerEvitaComponents;
 import com.infosolutions.dagger.DaggerEvitaComponents;
 import com.infosolutions.dagger.EvitaComponents;
 import com.infosolutions.dagger.EvitaModules;

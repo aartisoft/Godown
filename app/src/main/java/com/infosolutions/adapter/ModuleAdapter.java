@@ -40,6 +40,13 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleView
         ModuleModel album = moduleList.get(position);
         holder.tvTextModule.setText(album.getModuleTitle());
         Glide.with(mContext).load(album.getModuleIconImage()).placeholder(R.drawable.ic_background_image).into(holder.ivImageModule);
+        /*Glide
+                .with(mContext)
+                .load(album.getModuleIconImage())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_background_image)
+                        .fitCenter())
+                .into(holder.ivImageModule);*/
     }
 
     @Override
