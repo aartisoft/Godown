@@ -162,6 +162,8 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
 
 //-------------------------------------------------------------------------
 
+    private String ledger_code;
+
     boolean isCommercialConsumerServiceRunning;
     int creditCyl = 0;
     @BindView(R.id.progress_bar_container)
@@ -609,15 +611,6 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
     private void Calculation() {
 
         // Calculation on changing dicount edittext
-
-        String product_name=com_product_name.getText().toString().trim();
-
-        RuntimeExceptionDao<ConsumerModel, Integer> comConsumerDB = getHelper().getComConsumerRTExceptionDao();
-        try {
-            consumerModel = comConsumerDB.queryBuilder().where().eq("product_name",product_name).queryForFirst();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         et_discount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1290,7 +1283,7 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         public void onClick(String consumer, int i) {
 
                             selectedConsumer = consumerDBList.get(i);
-
+                            ledger_code=selectedConsumer.LedgerCode;
                             String ConsumerName = consumer;
                             AppSettings.hideKeyboard(CommercialSaleActivity.this);
                             et_consumer_name.setText(ConsumerName);
@@ -1458,12 +1451,26 @@ public class CommercialSaleActivity extends AppCompatActivity implements Respons
                         et_bpcl_rate.setText(String.valueOf(BPCLrate));
                         et_selling_price.setText(String.valueOf(BPCLrate));
                         et_discount.setEnabled(true);
+
+
+                        String product_name=com_product_name.getText().toString().trim();
+
+                        RuntimeExceptionDao<ConsumerModel, Integer> comConsumerDB = getHelper().getComConsumerRTExceptionDao();
+                        try {
+                            consumerModel = comConsumerDB.queryBuilder().where().eq("product_name",product_name)
+                                                            .and().eq("LedgerCode",ledger_code).queryForFirst();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
                         try {
                         if (!TextUtils.isEmpty(et_consumer_name.getText())) {
                             if (selectedConsumer.product_name.equalsIgnoreCase(productDBList.get(position).product_name)) {
 
                                     et_discount.setText(Integer.toString(selectedConsumer.discount));
-                                    et_total_credit_cyl.setText(Integer.toString(selectedConsumer.credit_cylinder));
+                                    if(consumerModel!=null){
+                                    et_total_credit_cyl.setText(Integer.toString(consumerModel.credit_cylinder));
+                                    }
 
                             } else {
                                 et_total_credit_cyl.setText("0");
