@@ -4,7 +4,6 @@ package com.infosolutions.ui.login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
@@ -23,12 +22,10 @@ import com.commercialMgmt.models.AreaModel;
 import com.commercialMgmt.models.CommercialProductModel;
 import com.commercialMgmt.models.ConsumerModel;
 import com.commercialMgmt.models.UserAssignedCylinderModel;
-import com.google.gson.JsonObject;
 import com.infosolutions.core.BaseActivity;
 import com.infosolutions.core.EvitaApplication;
 import com.infosolutions.database.CommercialDeliveryCreditDB;
 import com.infosolutions.database.CommercialDeliveryDB;
-import com.infosolutions.database.ConsumerDetails;
 import com.infosolutions.database.DatabaseHelper;
 import com.infosolutions.database.DomesticDeliveryDB;
 import com.infosolutions.database.EmployeeDB;
@@ -44,10 +41,9 @@ import com.infosolutions.network.VolleySingleton;
 import com.infosolutions.service.GetCommercialConsumerService;
 import com.infosolutions.service.GetConsumerService;
 import com.infosolutions.ui.MainActivity;
+import com.infosolutions.ui.owner.GodownReportForOwner;
 import com.infosolutions.ui.owner.OwnerDashboardActivity;
-import com.infosolutions.ui.user.tvdetails.TVDetailsActivity;
 import com.infosolutions.utils.AppSettings;
-import com.infosolutions.utils.Constant;
 import com.infosolutions.utils.GlobalVariables.LOGINKEY;
 import com.infosolutions.utils.GlobalVariables.Response;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -57,16 +53,13 @@ import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -76,8 +69,8 @@ import khangtran.preferenceshelper.PreferencesHelper;
 import static com.infosolutions.network.Constants.KEY_AGENCY_NAME;
 import static com.infosolutions.network.Constants.KEY_GODOWN;
 import static com.infosolutions.network.Constants.KEY_GODOWN_NAME;
-import static com.infosolutions.network.Constants.LOGIN_GODOWNKEEPER;
 import static com.infosolutions.network.Constants.LOGIN_DELIVERYMAN;
+import static com.infosolutions.network.Constants.LOGIN_GODOWNKEEPER;
 import static com.infosolutions.network.Constants.PREF_DATE;
 import static com.infosolutions.network.Constants.SHARED_PREF;
 import static com.infosolutions.network.Constants.LOGIN_TYPE;
@@ -434,10 +427,10 @@ public class LoginActivity extends BaseActivity {
                 serverSuccessResponse(response);
 
             }else if(!TextUtils.isEmpty(usertype) && usertype.equalsIgnoreCase(Constants.commercial_deliveryman)){
-                /*try {
+                try {
                     String responseCode = jsonResult.optString(Constants.responseCcode);
                     login_type = LOGIN_DELIVERYMAN;
-                        saveLoginTypePreference(login_type);
+                    saveLoginTypePreference(login_type);
                     if(responseCode.equalsIgnoreCase("500")){
                         hideProgressDialog();
                         serverSuccessResponse(response);
@@ -461,9 +454,9 @@ public class LoginActivity extends BaseActivity {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                }*/
-                hideProgressDialog();
-                Toast.makeText(LoginActivity.this,"You can't Login with Commercial deliveryman ID",Toast.LENGTH_SHORT).show();
+                }
+                //hideProgressDialog();
+                //Toast.makeText(LoginActivity.this,"You can't Login with Commercial deliveryman ID",Toast.LENGTH_SHORT).show();
             }else if(!TextUtils.isEmpty(usertype) && usertype.equalsIgnoreCase(Constants.owner)){
                 hideProgressDialog();
                 String ownerType = jsonResult.optString("OWNER_DATA");

@@ -91,7 +91,9 @@ public class ReportListItemsActivity extends AppCompatActivity {
 
     private void loadCommercialData() {
         listModel.add(new StockReportModel(Constants.StockReportTitle));
-        listModel.add(new StockReportModel(Constants.ConsumerReportTitle));
+        listModel.add(new StockReportModel(Constants.commercial_sale));
+        listModel.add(new StockReportModel(Constants.commercial_cash));
+        listModel.add(new StockReportModel(Constants.commercial_empty_received));
        // listModel.add(new StockReportModel("graph"));
 
     }
@@ -157,11 +159,27 @@ public class ReportListItemsActivity extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
-            }else if (model.getStockReportTitle().equalsIgnoreCase(Constants.ConsumerReportTitle)) {
+            }else if (model.getStockReportTitle().equalsIgnoreCase(Constants.commercial_sale)) {
 
                 Intent intent = new Intent(getApplicationContext(), CommercialReportDetailActivity.class);
                 intent.putExtra("reportName", "GET_CONSUMER");
-                intent.putExtra("header", Constants.ConsumerReportTitle);
+                intent.putExtra("header", Constants.commercial_sale);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            }
+            else if (model.getStockReportTitle().equalsIgnoreCase(Constants.commercial_cash)) {
+
+                Intent intent = new Intent(getApplicationContext(), CommercialReportDetailActivity.class);
+                intent.putExtra("reportName", "GET_CONSUMER");
+                intent.putExtra("header", Constants.commercial_cash);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            }
+            else if (model.getStockReportTitle().equalsIgnoreCase(Constants.commercial_empty_received)) {
+
+                Intent intent = new Intent(getApplicationContext(), CommercialReportDetailActivity.class);
+                intent.putExtra("reportName", "GET_CONSUMER");
+                intent.putExtra("header", Constants.commercial_empty_received);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             }

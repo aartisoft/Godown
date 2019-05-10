@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.infosolutions.ui.owner.TestDetailingActivity">
+    android:background="#fff"
+    tools:context="com.infosolutions.ui.owner.OwnerDashboardActivity"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -14,11 +16,95 @@
         <include layout="@layout/actionbar_toolbar" />
     </android.support.design.widget.AppBarLayout>
 
-
-    <TableLayout
-        android:id="@+id/table_layout"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center">
 
-    </TableLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_margin="8dp"
+        android:id="@+id/cardView_godownReport">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/circlebackgroundpurple"
+                android:src="@drawable/ic_account_balance_black_24dp"
+                android:padding="10dp"/>
+
+            <!--<View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bottom_lib_dialog_cancel_text_color"
+                android:layout_margin="10dp"
+                >-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/GodownReport"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="150dp"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:id="@+id/cardView_CommercialReport">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circlebackgroundpink"
+                    android:src="@drawable/ic_location_city_black_24dp"
+                    android:padding="10dp"/>
+
+                <!--<View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/bottom_lib_dialog_cancel_text_color"
+                    android:layout_margin="10dp"
+                    />-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/CommercialReport"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
 </LinearLayout>

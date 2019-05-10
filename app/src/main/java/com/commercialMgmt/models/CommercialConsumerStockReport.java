@@ -99,7 +99,7 @@ public class CommercialConsumerStockReport implements Serializable {
                 PaymentMode = jsonObject.optString("PaymentMode");
                 PaymentStatus = jsonObject.optString("PaymentStatus");
                 ChallanNo = jsonObject.optString("ChallanNo");
-                sv = jsonObject.optInt("sv");
+                //sv = jsonObject.optInt("sv");
                 ReceivedAmount = jsonObject.optDouble("ReceivedAmount");
 
             }else if(type.equals(VolleySingleton.CallType.COMMERCIAL_REPORT_STOCK)){
@@ -108,6 +108,21 @@ public class CommercialConsumerStockReport implements Serializable {
                 Opening = jsonObject.optInt("Opening");
                 sv = jsonObject.optInt("sv");
             }
+            /*
+            else if(type.equals(VolleySingleton.CallType.COMMERCIAL_CASH)){
+                ConsumerNo = jsonObject.optString("ConsumerNo");
+                ConsumerName = jsonObject.optString("ConsumerName");
+                CreditAmount = jsonObject.optDouble("CreditAmount");
+                ReceivedAmount = jsonObject.optDouble("ReceivedAmount");
+            }
+            else if(type.equals(VolleySingleton.CallType.COMMERCIAL_EMPTY_RECEIVED)){
+                ConsumerNo = jsonObject.optString("ConsumerNo");
+                ConsumerName = jsonObject.optString("ConsumerName");
+                CreditCyl = jsonObject.optInt("CreditCyl");
+                CreditAmount = jsonObject.optDouble("CreditAmount");
+                ReceivedAmount = jsonObject.optDouble("ReceivedAmount");
+            }*/
+
         }
     }
 }

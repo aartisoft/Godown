@@ -155,7 +155,7 @@
     <string name="header_col2">Full</string>
     <string name="header_col3">Empty</string>
     <string name="header_col4">Defective</string>
-    <string name="no_data">No data found in the table</string>
+    <string name="no_data">कोई डेटा उपलब्ध नहीं है</string>
     <string name="header_defective">Defective</string>
     <string name="header_sound">Sound</string>
     <string name="header_lost">Lost</string>
@@ -290,5 +290,8 @@
     <string name="Stock_Transfer">स्टॉक ट्रांसफर करें</string>
     <string name="EnterFullCyl">भरा हुआ सिलेंडर दर्ज करें</string>
     <string name="EnterCashAmt">नकद राशि दर्ज करें</string>
+
+    <string name="GodownReport">Godown Report</string>
+    <string name="CommercialReport">Commercial Reports</string>
 
 </resources>

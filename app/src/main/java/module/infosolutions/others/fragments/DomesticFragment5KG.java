@@ -29,7 +29,6 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 public class DomesticFragment5KG extends Fragment {
 
-
     private Typeface custom_font;
     private LinearLayout layout_fresh;
     private LinearLayout layout_return;

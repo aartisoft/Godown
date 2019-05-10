@@ -18,8 +18,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonObject;
-import com.infosolutions.utils.Constant;
+//import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +46,6 @@ public class VolleySingleton {
     private ArrayList<ResponseListener> mResponseListener;
     private HashMap<CallType, ResponseListener> mResponseListenerMap = new HashMap<CallType, ResponseListener>();
 
-
     public enum CallType {
 
         AGENCY_NAME,
@@ -61,6 +59,8 @@ public class VolleySingleton {
         REPORT_TV_DETAILS,
         COMMERCIAL_REPORT_STOCK,
         COMMERCIAL_REPORT_CONSUMER,
+        COMMERCIAL_CASH,
+        COMMERCIAL_EMPTY_RECEIVED,
         STOCK_REPORT,
         OWNER_REPORT,
         GET_AVAILABLE_CYL,
@@ -75,7 +75,7 @@ public class VolleySingleton {
         POST_COMMERCIAL_CONSUMER,
         POST_COMMERCIAL_SALE,
         COMMERCIAL_SAVE_CONSUMER_DELIVERY,
-        GET_SVCONSUMERS,
+        GET_SVCONSUMERS
 
     }
 

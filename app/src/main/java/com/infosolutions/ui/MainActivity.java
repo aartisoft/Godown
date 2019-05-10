@@ -269,16 +269,12 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.action_info:
-
                 getInfo();
-
-
                 break;
+
             case R.id.action_language:
                 changeLanguage();
                 break;
-
-
         }
         return true;
     }
@@ -357,7 +353,6 @@ public class MainActivity extends BaseActivity {
         Configuration config=new Configuration();
         config.locale=locale;
         getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
-
         SharedPreferences.Editor editor=getSharedPreferences("Language",MODE_PRIVATE).edit();
         editor.putString("My_Lang",lang);
         editor.apply();
