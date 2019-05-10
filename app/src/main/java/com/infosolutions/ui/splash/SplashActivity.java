@@ -74,13 +74,16 @@ public class SplashActivity extends BaseActivity {
         //scheduleJob();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       /*  requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         super.onCreate(savedInstanceState);
-
 
         //Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_splash);
