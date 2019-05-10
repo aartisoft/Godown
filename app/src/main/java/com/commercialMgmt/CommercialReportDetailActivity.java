@@ -125,9 +125,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 loadReport(calendar_button.getText().toString());
                 searchView.setQuery("",false);
 
-
             }
-
         };
 
         calendar_button.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +146,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
             VolleySingleton.getInstance(getApplicationContext())
                 .addResponseListener(VolleySingleton.CallType.COMMERCIAL_REPORT_STOCK, this);
 
-        VolleySingleton.getInstance(getApplicationContext())
+            VolleySingleton.getInstance(getApplicationContext())
                 .addResponseListener(VolleySingleton.CallType.COMMERCIAL_REPORT_CONSUMER, this);
 
 
@@ -188,12 +186,26 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                                 Constants.COMMERCIAL_REPORTS );
             }
 
-            else if (headerTitle.equalsIgnoreCase(Constants.ConsumerReportTitle)) {
+            else if (headerTitle.equalsIgnoreCase(Constants.commercial_sale)) {
                 searchView.setVisibility(View.VISIBLE);
                 VolleySingleton.getInstance(getApplicationContext()).
                         get_commercial_report(VolleySingleton.CallType.COMMERCIAL_REPORT_CONSUMER, getRequestType(),date,
                                 Constants.COMMERCIAL_REPORTS);
             }
+            else if (headerTitle.equalsIgnoreCase(Constants.commercial_cash)) {
+                searchView.setVisibility(View.VISIBLE);
+                VolleySingleton.getInstance(getApplicationContext()).
+                        get_commercial_report(VolleySingleton.CallType.COMMERCIAL_REPORT_CONSUMER, getRequestType(),date,
+                                Constants.COMMERCIAL_REPORTS);
+            }
+            else if (headerTitle.equalsIgnoreCase(Constants.commercial_empty_received)) {
+                searchView.setVisibility(View.VISIBLE);
+                VolleySingleton.getInstance(getApplicationContext()).
+                        get_commercial_report(VolleySingleton.CallType.COMMERCIAL_REPORT_CONSUMER, getRequestType(),date,
+                                Constants.COMMERCIAL_REPORTS);
+            }
+
+
         } else {
             Toast.makeText(getApplicationContext(), R.string.no_network_available, Toast.LENGTH_SHORT).show();
         }

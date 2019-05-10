@@ -3,7 +3,7 @@ package com.infosolutions.dagger;
 import com.infosolutions.core.EvitaApplication;
 import com.infosolutions.ui.MainActivity;
 import com.infosolutions.ui.login.LoginActivity;
-import com.infosolutions.ui.owner.OwnerDashboardActivity;
+import com.infosolutions.ui.owner.GodownReportForOwner;
 import com.infosolutions.ui.user.commercial.CommercialActivity;
 import com.infosolutions.ui.user.domestic.DomesticActivity;
 import com.infosolutions.ui.user.setting.SettingsActivity;
@@ -40,5 +40,5 @@ public interface EvitaComponents {
 
     void inject(CommercialActivity commercialActivity);
 
-    void inject(OwnerDashboardActivity ownerActivity);
+    void inject(GodownReportForOwner ownerActivity);
 }

@@ -25,8 +25,6 @@ public class AreaModel implements Serializable {
         if(jsonObject != null){
             AreaID = jsonObject.optInt("ID");
             AreaName = jsonObject.optString("AreaName");
-
-
         }
     }
 }

@@ -12,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.commercialMgmt.models.ConsumerModel;
 import com.infosolutions.database.ConsumerDetails;
 import com.infosolutions.database.DatabaseHelper;
+import com.infosolutions.evita.R;
 import com.infosolutions.network.Constants;
 import com.infosolutions.network.ResponseListener;
 import com.infosolutions.network.VolleySingleton;
@@ -127,6 +128,7 @@ public class GetCommercialConsumerService extends IntentService implements Respo
 
         private void fillCommercialConsumerDB(JSONObject jsonObject) {
             JSONArray arrayPRODUCT = jsonObject.optJSONArray("consumerDetails");
+
             RuntimeExceptionDao<ConsumerModel, Integer> consumerDB = getHelper().getConsumerModelExceptionDao();
             try {
                 consumerDB.deleteBuilder().delete();
@@ -134,7 +136,7 @@ public class GetCommercialConsumerService extends IntentService implements Respo
                 e.printStackTrace();
             }
             consumerDetailsList = new ArrayList<>();
-            if(arrayPRODUCT != null) {
+            if(arrayPRODUCT != null ) {
                 for (int product = 0; product < arrayPRODUCT.length(); product++) {
                     JSONObject objectProduct = arrayPRODUCT.optJSONObject(product);
            /* int PRODUCT_CODE = Integer.parseInt(objectProduct.optString("PRODUCT_CODE"));
@@ -146,6 +148,7 @@ public class GetCommercialConsumerService extends IntentService implements Respo
                     consumerDetailsList.add(consumerModel);
                 }
             }
+
             consumerDB.create(consumerDetailsList);
         }
 

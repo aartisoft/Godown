@@ -191,21 +191,26 @@ public class DomesticActivity extends BaseActivity {
 
         RuntimeExceptionDao<ProductDB, Integer> productDB = getHelper().getProductRTExceptionDao();
         List<ProductDB> product = productDB.queryForAll();
-
-        for (ProductDB cn : product) {
-            String CYLINDER_CODE = String.valueOf(cn.product_code);
-            String CYLINDER_DESCRIPTION = String.valueOf(cn.product_description);
-            String PRODUCT_CATEGORY = String.valueOf(cn.product_category);
-            if (PRODUCT_CATEGORY.equalsIgnoreCase("1")){
-                chipListModel.add(new ChipModel(CYLINDER_DESCRIPTION, CYLINDER_CODE, PRODUCT_CATEGORY));
+        if (product.size()>0)
+        {
+            for (ProductDB cn : product) {
+                String CYLINDER_CODE = String.valueOf(cn.product_code);
+                String CYLINDER_DESCRIPTION = String.valueOf(cn.product_description);
+                String PRODUCT_CATEGORY = String.valueOf(cn.product_category);
+                if (PRODUCT_CATEGORY.equalsIgnoreCase("1")) {
+                    chipListModel.add(new ChipModel(CYLINDER_DESCRIPTION, CYLINDER_CODE, PRODUCT_CATEGORY));
+                }
             }
+            chipAdapter = new ChipSelectionAdapter(this, chipListModel);
+            recycler_view_chip.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+            recycler_view_chip.setItemAnimator(new DefaultItemAnimator());
+            recycler_view_chip.setAdapter(chipAdapter);
+        }
+        else{
+            Toast.makeText(DomesticActivity.this,"Products not available",Toast.LENGTH_SHORT).show();
         }
 
 
-        chipAdapter = new ChipSelectionAdapter(this, chipListModel);
-        recycler_view_chip.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
-        recycler_view_chip.setItemAnimator(new DefaultItemAnimator());
-        recycler_view_chip.setAdapter(chipAdapter);
 
     }
 

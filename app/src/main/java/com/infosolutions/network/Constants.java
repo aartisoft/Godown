@@ -41,7 +41,9 @@ public class Constants {
     public static boolean isNetworkAvailable;
     public static final String DEFAULT_STRING_VALUE = "No Preference Found";
     public static final String error_message ="ग्राहक उपलब्ध नहीं है";
-    public static final String ConsumerReportTitle = "Consumer";
+    public static final String commercial_sale = "Sale";
+    public static final String commercial_cash = "Cash";
+    public static final String commercial_empty_received = "Empty_Received";
     public static final String StockReportTitle = "Stock";
     public static final String responseCcode = "ResponseCode";
 
@@ -63,12 +65,10 @@ public class Constants {
     private static final String PROD_URL = "http://103.31.144.174/login/validateLogin";
     public static final  String EVITA_API_URL = PROD_URL;
 
-
     /*
     Cloud
      */
 
-/*
     public static final String dbname = "EVITA_PROD";
     public static final String INFO ="android.evitasoftsolutions.com";
     public static final String GET_ALL_REPORT = "http://android.evitasoftsolutions.com/Reports/GetAndrReportAll";
@@ -89,11 +89,9 @@ public class Constants {
     public static final String STOCK_REPORT="http://android.evitasoftsolutions.com/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://android.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
     public static final String SV_CONSUMERS = "http://android.evitasoftsolutions.com/Masters/GetAndrSvDetails";
-*/
 
 
-/*
-    public static final String dbname = "EVITA_PROD";
+    /*public static final String dbname = "EVITA_PROD";
     public static final String INFO ="ags.evitasoftsolutions.com";
     public static final String GET_ALL_REPORT = "http://ags.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://ags.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
@@ -113,29 +111,31 @@ public class Constants {
     public static final String STOCK_REPORT="http://ags.evitasoftsolutions.com/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://ags.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
     public static final String SV_CONSUMERS = "http://ags.evitasoftsolutions.com/Masters/GetAndrSvDetails";
-*/
+    */
 
 
+/*
     public static final String dbname = "EVITA_PROD";
-    public static final String INFO ="ess.evitasoftsolutions.com";
-    public static final String GET_ALL_REPORT = "http://ess.evitasoftsolutions.com/Reports/GetAndrReportAll";
-    public static final String get_url = "http://ess.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
-    public static final String post_url = "http://ess.evitasoftsolutions.com/Purchase/SaveDomesticDeliveryAndrA";
-    public static final String COMMERCIAL_DELIVERY_COUNT = "http://ess.evitasoftsolutions.com/Purchase/GetCreditCommCyl";
-    public static final String GET_CONSUMER_DETAILS ="http://ess.evitasoftsolutions.com/Purchase/GetAndrConsumerDetails";
-    public static final String GET_STOCKS_URL = "http://ess.evitasoftsolutions.com/Purchase/GetStockDetials";
-    public static final String POST_STOCKS_URL = "http://ess.evitasoftsolutions.com/Purchase/SaveTransfer";
-    public static final String GET_PURCHASE_ERV = "http://ess.evitasoftsolutions.com/Purchase/GetAndrPurchaseERV";
-    public static final String LOGIN_URL = "http://ess.evitasoftsolutions.com/login/validateLogin";
-    public static final String COMMERCIAL_REPORTS = "http://ess.evitasoftsolutions.com/Purchase/GetAndrReport";
-    public static final String COMMERCIAL_GET_CONSUMER_DETAILS = "http://ess.evitasoftsolutions.com/Masters/GetAndrCommConsumer";
-    public static final String COMMERCIAL_SAVE_CONSUMER_DELIVERY = "http://ess.evitasoftsolutions.com/CommercialMng/SaveAndrCommercial";
-    public static final String SAVE_CONSUMER_DETAILS="http://ess.evitasoftsolutions.com/masters/SaveCommercialParty";
-    public static final String GET_AVAILABLE_CYLINDERS="http://ess.evitasoftsolutions.com/masters/GetAndrAvilableCylinders";
-    public static final String AGENCY_NAME="http://ess.evitasoftsolutions.com/Masters/GetAndrPrimaryCompany";
-    public static final String STOCK_REPORT="http://ess.evitasoftsolutions.com/Inventory/GetAndrGodownWiseStocks";
-    public static final String OWNER_DETAIL_REPORT = "http://ess.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
-    public static final String SV_CONSUMERS = "http://ess.evitasoftsolutions.com/Masters/GetAndrSvDetails";
+    public static final String INFO ="tara.mygasagency.com";
+    public static final String GET_ALL_REPORT = "http://tara.mygasagency.com/Reports/GetAndrReportAll";
+    public static final String get_url = "http://tara.mygasagency.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
+    public static final String post_url = "http://tara.mygasagency.com/Purchase/SaveDomesticDeliveryAndrA";
+    public static final String COMMERCIAL_DELIVERY_COUNT = "http://tara.mygasagency.com/Purchase/GetCreditCommCyl";
+    public static final String GET_CONSUMER_DETAILS ="http://tara.mygasagency.com/Purchase/GetAndrConsumerDetails";
+    public static final String GET_STOCKS_URL = "http://tara.mygasagency.com/Purchase/GetStockDetials";
+    public static final String POST_STOCKS_URL = "http://tara.mygasagency.com/Purchase/SaveTransfer";
+    public static final String GET_PURCHASE_ERV = "http://tara.mygasagency.com/Purchase/GetAndrPurchaseERV";
+    public static final String LOGIN_URL = "http://tara.mygasagency.com/login/validateLogin";
+    public static final String COMMERCIAL_REPORTS = "http://tara.mygasagency.com/Purchase/GetAndrReport";
+    public static final String COMMERCIAL_GET_CONSUMER_DETAILS = "http://tara.mygasagency.com/Masters/GetAndrCommConsumer";
+    public static final String COMMERCIAL_SAVE_CONSUMER_DELIVERY = "http://tara.mygasagency.com/CommercialMng/SaveAndrCommercial";
+    public static final String SAVE_CONSUMER_DETAILS="http://tara.mygasagency.com/masters/SaveCommercialParty";
+    public static final String GET_AVAILABLE_CYLINDERS="http://tara.mygasagency.com/masters/GetAndrAvilableCylinders";
+    public static final String AGENCY_NAME="http://tara.mygasagency.com/Masters/GetAndrPrimaryCompany";
+    public static final String STOCK_REPORT="http://tara.mygasagency.com/Inventory/GetAndrGodownWiseStocks";
+    public static final String OWNER_DETAIL_REPORT = "http://tara.mygasagency.com/Inventory/GetAndrOwnerReports";
+    public static final String SV_CONSUMERS = "http://tara.mygasagency.com/Masters/GetAndrSvDetails";
+*/
 
 
     public static String LOGIN_API_VALUE = "userAuth";
