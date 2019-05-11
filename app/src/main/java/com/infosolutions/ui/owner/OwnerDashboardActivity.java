@@ -2,50 +2,70 @@ package com.infosolutions.ui.owner;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
+import com.infosolutions.adapter.OwnerDashboardAdapter;
 import com.infosolutions.evita.R;
+import com.infosolutions.evita.databinding.ActivityOwnerdashboardBinding;
+import com.infosolutions.model.OwnerDashBoardModel;
 import com.infosolutions.ui.login.LoginActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OwnerDashboardActivity extends AppCompatActivity {
 
-    @BindView(R.id.cardView_godownReport)
+    /*@BindView(R.id.cardView_godownReport)
     CardView cardView_godownReport;
     @BindView(R.id.cardView_CommercialReport)
-    CardView cardView_CommercialReport;
+    CardView cardView_CommercialReport;*/
 
-    private String owner_resp;
+    public static String owner_resp;
+
+
+    private ActivityOwnerdashboardBinding mBinding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_dashboard);
-        ButterKnife.bind(this);
+
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_ownerdashboard);
+        populateData();
+
         setupToolbar();
+
+        /*setContentView(R.layout.activity_owner_dashboard);
+        ButterKnife.bind(this);
+        setupToolbar();*/
 
         Intent intent = getIntent();
         owner_resp = intent.getStringExtra("owner_resp");
 
 
-
-        cardView_godownReport.setOnClickListener(new View.OnClickListener() {
+        /*cardView_godownReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(OwnerDashboardActivity.this,GodownReportForOwner.class);
                 intent.putExtra("owner_resp", owner_resp);
                 startActivity(intent);
             }
-        });
+        });*/
+    }
+
+    private void populateData() {
+        List<OwnerDashBoardModel> dataModelList = new ArrayList<>();
+
+        dataModelList.add(new OwnerDashBoardModel(R.drawable.ic_account_balance_black_24dp, getString(R.string.GodownReport)));
+        dataModelList.add(new OwnerDashBoardModel(R.drawable.ic_location_city_black_24dp, getString(R.string.CommercialReport)));
+
+        OwnerDashboardAdapter myRecyclerViewAdapter = new OwnerDashboardAdapter(this, dataModelList);
+        mBinding.setMyAdapter(myRecyclerViewAdapter);
     }
 
     private void setupToolbar() {
