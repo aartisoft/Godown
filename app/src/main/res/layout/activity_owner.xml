@@ -34,8 +34,7 @@
                     android:layout_centerInParent="true"
                     android:text="@string/owner"
                     android:textColor="@color/white"
-                    android:textSize="20dp"/>
-
+                    android:textSize="20dp" />
 
                 <ImageView
                     android:id="@+id/btnLogout"
@@ -72,18 +71,15 @@
             <include layout="@layout/closing_layout"/>
             <include layout="@layout/other_layout"/>
 
-
         </LinearLayout>
 
     </ScrollView>
-
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"/>
-
+        android:visibility="gone" />
 
 </LinearLayout>

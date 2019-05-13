@@ -90,7 +90,6 @@ public class Constants {
     public static final String OWNER_DETAIL_REPORT = "http://android.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
     public static final String SV_CONSUMERS = "http://android.evitasoftsolutions.com/Masters/GetAndrSvDetails";
 
-
     /*public static final String dbname = "EVITA_PROD";
     public static final String INFO ="ags.evitasoftsolutions.com";
     public static final String GET_ALL_REPORT = "http://ags.evitasoftsolutions.com/Reports/GetAndrReportAll";
@@ -110,8 +109,7 @@ public class Constants {
     public static final String AGENCY_NAME="http://ags.evitasoftsolutions.com/Masters/GetAndrPrimaryCompany";
     public static final String STOCK_REPORT="http://ags.evitasoftsolutions.com/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://ags.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
-    public static final String SV_CONSUMERS = "http://ags.evitasoftsolutions.com/Masters/GetAndrSvDetails";
-    */
+    public static final String SV_CONSUMERS = "http://ags.evitasoftsolutions.com/Masters/GetAndrSvDetails";*/
 
 
 /*

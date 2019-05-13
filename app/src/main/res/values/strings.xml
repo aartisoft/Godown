@@ -228,7 +228,7 @@
     <string name="no_data_available">No data available</string>
     <string name="RecordError">Record already available</string>
 
-    //------------------------ Strings for commercial App  -------------------------------
+    //------------------------ Strings for commercial App -------------------------------
 
     <string name="Select_Consumer">Select Consumer</string>
     <string name="Cash_Received">Enter Cash Received Amt</string>
@@ -254,7 +254,8 @@
     <string name="Defective">Defective</string>
 
 
-    // ---------------------------   Commercial MGMT Add New Consumer XML Strings  -------------------------
+    // --------------------------- Commercial MGMT Add New Consumer XML Strings
+    -------------------------
 
     <string name="ConsumerName">Consumer Name</string>
 
@@ -268,7 +269,7 @@
     <string name="Add_New_Consumer">Add New Consumer</string>
 
 
-    //---------------------------- Strings for Commercial Sale  -------------------------------------
+    //---------------------------- Strings for Commercial Sale -------------------------------------
 
     <string name="Select_Operation">Select Operation</string>
     <string name="Select_Area">Select Area</string>

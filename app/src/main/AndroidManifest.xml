@@ -27,18 +27,16 @@
     <application
         android:name="com.infosolutions.core.EvitaApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/login_logo_1"
         android:label="@string/app_name"
-        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:protectionLevel="signature"
         android:roundIcon="@drawable/login_logo_1"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-
         <!-- Broadcast receiver declaration in manifest file and make sure to enable it -->
-
         <service android:name="com.infosolutions.network.UploadService" />
 
         <activity
@@ -128,11 +126,9 @@
         <activity
             android:name="com.infosolutions.ui.owner.OwnerDetailingActivity"
             android:label="@string/title_empty" />
-
         <activity
             android:name="com.infosolutions.ui.owner.OwnerDashboardActivity"
             android:label="Owner Dashboard" />
-
         <activity
             android:name="com.infosolutions.ui.user.reports.NewReportDetailsActivity"
             android:label="" />
@@ -146,9 +142,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="37cffa83d2734d9b5a16366e880711962dcf1391" />
-
-        <!-- Job Scheduler -->
+            android:value="37cffa83d2734d9b5a16366e880711962dcf1391" /> <!-- Job Scheduler -->
         <!-- Define your service, make sure to add the permision! -->
         <!--
         <service
@@ -156,7 +150,6 @@
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="true" />
         -->
-
         <receiver android:name=".AlarmReceiver">
             <intent-filter>
                 <action android:name="NOTIFICATION_SERVICE" />
@@ -166,33 +159,31 @@
         <service
             android:name="com.infosolutions.service.GetConsumerService"
             android:exported="true" />
-
         <service
             android:name="com.infosolutions.service.GetCommercialConsumerService"
             android:exported="true" />
 
-
         <activity
-            android:label=""
-            android:name="com.commercialMgmt.AddNewConsumerActivity" />
+            android:name="com.commercialMgmt.AddNewConsumerActivity"
+            android:label="" />
         <activity
-            android:label=""
-            android:name="com.commercialMgmt.CommercialSaleActivity" />
+            android:name="com.commercialMgmt.CommercialSaleActivity"
+            android:label="" />
         <activity
-            android:label=""
             android:name="com.commercialMgmt.CommercialReportDetailActivity"
             android:configChanges="orientation|screenSize"
-            />
-
-
+            android:label="" />
         <activity
             android:name="com.commercialMgmt.graph.graphReport"
-            android:label="" >
-           <!-- <intent-filter>
+            android:label="">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
 
         </activity>
     </application>

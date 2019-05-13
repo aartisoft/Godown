@@ -116,7 +116,6 @@ public class MainActivity extends BaseActivity {
             if(login_type.equalsIgnoreCase(Constants.LOGIN_GODOWNKEEPER)) {
                 startTimer();
             }
-
         }
     };
     private String login_type;
@@ -442,7 +441,6 @@ public class MainActivity extends BaseActivity {
                     {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, RECORD_REQUEST_CODE);
         }
-
     }
 
     @Override
