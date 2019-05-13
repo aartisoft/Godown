@@ -110,7 +110,6 @@ public class GodownReportForOwner extends
     }
 
 
-
     private void initUI(){
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -449,7 +448,6 @@ public class GodownReportForOwner extends
         viewRow.setGravity(Gravity.RIGHT);
         return viewRow;
     }
-
 
     private void showDescription(){
 
