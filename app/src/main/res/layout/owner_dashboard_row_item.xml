@@ -24,12 +24,12 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:elevation="8dp"
         app:cardCornerRadius="8dp"
         app:cardUseCompatPadding="true"
         android:onClick="@{() -> itemClickListener.cardClicked(ownerdashboardmodel)}"
-        app:cardBackgroundColor="@android:color/darker_gray">
+        app:cardBackgroundColor="@android:color/holo_blue_light">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_gravity="center"
-            android:background="@drawable/circlebackgroundpink"
+
             android:imageUrl="@{ownerdashboardmodel.menuicon}"/>
 
         <TextView
@@ -53,6 +53,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_gravity="center"
+            android:gravity="center"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/white"
             android:text="@{ownerdashboardmodel.menuname}"/>

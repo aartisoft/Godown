@@ -292,7 +292,7 @@
     <string name="EnterFullCyl">भरलेले सिलेंडर प्रविष्ट करा</string>
     <string name="EnterCashAmt">रोख रक्कम एंटर करा</string>
 
-    <string name="GodownReport">Godown Report</string>
+    <string name="GodownReport">Godown \nReport</string>
     <string name="CommercialReport">Commercial Reports</string>
 
 </resources>

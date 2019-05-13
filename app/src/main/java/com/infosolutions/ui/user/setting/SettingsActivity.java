@@ -93,7 +93,7 @@ public class SettingsActivity extends BaseActivity implements ResponseListener {
 
     @Override
     public void injectDependency() {
-        EvitaApplication.getEvitaComponents().inject(this);
+        //EvitaApplication.getEvitaComponents().inject(this);
     }
 
     @Override
@@ -211,7 +211,7 @@ public class SettingsActivity extends BaseActivity implements ResponseListener {
 
             EventDataSyncToServer eventDataSyncToServer = new EventDataSyncToServer();
             eventDataSyncToServer.setDataSynced(true);
-            eventBus.post(eventDataSyncToServer);
+            eventBus.getDefault().post(eventDataSyncToServer);
 
             progress_bar.setVisibility(View.GONE);
             ivSync.setEnabled(true);

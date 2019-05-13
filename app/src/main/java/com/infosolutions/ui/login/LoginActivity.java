@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
@@ -132,9 +133,10 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+
     @Override
     public void injectDependency() {
-        EvitaApplication.getEvitaComponents().inject(LoginActivity.this);
+       // EvitaApplication.getEvitaComponents().inject(LoginActivity.this);
     }
 
     @Override
@@ -308,7 +310,6 @@ public class LoginActivity extends BaseActivity {
 
         Log.e(TAG, response);
 
-
         String responseMsg = "";
         //progress_bar.setVisibility(View.GONE);
         JSONObject jsonResult = null;
@@ -349,7 +350,6 @@ public class LoginActivity extends BaseActivity {
 
             RuntimeExceptionDao<DomesticDeliveryDB, Integer> daoDatabase =
                     getHelper().getDomesticRuntimeExceptionDao();
-
             try {
                 daoDatabase.deleteBuilder().delete();
             } catch (SQLException e) {
@@ -473,7 +473,6 @@ public class LoginActivity extends BaseActivity {
 
     void fillAreaDB(JSONObject jsonObject) {
 
-
         JSONArray arrayPRODUCT = jsonObject.optJSONArray("area");
         RuntimeExceptionDao<AreaModel, Integer> productDB = getHelper().getCommercialAreaModelExceptionDao();
         try {
@@ -491,7 +490,6 @@ public class LoginActivity extends BaseActivity {
             }
         }
     }
-
 
     @Override
     public void onFailure(VolleySingleton.CallType type, VolleyError error) {
@@ -527,7 +525,6 @@ public class LoginActivity extends BaseActivity {
     private void saveLoginTypePreference(String value) {
         PreferencesHelper.getInstance().setValue(LOGIN_TYPE, value);
     }
-
 
     public String getOffline_module_list() {
         return offline_module_list;

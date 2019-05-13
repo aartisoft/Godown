@@ -51,7 +51,7 @@ public class OwnerDashboardAdapter extends RecyclerView.Adapter<OwnerDashboardAd
     @Override
     public void cardClicked(OwnerDashBoardModel model) {
 
-        if(model.menuname.equalsIgnoreCase("Godown Report")){
+        if(model.menuname.startsWith("Godown")){
             Intent intent=new Intent(context, GodownReportForOwner.class);
             intent.putExtra("owner_resp", OwnerDashboardActivity.owner_resp);
             context.startActivity(intent);

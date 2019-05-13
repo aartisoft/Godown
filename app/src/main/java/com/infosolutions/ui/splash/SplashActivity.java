@@ -3,6 +3,7 @@ package com.infosolutions.ui.splash;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -99,11 +100,18 @@ public class SplashActivity extends BaseActivity {
 
     private void checkIfFreshInstall() {
 
+
+
+
         boolean isFresh = PreferencesHelper.getInstance().getBooleanValue(first_install, true);
         if (isFresh) {
             PreferencesHelper.getInstance().setValue(first_install, false);
-            Intent intent = new Intent(this, GetConsumerService.class);
-            startService(intent);
+            Intent intent = new Intent(SplashActivity.this, GetConsumerService.class);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startService(intent);
+            }else {
+                startService(intent);
+            }
         }else{
 
             RuntimeExceptionDao<ConsumerDetails,Integer> consumerExceptionDao = getHelper().getConsumerExceptionDao();

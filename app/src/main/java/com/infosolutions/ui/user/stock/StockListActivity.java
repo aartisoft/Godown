@@ -44,7 +44,9 @@ public class StockListActivity extends BaseActivity {
     }
 
     @Override
-    public void injectDependency() { EvitaApplication.getEvitaComponents().inject(StockListActivity.this);}
+    public void injectDependency() {
+        //EvitaApplication.getEvitaComponents().inject(StockListActivity.this);
+    }
 
     @Override
     public int getLayoutId() { return R.layout.activity_stock_layout; }

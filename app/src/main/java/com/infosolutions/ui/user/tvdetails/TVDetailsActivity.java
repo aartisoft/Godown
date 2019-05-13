@@ -218,7 +218,9 @@ public class TVDetailsActivity extends BaseActivity {
     }
 
     @Override
-    public void injectDependency() { EvitaApplication.getEvitaComponents().inject(TVDetailsActivity.this);}
+    public void injectDependency() {
+       // EvitaApplication.getEvitaComponents().inject(TVDetailsActivity.this);
+    }
 
     @Override
     public int getLayoutId() { return R.layout.activity_tv_details; }

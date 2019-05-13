@@ -77,7 +77,6 @@ public class GodownReportForOwner extends
 
     }
 
-
     @Override
     public void onBackPressed() {
 
@@ -349,17 +348,12 @@ public class GodownReportForOwner extends
         }
     }
 
-
-
-
-
     private void createLayout(TableLayout tableLayout,String headerTitle1,String headerTitle2,  String headerTitle3, String headerTitle4, String headerTitle5, String headerTitle6, String headerTitle7){
 
         TableRow row= new TableRow(getApplicationContext());
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         lp.setMargins(10,10,10,10);
         row.setLayoutParams(lp);
-
 
         TextView tvHeaderTitle1 = new TextView(getApplicationContext());
         TextView tvHeaderTitle2 = new TextView(getApplicationContext());
@@ -393,9 +387,6 @@ public class GodownReportForOwner extends
         tableLayout.addView(row);
     }
 
-
-
-
     private void setHeaders(TableLayout tableLayout, String headerTitle1,String headerTitle2,  String headerTitle3, String headerTitle4, String headerTitle5, String headerTitle6, String headerTitle7) {
 
         TableRow row= new TableRow(getApplicationContext());
@@ -409,7 +400,6 @@ public class GodownReportForOwner extends
         TextView tvHeaderTitle5 = new TextView(getApplicationContext());
         TextView tvHeaderTitle6 = new TextView(getApplicationContext());
 
-
         tvHeaderTitle1.setText(headerTitle1);
         tvHeaderTitle2.setText(headerTitle2);
         tvHeaderTitle3.setText(headerTitle3);
@@ -417,14 +407,12 @@ public class GodownReportForOwner extends
         tvHeaderTitle5.setText(headerTitle5);
         tvHeaderTitle6.setText(headerTitle6);
 
-
         applyHeaderMargin(tvHeaderTitle1);
         applyHeaderMargin(tvHeaderTitle2);
         applyHeaderMargin(tvHeaderTitle3);
         applyHeaderMargin(tvHeaderTitle4);
         applyHeaderMargin(tvHeaderTitle5);
         applyHeaderMargin(tvHeaderTitle6);
-
 
         row.addView(tvHeaderTitle1);
         row.addView(tvHeaderTitle2);
@@ -453,7 +441,6 @@ public class GodownReportForOwner extends
         return viewHeader;
     }
 
-
     private TextView applyRowMarginRight(TextView viewRow) {
 
         viewRow.setTextSize(15);
@@ -471,68 +458,66 @@ public class GodownReportForOwner extends
         layoutOpening.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DETAILING_LAYOUT = "OPENING";
                 requestDescription("getOpening");
             }
         });
+
         layoutOther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DETAILING_LAYOUT = "OTHER";
                 requestDescription("getOther");
             }
         });
+
         layoutReceive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DETAILING_LAYOUT = "RECEIVING";
                 requestDescription("getReceving");
             }
         });
+
         layoutClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DETAILING_LAYOUT = "CLOSING";
                 requestDescription("getClosing");
             }
         });
+
         layoutSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DETAILING_LAYOUT = "SENDING";
                 requestDescription("getSending");
             }
         });
+
         layoutDomestic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DETAILING_LAYOUT = "DOMESTIC";
                 requestDescription("getDomesticDelivery");
             }
         });
+
         layoutCommerce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DETAILING_LAYOUT = "COMMERCIAL";
                 requestDescription("getCommercialDelivery");
             }
         });
+
         layoutTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DETAILING_LAYOUT = "TV-DETAILS";
                 requestDescription("getTV");
             }
         });
-
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -540,7 +525,6 @@ public class GodownReportForOwner extends
                 onBackPressed();
             }
         });
-
     }
 
     private void requestDescription(String module_type) {
@@ -562,7 +546,6 @@ public class GodownReportForOwner extends
         startActivity(intent);
 
     }
-
 
     @Override
     public void onFailure(VolleySingleton.CallType type, VolleyError error) {

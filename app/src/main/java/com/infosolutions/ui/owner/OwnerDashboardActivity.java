@@ -21,14 +21,7 @@ import java.util.List;
 
 public class OwnerDashboardActivity extends AppCompatActivity {
 
-    /*@BindView(R.id.cardView_godownReport)
-    CardView cardView_godownReport;
-    @BindView(R.id.cardView_CommercialReport)
-    CardView cardView_CommercialReport;*/
-
     public static String owner_resp;
-
-
     private ActivityOwnerdashboardBinding mBinding;
 
     @Override
@@ -48,14 +41,6 @@ public class OwnerDashboardActivity extends AppCompatActivity {
         owner_resp = intent.getStringExtra("owner_resp");
 
 
-        /*cardView_godownReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(OwnerDashboardActivity.this,GodownReportForOwner.class);
-                intent.putExtra("owner_resp", owner_resp);
-                startActivity(intent);
-            }
-        });*/
     }
 
     private void populateData() {

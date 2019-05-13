@@ -178,7 +178,8 @@ public class MainActivity extends BaseActivity {
             stopTimer();
         }
         permission();
-        eventBus.register(this);
+
+        eventBus.getDefault().register(this);
 
         VolleySingleton.getInstance(getApplicationContext()).addResponseListener(VolleySingleton.CallType.SYNC_LOCAL_DATA, this);
         VolleySingleton.getInstance(getApplicationContext()).addResponseListener(VolleySingleton.CallType.UPDATE_LOCAL_DATA, this);
@@ -223,7 +224,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void injectDependency() {
-        EvitaApplication.getEvitaComponents().inject(this);
+        //EvitaApplication.getEvitaComponents().inject(this);
     }
 
     @Override
@@ -452,7 +453,7 @@ public class MainActivity extends BaseActivity {
             OpenHelperManager.releaseHelper();
             databaseHelper = null;
         }
-        eventBus.unregister(this);
+        eventBus.getDefault().unregister(this);
 
         LocalBroadcastManager.getInstance(this).unregisterReceiver(listener);
     }
@@ -649,7 +650,7 @@ public class MainActivity extends BaseActivity {
 
             EvitaEvent.EventDataSyncToServer eventDataSyncToServer = new EvitaEvent.EventDataSyncToServer();
             eventDataSyncToServer.setDataSynced(false);
-            eventBus.post(eventDataSyncToServer);
+            eventBus.getDefault().post(eventDataSyncToServer);
         } else if (type.equals(VolleySingleton.CallType.COMMERCIAL_DELIVERY_COUNT)) {
 
             RuntimeExceptionDao<CommercialDeliveryCreditDB, Integer> daoDatabase =

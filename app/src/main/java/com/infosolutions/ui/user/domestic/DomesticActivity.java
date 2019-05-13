@@ -161,7 +161,9 @@ public class DomesticActivity extends BaseActivity {
     }
 
     @Override
-    public void injectDependency() { EvitaApplication.getEvitaComponents().inject(DomesticActivity.this);}
+    public void injectDependency() {
+       // EvitaApplication.getEvitaComponents().inject(DomesticActivity.this);
+    }
 
     @Override
     public int getLayoutId() { return R.layout.activity_domestic; }

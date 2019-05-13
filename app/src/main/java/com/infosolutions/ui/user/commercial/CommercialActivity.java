@@ -165,7 +165,7 @@ public class CommercialActivity extends BaseActivity {
 
     @Override
     public void injectDependency() {
-        EvitaApplication.getEvitaComponents().inject(CommercialActivity.this);
+        //EvitaApplication.getEvitaComponents().inject(CommercialActivity.this);
     }
 
     @Override

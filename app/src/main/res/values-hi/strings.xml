@@ -291,7 +291,7 @@
     <string name="EnterFullCyl">भरा हुआ सिलेंडर दर्ज करें</string>
     <string name="EnterCashAmt">नकद राशि दर्ज करें</string>
 
-    <string name="GodownReport">Godown Report</string>
+    <string name="GodownReport">Godown \nReport</string>
     <string name="CommercialReport">Commercial Reports</string>
 
 </resources>
