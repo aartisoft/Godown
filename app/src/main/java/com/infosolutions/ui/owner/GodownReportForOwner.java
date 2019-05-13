@@ -1,8 +1,10 @@
 package com.infosolutions.ui.owner;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -31,6 +34,8 @@ import org.json.JSONObject;
 
 public class GodownReportForOwner extends
         AppCompatActivity implements ResponseListener{
+
+    private Button btnOpening, btnDomestic, btnCommercial, btnLoad, btnSend, btnClosing, btnOther, btnTv;
 
     private String DETAILING_LAYOUT   = "";
     private final String TAG          = GodownReportForOwner.class.getSimpleName();
@@ -143,6 +148,15 @@ public class GodownReportForOwner extends
         tagTvDetails    = findViewById(R.id.tagTvDetails);
         tagClosing      = findViewById(R.id.tagClosing);
         tagOther        = findViewById(R.id.tagOther);
+
+        btnOpening = (Button) findViewById(R.id.btnOpening);
+        btnDomestic = (Button) findViewById(R.id.btnDomestic);
+        btnCommercial = (Button) findViewById(R.id.btnCommercial);
+        btnLoad = (Button) findViewById(R.id.btnLoad);
+        btnSend = (Button) findViewById(R.id.btnSend);
+        btnClosing = (Button) findViewById(R.id.btnClosing);
+        btnOther = (Button) findViewById(R.id.btnOther);
+        btnTv = (Button) findViewById(R.id.btnTv);
     }
 
 
@@ -307,6 +321,7 @@ public class GodownReportForOwner extends
             textViewError.setTextColor(getResources().getColor(R.color.colorPrimary));
             textViewError.setText("No TV details found");
             textViewError.setVisibility(View.VISIBLE);
+            btnTv.setVisibility(View.GONE);
         }
 
     }
@@ -347,12 +362,17 @@ public class GodownReportForOwner extends
         }
     }
 
+
+
+
+
     private void createLayout(TableLayout tableLayout,String headerTitle1,String headerTitle2,  String headerTitle3, String headerTitle4, String headerTitle5, String headerTitle6, String headerTitle7){
 
         TableRow row= new TableRow(getApplicationContext());
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(10,10,10,10);
+        lp.setMargins(10,0,10,0);
         row.setLayoutParams(lp);
+
 
         TextView tvHeaderTitle1 = new TextView(getApplicationContext());
         TextView tvHeaderTitle2 = new TextView(getApplicationContext());
@@ -386,10 +406,14 @@ public class GodownReportForOwner extends
         tableLayout.addView(row);
     }
 
+
+
+
     private void setHeaders(TableLayout tableLayout, String headerTitle1,String headerTitle2,  String headerTitle3, String headerTitle4, String headerTitle5, String headerTitle6, String headerTitle7) {
 
         TableRow row= new TableRow(getApplicationContext());
-        row.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.circle_background));
+        //row.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.circle_background));
+        row.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.divider_shape));
         row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
 
         TextView tvHeaderTitle1 = new TextView(getApplicationContext());
@@ -425,9 +449,10 @@ public class GodownReportForOwner extends
 
     private TextView applyHeaderMargin(TextView view) {
 
-        view.setTextColor(Color.WHITE);
+        view.setTextColor(Color.BLACK);
+        view.setTypeface(view.getTypeface(), Typeface.BOLD);
         view.setTextSize(15);
-        view.setPadding(20, 10, 10, 4);
+        view.setPadding(10, 0, 10, 10);
         return view;
     }
 
@@ -435,87 +460,156 @@ public class GodownReportForOwner extends
 
         viewHeader.setTextSize(15);
         viewHeader.setTextColor(getResources().getColor(R.color.colorBlack));
-        viewHeader.setPadding(10, 10, 10, 10);
+        viewHeader.setPadding(10, 0, 10, 10);
         viewHeader.setGravity(Gravity.LEFT);
         return viewHeader;
     }
+
 
     private TextView applyRowMarginRight(TextView viewRow) {
 
         viewRow.setTextSize(15);
         viewRow.setTextColor(getResources().getColor(R.color.colorBlack));
-        viewRow.setPadding(10, 10, 10, 10);
+        viewRow.setPadding(10, 0, 10, 10);
         viewRow.setGravity(Gravity.RIGHT);
         return viewRow;
     }
+
 
     private void showDescription(){
 
         DETAILING_LAYOUT = "";
 
-        layoutOpening.setOnClickListener(new View.OnClickListener() {
+        btnOpening.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 DETAILING_LAYOUT = "OPENING";
                 requestDescription("getOpening");
             }
         });
 
-        layoutOther.setOnClickListener(new View.OnClickListener() {
+        btnDomestic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                DETAILING_LAYOUT = "OTHER";
-                requestDescription("getOther");
-            }
-        });
-
-        layoutReceive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DETAILING_LAYOUT = "RECEIVING";
-                requestDescription("getReceving");
-            }
-        });
-
-        layoutClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DETAILING_LAYOUT = "CLOSING";
-                requestDescription("getClosing");
-            }
-        });
-
-        layoutSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DETAILING_LAYOUT = "SENDING";
-                requestDescription("getSending");
-            }
-        });
-
-        layoutDomestic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 DETAILING_LAYOUT = "DOMESTIC";
                 requestDescription("getDomesticDelivery");
             }
         });
 
-        layoutCommerce.setOnClickListener(new View.OnClickListener() {
+        btnCommercial.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 DETAILING_LAYOUT = "COMMERCIAL";
                 requestDescription("getCommercialDelivery");
             }
         });
 
-        layoutTv.setOnClickListener(new View.OnClickListener() {
+        btnLoad.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                DETAILING_LAYOUT = "RECEIVING";
+                requestDescription("getReceving");
+            }
+        });
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DETAILING_LAYOUT = "SENDING";
+                requestDescription("getSending");
+            }
+        });
+
+        btnClosing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DETAILING_LAYOUT = "CLOSING";
+                requestDescription("getClosing");
+            }
+        });
+
+        btnOther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DETAILING_LAYOUT = "OTHER";
+                requestDescription("getOther");
+            }
+        });
+
+        btnTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 DETAILING_LAYOUT = "TV-DETAILS";
                 requestDescription("getTV");
             }
         });
+
+
+        layoutOpening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DETAILING_LAYOUT = "OPENING";
+                requestDescription("getOpening");
+            }
+        });
+        layoutOther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DETAILING_LAYOUT = "OTHER";
+                requestDescription("getOther");
+            }
+        });
+        layoutReceive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DETAILING_LAYOUT = "RECEIVING";
+                requestDescription("getReceving");
+            }
+        });
+        layoutClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DETAILING_LAYOUT = "CLOSING";
+                requestDescription("getClosing");
+            }
+        });
+        layoutSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DETAILING_LAYOUT = "SENDING";
+                requestDescription("getSending");
+            }
+        });
+        layoutDomestic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DETAILING_LAYOUT = "DOMESTIC";
+                requestDescription("getDomesticDelivery");
+            }
+        });
+        layoutCommerce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DETAILING_LAYOUT = "COMMERCIAL";
+                requestDescription("getCommercialDelivery");
+            }
+        });
+        layoutTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DETAILING_LAYOUT = "TV-DETAILS";
+                requestDescription("getTV");
+            }
+        });
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -523,6 +617,7 @@ public class GodownReportForOwner extends
                 onBackPressed();
             }
         });
+
     }
 
     private void requestDescription(String module_type) {
