@@ -78,6 +78,7 @@
                 </ScrollView>
             </LinearLayout>
 
+            <!-- This is new button -->
             <Button
                 android:id="@+id/btnTv"
                 android:layout_width="wrap_content"
