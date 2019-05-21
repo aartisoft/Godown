@@ -55,6 +55,7 @@ public class OwnerDetailingActivity extends AppCompatActivity {
         TextView mTitle   = toolbar.findViewById(R.id.toolbar_title);
         tableLayout       = findViewById(R.id.table_layout);
 
+
         mTitle.setText(title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -65,11 +66,7 @@ public class OwnerDetailingActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
     }
-
-
-
 
 
     private void createStockDetailing(String resp) throws JSONException {
@@ -165,7 +162,13 @@ public class OwnerDetailingActivity extends AppCompatActivity {
                         createCommercialLayout(godownTitle, commercialArray);
                     }else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
-                    }
+                    }if (arrayCommercial.optJSONObject(i).has("valueArray") && arrayCommercial.optJSONObject(i).has("DISPLAY_NAME")){
+                    JSONArray commercialArray = arrayCommercial.optJSONObject(i).optJSONArray("valueArray");
+                    String godownTitle = arrayCommercial.optJSONObject(i).optString("DISPLAY_NAME");
+                    createCommercialLayout(godownTitle, commercialArray);
+                }else {
+                    Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                }
 
                 }
             }else {showError();}
@@ -224,9 +227,7 @@ public class OwnerDetailingActivity extends AppCompatActivity {
 
                 }
             }else {showError();}
-
         }
-
     }
 
 

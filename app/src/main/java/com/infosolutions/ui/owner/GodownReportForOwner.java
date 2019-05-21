@@ -85,7 +85,7 @@ public class GodownReportForOwner extends
     @Override
     public void onBackPressed() {
 
-        Intent intent=new Intent(GodownReportForOwner.this,OwnerDashboardActivity.class);
+        Intent intent=new Intent(GodownReportForOwner.this, OwnerDashboardActivity.class);
         intent.putExtra("owner_resp", owner_resp);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
@@ -633,9 +633,14 @@ public class GodownReportForOwner extends
         progressBar.setVisibility(View.GONE);
         Log.e(TAG, response);
 
-        Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity.class);
+        //Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity.class);
+        //Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity_2.class);
+
+        Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity_new.class);
         intent.putExtra("response", response);
         intent.putExtra("layout_type", DETAILING_LAYOUT);
+
+
         startActivity(intent);
 
     }
