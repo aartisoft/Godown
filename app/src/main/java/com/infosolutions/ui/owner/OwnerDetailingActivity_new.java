@@ -511,8 +511,123 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                 } else {
                     Toast.makeText(this, "No result found", Toast.LENGTH_LONG).show();
                 }
-            }
+            } else if(title.equalsIgnoreCase("SENDING")) {
 
+                if(rootObject.has("SENDING_STOCKS_GODOWN_WISE") &&
+                        rootObject.optJSONArray("SENDING_STOCKS_GODOWN_WISE").length() > 0) {
+
+                    parentArray = rootObject.optJSONArray("SENDING_STOCKS_GODOWN_WISE");
+                    arrayLength = parentArray.length();
+
+                    if (arrayLength > 0){
+
+                        for (int i = 0; i < arrayLength; i++) {
+
+                            if (parentArray.optJSONObject(i).has("valueArray") &&
+                                    parentArray.optJSONObject(i).has("DISPLAY_NAME")){
+
+                                childArray = parentArray.optJSONObject(i).optJSONArray("valueArray");
+                                godownTitle = parentArray.optJSONObject(i).optString("DISPLAY_NAME");
+
+                                if(godownTitle.equalsIgnoreCase(itemName)) {
+
+                                    for(int j=0; j<childArray.length(); j++) {
+                                        description = childArray.optJSONObject(j).optString("DESCRIPTION");
+                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
+                                        opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
+                                        opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
+                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        insideList.add(openingPra);
+                                    }
+                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    recyclerViewContent.setAdapter(adapterOpening);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                } else {
+                    Toast.makeText(this, "No result found", Toast.LENGTH_LONG).show();
+                }
+            } else if(title.equalsIgnoreCase("CLOSING")) {
+
+                if(rootObject.has("CLOSING_STOCKS_GODOWN_WISE") &&
+                        rootObject.optJSONArray("CLOSING_STOCKS_GODOWN_WISE").length() > 0) {
+
+                    parentArray = rootObject.optJSONArray("CLOSING_STOCKS_GODOWN_WISE");
+                    arrayLength = parentArray.length();
+
+                    if (arrayLength > 0){
+
+                        for (int i = 0; i < arrayLength; i++) {
+
+                            if (parentArray.optJSONObject(i).has("valueArray") &&
+                                    parentArray.optJSONObject(i).has("DISPLAY_NAME")){
+
+                                childArray = parentArray.optJSONObject(i).optJSONArray("valueArray");
+                                godownTitle = parentArray.optJSONObject(i).optString("DISPLAY_NAME");
+
+                                if(godownTitle.equalsIgnoreCase(itemName)) {
+
+                                    for(int j=0; j<childArray.length(); j++) {
+                                        description = childArray.optJSONObject(j).optString("DESCRIPTION");
+                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
+                                        opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
+                                        opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
+                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        insideList.add(openingPra);
+                                    }
+                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    recyclerViewContent.setAdapter(adapterOpening);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                } else {
+                    Toast.makeText(this, "No result found", Toast.LENGTH_LONG).show();
+                }
+            } else if(title.equalsIgnoreCase("OTHER")) {
+
+                if(rootObject.has("OTHER_STOCKS_GODOWN_WISE") &&
+                        rootObject.optJSONArray("OTHER_STOCKS_GODOWN_WISE").length() > 0) {
+
+                    parentArray = rootObject.optJSONArray("OTHER_STOCKS_GODOWN_WISE");
+                    arrayLength = parentArray.length();
+
+                    if (arrayLength > 0){
+
+                        for (int i = 0; i < arrayLength; i++) {
+
+                            if (parentArray.optJSONObject(i).has("valueArray") &&
+                                    parentArray.optJSONObject(i).has("DISPLAY_NAME")){
+
+                                childArray = parentArray.optJSONObject(i).optJSONArray("valueArray");
+                                godownTitle = parentArray.optJSONObject(i).optString("DISPLAY_NAME");
+
+                                if(godownTitle.equalsIgnoreCase(itemName)) {
+
+                                    for(int j=0; j<childArray.length(); j++) {
+                                        description = childArray.optJSONObject(j).optString("DESCRIPTION");
+                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
+                                        opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
+                                        opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
+                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        insideList.add(openingPra);
+                                    }
+                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    recyclerViewContent.setAdapter(adapterOpening);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    Toast.makeText(this, "No result found", Toast.LENGTH_LONG).show();
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
