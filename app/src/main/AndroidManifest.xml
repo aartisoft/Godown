@@ -36,7 +36,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <!-- Broadcast receiver declaration in manifest file and make sure to enable it -->
+        <activity android:name="com.infosolutions.ui.owner.OwnerDetailingActivity_new"></activity>
+        <activity android:name="com.infosolutions.ui.owner.OwnerDetailingActivity_2" /> <!-- Broadcast receiver declaration in manifest file and make sure to enable it -->
         <service android:name="com.infosolutions.network.UploadService" />
 
         <activity
