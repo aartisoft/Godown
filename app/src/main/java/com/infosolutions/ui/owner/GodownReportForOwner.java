@@ -639,8 +639,7 @@ public class GodownReportForOwner extends
         Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity_new.class);
         intent.putExtra("response", response);
         intent.putExtra("layout_type", DETAILING_LAYOUT);
-
-
+        
         startActivity(intent);
 
     }
