@@ -190,7 +190,6 @@ public class DomesticActivity extends BaseActivity {
 
     private void setProductModel() {
 
-
         RuntimeExceptionDao<ProductDB, Integer> productDB = getHelper().getProductRTExceptionDao();
         List<ProductDB> product = productDB.queryForAll();
         if (product.size()>0)
@@ -211,8 +210,6 @@ public class DomesticActivity extends BaseActivity {
         else{
             Toast.makeText(DomesticActivity.this,"Products not available",Toast.LENGTH_SHORT).show();
         }
-
-
 
     }
 
