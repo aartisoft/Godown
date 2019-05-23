@@ -25,7 +25,7 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
     private List<ModelOwnerDetailsHeader> list;
     private OnItemListener listener;
     List<Integer> selectPos = new ArrayList<>();
-    int row_index= -1;
+
 
     public AdapterOwnerDetailsHeader(List<ModelOwnerDetailsHeader> list, OnItemListener listener, Context mContext) {
         this.list = list;
@@ -47,24 +47,10 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
         ModelOwnerDetailsHeader header = list.get(position);
         holder.txtHeader.setText(header.getDISPLAY_NAME());
 
-        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                row_index=position;
-                notifyItemChanged(position);
-                notifyDataSetChanged();
-            }
-        });
 
-        /*if (sSelectedItems.get(position)) {
+        if (sSelectedItems.get(position)) {
             holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
         } else {
-            holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
-        }*/
-
-        if (row_index==position){
-            holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
-        }else{
             holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
         }
 
@@ -96,16 +82,15 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
 
             mPosition = getAdapterPosition();
 
-
-
-            /*if (sSelectedItems.get(mPosition, false)) {
+            if (sSelectedItems.get(mPosition, false)) {
                 sSelectedItems.delete(mPosition);
-                //txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
+                txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
             } else {
-                //txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
+                txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
                 sSelectedItems.put(mPosition, true);
                 selectPos.add(mPosition);
-            }*/
+            }
+
             listener.onItemClick(mPosition);
         }
 

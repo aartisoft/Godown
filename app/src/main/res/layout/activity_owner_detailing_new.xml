@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             android:visibility="gone">
 
             <TextView
@@ -85,7 +86,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/descriptionDomestic"
@@ -160,7 +162,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/descriptionReceive"
@@ -202,7 +205,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/descriptionSend"
@@ -244,7 +248,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/descriptionOther"
