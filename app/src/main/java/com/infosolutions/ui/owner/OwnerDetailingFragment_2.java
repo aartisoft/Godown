@@ -11,11 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.infosolutions.adapter.AdapterOwnerDetailsOpening;
+import com.infosolutions.adapter.AdapterOwnerDetails;
 import com.infosolutions.evita.R;
-import com.infosolutions.model.ModelOwnerDetailsOpening;
+import com.infosolutions.model.ModelOwnerDetails;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +33,7 @@ public class OwnerDetailingFragment_2 extends Fragment {
     private int position;
     String description, defective, opening_full, opening_empty;
 
-    List<ModelOwnerDetailsOpening> list;
+    List<ModelOwnerDetails> list;
 
     public static OwnerDetailingFragment_2 newInstance() {
         return new OwnerDetailingFragment_2();
@@ -59,7 +58,7 @@ public class OwnerDetailingFragment_2 extends Fragment {
         TextView textView = view.findViewById(R.id.commonTextView);
         response = getArguments().getString("response");
         position = getArguments().getInt("position");
-        list = new ArrayList<ModelOwnerDetailsOpening>();
+        list = new ArrayList<ModelOwnerDetails>();
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -96,7 +95,7 @@ public class OwnerDetailingFragment_2 extends Fragment {
                                             defective = openArray.optJSONObject(j).optString("DEFECTIVE");
                                             opening_full = openArray.optJSONObject(j).optString("OPENING_FULL");
                                             opening_empty = openArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                            ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                            ModelOwnerDetails openingPra = new ModelOwnerDetails(description, defective, opening_full, opening_empty);
                                             list.add(openingPra);
                                             break;
 
@@ -105,7 +104,7 @@ public class OwnerDetailingFragment_2 extends Fragment {
                                                 defective = openArray.optJSONObject(j).optString("DEFECTIVE");
                                                 opening_full = openArray.optJSONObject(j).optString("OPENING_FULL");
                                                 opening_empty = openArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                                ModelOwnerDetailsOpening openingVirarE = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                                ModelOwnerDetails openingVirarE = new ModelOwnerDetails(description, defective, opening_full, opening_empty);
                                                 list.add(openingVirarE);
                                                 break;
 
@@ -114,7 +113,7 @@ public class OwnerDetailingFragment_2 extends Fragment {
                                             defective = openArray.optJSONObject(j).optString("DEFECTIVE");
                                             opening_full = openArray.optJSONObject(j).optString("OPENING_FULL");
                                             opening_empty = openArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                            ModelOwnerDetailsOpening openingVirarW = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                            ModelOwnerDetails openingVirarW = new ModelOwnerDetails(description, defective, opening_full, opening_empty);
                                             list.add(openingVirarW);
                                             break;
 
@@ -123,7 +122,7 @@ public class OwnerDetailingFragment_2 extends Fragment {
                                             defective = openArray.optJSONObject(j).optString("DEFECTIVE");
                                             opening_full = openArray.optJSONObject(j).optString("OPENING_FULL");
                                             opening_empty = openArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                            ModelOwnerDetailsOpening openingYash = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                            ModelOwnerDetails openingYash = new ModelOwnerDetails(description, defective, opening_full, opening_empty);
                                             list.add(openingYash);
                                             break;
 
@@ -136,7 +135,7 @@ public class OwnerDetailingFragment_2 extends Fragment {
                                         defective = openArray.optJSONObject(j).optString("DEFECTIVE");
                                         opening_full = openArray.optJSONObject(j).optString("OPENING_FULL");
                                         opening_empty = openArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                        ModelOwnerDetailsOpening opening = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        ModelOwnerDetails opening = new ModelOwnerDetails(description, defective, opening_full, opening_empty);
                                         list.add(opening);
                                     }*/
                                 }
@@ -144,7 +143,7 @@ public class OwnerDetailingFragment_2 extends Fragment {
                         }
                     }
 
-                    AdapterOwnerDetailsOpening adapter = new AdapterOwnerDetailsOpening(getActivity(), list);
+                    AdapterOwnerDetails adapter = new AdapterOwnerDetails(getActivity(), list);
                     recyclerView.setAdapter(adapter);
                 }
             }

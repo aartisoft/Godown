@@ -1,24 +1,22 @@
 package com.infosolutions.ui.owner;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infosolutions.adapter.AdapterOwnerDetailsHeader;
-import com.infosolutions.adapter.AdapterOwnerDetailsOpening;
+import com.infosolutions.adapter.AdapterOwnerDetails;
 import com.infosolutions.evita.R;
+import com.infosolutions.model.ModelOwnerDetails;
 import com.infosolutions.model.ModelOwnerDetailsHeader;
-import com.infosolutions.model.ModelOwnerDetailsOpening;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,23 +25,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.infosolutions.ui.owner.OwnerDetailingActivity_2.response;
-
 public class OwnerDetailingActivity_new extends AppCompatActivity implements AdapterOwnerDetailsHeader.OnItemListener {
 
     String godownTitle;
     RecyclerView recyclerViewHeader, recyclerViewContent;
     LinearLayoutManager layoutManagerHeader, layoutManagerContent;
     AdapterOwnerDetailsHeader adapterHeader;
-    AdapterOwnerDetailsOpening adapterOpening;
+    AdapterOwnerDetails adapterOpening;
     List<ModelOwnerDetailsHeader> list;
 
     Intent intent;
-    String response, title;
+    String response;
+    public static String title;
     Toolbar toolbar;
     TextView mTitle;
-    String description, defective, opening_full, opening_empty;
-    List<ModelOwnerDetailsOpening> insideList;
+    String description, defective, opening_full, opening_empty, delivery, sv, dbc, lost, sound, credit, on_field;
+    List<ModelOwnerDetails> insideList;
+    LinearLayout headerOpening, headerDomestic, headerReceive, headerSend, headerOther;
 
     JSONObject rootObject;
     JSONArray parentArray, childArray;
@@ -82,6 +80,12 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
         recyclerViewContent.setHasFixedSize(true);
         layoutManagerContent = new LinearLayoutManager(this);
         recyclerViewContent.setLayoutManager(layoutManagerContent);
+
+        headerOpening = (LinearLayout) findViewById(R.id.headerOpening);
+        headerDomestic = (LinearLayout) findViewById(R.id.headerDomestic);
+        headerReceive = (LinearLayout) findViewById(R.id.headerReceive);
+        headerSend = (LinearLayout) findViewById(R.id.headerSend);
+        headerOther = (LinearLayout) findViewById(R.id.headerOther);
 
         intent     =  getIntent();
         response   =  intent.getStringExtra("response");
@@ -365,6 +369,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                 if (rootObject.has("OPENING_STOCKS_GODOWN_WISE") &&
                         rootObject.optJSONArray("OPENING_STOCKS_GODOWN_WISE").length() > 0) {
 
+                    headerOpening.setVisibility(View.VISIBLE);
+
                     parentArray = rootObject.optJSONArray("OPENING_STOCKS_GODOWN_WISE");
                     arrayLength = parentArray.length();
 
@@ -381,13 +387,13 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                     for(int j=0; j<childArray.length(); j++) {
                                         description = childArray.optJSONObject(j).optString("DESCRIPTION");
-                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
                                         opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
                                         opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
+                                        ModelOwnerDetails openingPra = new ModelOwnerDetails(description, opening_full, opening_empty, defective);
                                         insideList.add(openingPra);
                                     }
-                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    adapterOpening = new AdapterOwnerDetails(this, insideList);
                                     recyclerViewContent.setAdapter(adapterOpening);
                                     break;
                                 }
@@ -401,6 +407,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                 if(rootObject.has("DOMESTIC_DELIVERY_STOCKS_GODOWN_WISE") &&
                         rootObject.optJSONArray("DOMESTIC_DELIVERY_STOCKS_GODOWN_WISE").length() > 0) {
+
+                    headerDomestic.setVisibility(View.VISIBLE);
 
                     parentArray = rootObject.optJSONArray("DOMESTIC_DELIVERY_STOCKS_GODOWN_WISE");
                     arrayLength = parentArray.length();
@@ -419,13 +427,15 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                     for(int j=0; j<childArray.length(); j++) {
                                         description = childArray.optJSONObject(j).optString("DESCRIPTION");
+                                        delivery = childArray.optJSONObject(j).optString("DELIVERY");
+                                        sv = childArray.optJSONObject(j).optString("SV");
+                                        dbc = childArray.optJSONObject(j).optString("DBC");
                                         defective = childArray.optJSONObject(j).optString("DEFECTIVE");
-                                        opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
-                                        opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        lost = childArray.optJSONObject(j).optString("LOST");
+                                        ModelOwnerDetails openingPra = new ModelOwnerDetails(description, delivery, sv, dbc, defective, lost);
                                         insideList.add(openingPra);
                                     }
-                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    adapterOpening = new AdapterOwnerDetails(this, insideList);
                                     recyclerViewContent.setAdapter(adapterOpening);
                                     break;
                                 }
@@ -456,14 +466,15 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                                 if(godownTitle.equalsIgnoreCase(itemName)) {
 
                                     for(int j=0; j<childArray.length(); j++) {
+
                                         description = childArray.optJSONObject(j).optString("DESCRIPTION");
                                         defective = childArray.optJSONObject(j).optString("DEFECTIVE");
                                         opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
                                         opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        ModelOwnerDetails openingPra = new ModelOwnerDetails(description, defective, opening_full, opening_empty);
                                         insideList.add(openingPra);
                                     }
-                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    adapterOpening = new AdapterOwnerDetails(this, insideList);
                                     recyclerViewContent.setAdapter(adapterOpening);
                                     break;
                                 }
@@ -477,6 +488,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                 if(rootObject.has("RECEVING_STOCKS_GODOWN_WISE") &&
                         rootObject.optJSONArray("RECEVING_STOCKS_GODOWN_WISE").length() > 0) {
+
+                    headerReceive.setVisibility(View.VISIBLE);
 
                     parentArray = rootObject.optJSONArray("RECEVING_STOCKS_GODOWN_WISE");
                     arrayLength = parentArray.length();
@@ -495,13 +508,12 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                     for(int j=0; j<childArray.length(); j++) {
                                         description = childArray.optJSONObject(j).optString("DESCRIPTION");
-                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
-                                        opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
-                                        opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        sound = childArray.optJSONObject(j).optString("SOUND");
+                                        lost = childArray.optJSONObject(j).optString("LOST");
+                                        ModelOwnerDetails openingPra = new ModelOwnerDetails(description, sound, lost);
                                         insideList.add(openingPra);
                                     }
-                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    adapterOpening = new AdapterOwnerDetails(this, insideList);
                                     recyclerViewContent.setAdapter(adapterOpening);
                                     break;
                                 }
@@ -515,6 +527,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                 if(rootObject.has("SENDING_STOCKS_GODOWN_WISE") &&
                         rootObject.optJSONArray("SENDING_STOCKS_GODOWN_WISE").length() > 0) {
+
+                    headerSend.setVisibility(View.VISIBLE);
 
                     parentArray = rootObject.optJSONArray("SENDING_STOCKS_GODOWN_WISE");
                     arrayLength = parentArray.length();
@@ -533,13 +547,12 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                     for(int j=0; j<childArray.length(); j++) {
                                         description = childArray.optJSONObject(j).optString("DESCRIPTION");
+                                        sound = childArray.optJSONObject(j).optString("SOUND");
                                         defective = childArray.optJSONObject(j).optString("DEFECTIVE");
-                                        opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
-                                        opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
-                                        insideList.add(openingPra);
+                                        //ModelOwnerDetails openingPra = new ModelOwnerDetails(description, sound, defective);
+                                        insideList.add(ModelOwnerDetails.setSend(description, sound, defective));
                                     }
-                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    adapterOpening = new AdapterOwnerDetails(this, insideList);
                                     recyclerViewContent.setAdapter(adapterOpening);
                                     break;
                                 }
@@ -554,6 +567,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                 if(rootObject.has("CLOSING_STOCKS_GODOWN_WISE") &&
                         rootObject.optJSONArray("CLOSING_STOCKS_GODOWN_WISE").length() > 0) {
+
+                    headerOpening.setVisibility(View.VISIBLE);
 
                     parentArray = rootObject.optJSONArray("CLOSING_STOCKS_GODOWN_WISE");
                     arrayLength = parentArray.length();
@@ -572,13 +587,13 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                     for(int j=0; j<childArray.length(); j++) {
                                         description = childArray.optJSONObject(j).optString("DESCRIPTION");
-                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
                                         opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
                                         opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
+                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
+                                        ModelOwnerDetails openingPra = new ModelOwnerDetails(description, opening_full, opening_empty, defective);
                                         insideList.add(openingPra);
                                     }
-                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    adapterOpening = new AdapterOwnerDetails(this, insideList);
                                     recyclerViewContent.setAdapter(adapterOpening);
                                     break;
                                 }
@@ -593,6 +608,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                 if(rootObject.has("OTHER_STOCKS_GODOWN_WISE") &&
                         rootObject.optJSONArray("OTHER_STOCKS_GODOWN_WISE").length() > 0) {
+
+                    headerOther.setVisibility(View.VISIBLE);
 
                     parentArray = rootObject.optJSONArray("OTHER_STOCKS_GODOWN_WISE");
                     arrayLength = parentArray.length();
@@ -611,13 +628,13 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                     for(int j=0; j<childArray.length(); j++) {
                                         description = childArray.optJSONObject(j).optString("DESCRIPTION");
-                                        defective = childArray.optJSONObject(j).optString("DEFECTIVE");
-                                        opening_full = childArray.optJSONObject(j).optString("OPENING_FULL");
-                                        opening_empty = childArray.optJSONObject(j).optString("OPENING_EMPTY");
-                                        ModelOwnerDetailsOpening openingPra = new ModelOwnerDetailsOpening(description, defective, opening_full, opening_empty);
-                                        insideList.add(openingPra);
+                                        credit = childArray.optJSONObject(j).optString("CREDIT");
+                                        lost = childArray.optJSONObject(j).optString("LOST");
+                                        on_field = childArray.optJSONObject(j).optString("ON_FIELD");
+                                        //ModelOwnerDetails openingPra = new ModelOwnerDetails(description, credit, lost, on_field);
+                                        insideList.add(ModelOwnerDetails.setOther(description, credit, lost, on_field));
                                     }
-                                    adapterOpening = new AdapterOwnerDetailsOpening(this, insideList);
+                                    adapterOpening = new AdapterOwnerDetails(this, insideList);
                                     recyclerViewContent.setAdapter(adapterOpening);
                                     break;
                                 }
