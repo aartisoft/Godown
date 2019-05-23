@@ -363,9 +363,6 @@ public class GodownReportForOwner extends
     }
 
 
-
-
-
     private void createLayout(TableLayout tableLayout,String headerTitle1,String headerTitle2,  String headerTitle3, String headerTitle4, String headerTitle5, String headerTitle6, String headerTitle7){
 
         TableRow row= new TableRow(getApplicationContext());
@@ -373,14 +370,12 @@ public class GodownReportForOwner extends
         lp.setMargins(10,0,10,0);
         row.setLayoutParams(lp);
 
-
         TextView tvHeaderTitle1 = new TextView(getApplicationContext());
         TextView tvHeaderTitle2 = new TextView(getApplicationContext());
         TextView tvHeaderTitle3 = new TextView(getApplicationContext());
         TextView tvHeaderTitle4 = new TextView(getApplicationContext());
         TextView tvHeaderTitle5 = new TextView(getApplicationContext());
         TextView tvHeaderTitle6 = new TextView(getApplicationContext());
-
 
         tvHeaderTitle1.setText(headerTitle1);
         tvHeaderTitle2.setText(headerTitle2);
@@ -405,9 +400,6 @@ public class GodownReportForOwner extends
 
         tableLayout.addView(row);
     }
-
-
-
 
     private void setHeaders(TableLayout tableLayout, String headerTitle1,String headerTitle2,  String headerTitle3, String headerTitle4, String headerTitle5, String headerTitle6, String headerTitle7) {
 
@@ -639,7 +631,7 @@ public class GodownReportForOwner extends
         Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity_new.class);
         intent.putExtra("response", response);
         intent.putExtra("layout_type", DETAILING_LAYOUT);
-        
+
         startActivity(intent);
 
     }

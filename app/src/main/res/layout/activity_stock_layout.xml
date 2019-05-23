@@ -80,7 +80,9 @@
                             android:layout_width="1dp"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            android:background="@color/colorPrimary"></View>
+                            android:background="@color/colorPrimary">
+
+                        </View>
 
                         <TableLayout
                             android:id="@+id/right_table_layout"

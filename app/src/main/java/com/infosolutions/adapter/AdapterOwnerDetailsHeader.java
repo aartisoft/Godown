@@ -25,6 +25,7 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
     private List<ModelOwnerDetailsHeader> list;
     private OnItemListener listener;
     List<Integer> selectPos = new ArrayList<>();
+    int row_index= -1;
 
     public AdapterOwnerDetailsHeader(List<ModelOwnerDetailsHeader> list, OnItemListener listener, Context mContext) {
         this.list = list;
@@ -41,14 +42,29 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         ModelOwnerDetailsHeader header = list.get(position);
         holder.txtHeader.setText(header.getDISPLAY_NAME());
 
-        if (sSelectedItems.get(position)) {
+        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                row_index=position;
+                notifyItemChanged(position);
+                notifyDataSetChanged();
+            }
+        });
+
+        /*if (sSelectedItems.get(position)) {
             holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
         } else {
+            holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
+        }*/
+
+        if (row_index==position){
+            holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
+        }else{
             holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
         }
 
@@ -65,6 +81,7 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
         TextView txtHeader;
         OnItemListener listener;
 
+
         public MyViewHolder(View itemView, OnItemListener listener) {
             super(itemView);
 
@@ -79,30 +96,20 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
 
             mPosition = getAdapterPosition();
 
-            /*if(selectPos.size() > 0) {
-                int currPos = selectPos.get(0);
-                if(sSelectedItems.get(currPos, false)) {
-                    sSelectedItems.delete(currPos);
-                    txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
-                    selectPos.clear();
-                }
+
+
+            /*if (sSelectedItems.get(mPosition, false)) {
+                sSelectedItems.delete(mPosition);
+                //txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
             } else {
-                txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
+                //txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
                 sSelectedItems.put(mPosition, true);
                 selectPos.add(mPosition);
             }*/
-
-            if (sSelectedItems.get(mPosition, false)) {
-                sSelectedItems.delete(mPosition);
-                txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
-            } else {
-                txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
-                sSelectedItems.put(mPosition, true);
-                selectPos.add(mPosition);
-            }
-
             listener.onItemClick(mPosition);
         }
+
+
     }
 
     public interface OnItemListener {

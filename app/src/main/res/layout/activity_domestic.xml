@@ -39,8 +39,6 @@
                     android:scrollbars="horizontal"
                     android:fadeScrollbars="false"/>
 
-
-
                 <RelativeLayout
                     android:id="@+id/layout_cylinder"
                     android:layout_width="match_parent"
@@ -69,10 +67,6 @@
                         tools:ignore="SpUsage" />
 
                 </RelativeLayout>
-
-
-
-
 
                 <!--Delivery Man Button, Please select delivery-->
                 <Button
@@ -109,7 +103,6 @@
                     android:visibility="gone"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:id="@+id/tvFreshTrip"
                         android:layout_width="match_parent"
@@ -120,8 +113,6 @@
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:text="@string/fresh"/>
-
-
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_fresh_trip_no"
@@ -142,8 +133,6 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-
-
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_fresh_full_cylinder"
                         android:layout_width="match_parent"
@@ -163,8 +152,6 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-
-
                 </LinearLayout>
 
                 <!--Return layout-->
@@ -176,7 +163,6 @@
                     android:visibility="gone"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:id="@+id/tvReturnTrip"
                         android:layout_width="match_parent"
@@ -187,8 +173,6 @@
                         android:textAllCaps="true"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:text="@string/return_trip"/>
-
-
 
 
                     <android.support.design.widget.TextInputLayout
@@ -210,12 +194,6 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-
-
-
-
-
-
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_return_full"
                         android:layout_width="match_parent"
@@ -235,15 +213,11 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-
-
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_empty_clndr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/activity_vertical_margin">
-
-
 
                         <EditText
                             android:id="@+id/input_empty_cylinder"
@@ -257,8 +231,6 @@
                             android:inputType="number"/>
 
                     </android.support.design.widget.TextInputLayout>
-
-
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_retun_defective"
@@ -299,10 +271,6 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-
-
-
-
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_retun_dbc"
                         android:layout_width="match_parent"
@@ -321,10 +289,6 @@
                             android:inputType="number"/>
 
                     </android.support.design.widget.TextInputLayout>
-
-
-
-
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_retun_full"
@@ -345,18 +309,7 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-
-
                 </LinearLayout>
-
-               <!-- <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-
-                    >-->
-
 
             <LinearLayout
                 android:layout_width="match_parent"
