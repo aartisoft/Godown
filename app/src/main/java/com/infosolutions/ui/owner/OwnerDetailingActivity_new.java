@@ -549,7 +549,6 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                                         description = childArray.optJSONObject(j).optString("DESCRIPTION");
                                         sound = childArray.optJSONObject(j).optString("SOUND");
                                         defective = childArray.optJSONObject(j).optString("DEFECTIVE");
-                                        //ModelOwnerDetails openingPra = new ModelOwnerDetails(description, sound, defective);
                                         insideList.add(ModelOwnerDetails.setSend(description, sound, defective));
                                     }
                                     adapterOpening = new AdapterOwnerDetails(this, insideList);
@@ -614,7 +613,7 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                     parentArray = rootObject.optJSONArray("OTHER_STOCKS_GODOWN_WISE");
                     arrayLength = parentArray.length();
 
-                    if (arrayLength > 0){
+                    if (arrayLength > 0) {
 
                         for (int i = 0; i < arrayLength; i++) {
 
@@ -631,7 +630,6 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                                         credit = childArray.optJSONObject(j).optString("CREDIT");
                                         lost = childArray.optJSONObject(j).optString("LOST");
                                         on_field = childArray.optJSONObject(j).optString("ON_FIELD");
-                                        //ModelOwnerDetails openingPra = new ModelOwnerDetails(description, credit, lost, on_field);
                                         insideList.add(ModelOwnerDetails.setOther(description, credit, lost, on_field));
                                     }
                                     adapterOpening = new AdapterOwnerDetails(this, insideList);
