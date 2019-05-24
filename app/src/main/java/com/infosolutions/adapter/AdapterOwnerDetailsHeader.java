@@ -46,13 +46,11 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
         ModelOwnerDetailsHeader header = list.get(position);
         holder.txtHeader.setText(header.getDISPLAY_NAME());
 
-        if (sSelectedItems.get(position)) {
+        /*if (sSelectedItems.get(position)) {
             holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
         } else {
             holder.txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
-        }
-
-
+        }*/
     }
 
     @Override
@@ -92,14 +90,14 @@ public class AdapterOwnerDetailsHeader extends RecyclerView.Adapter<AdapterOwner
                 selectPos.add(mPosition);
             }*/
 
-            if (sSelectedItems.get(mPosition, false)) {
+            /*if (sSelectedItems.get(mPosition, false)) {
                 sSelectedItems.delete(mPosition);
                 txtHeader.setTextColor(ContextCompat.getColor(mContext, android.R.color.black));
             } else {
                 txtHeader.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
                 sSelectedItems.put(mPosition, true);
                 selectPos.add(mPosition);
-            }
+            }*/
 
             listener.onItemClick(mPosition);
         }

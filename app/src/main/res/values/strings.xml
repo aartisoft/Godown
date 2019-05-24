@@ -295,7 +295,33 @@
     <string name="CommercialReport">Commercial Reports</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
+    <!-- String resource added by Ahmed - Date - 23/05/2019 -->
+    <string name="openingLabel" translatable="false">OPENING STOCK</string>
+    <string name="openingBtn" translatable="false">Opening stock in detail</string>
+
+    <string name="domesticLabel" translatable="false">DOMESTIC DELIVERY</string>
+    <string name="domesticBtn" translatable="false">Domestic Delivery in detail</string>
+
+    <string name="commertialLabel" translatable="false">COMMERCIAL DELIVERY</string>
+    <string name="commertialBtn" translatable="false">Commercial Delivery in detail</string>
+
+    <string name="receiveLabel" translatable="false">LOADS RECEIVED</string>
+    <string name="receiveBtn" translatable="false">Load Receive in detail</string>
+
+    <string name="sendLabel" translatable="false">LOADS SENT</string>
+    <string name="sendBtn" translatable="false">Load Send in detail</string>
+
+    <string name="tvLabel" translatable="false">TV DETAILS</string>
+    <string name="tvBtn" translatable="false">TV in detail</string>
+
+    <string name="closingLabel" translatable="false">CURRENT STOCK</string>
+    <string name="closingBtn" translatable="false">closing Stock in detail</string>
+
+    <string name="otherLabel" translatable="false">OTHER DETAILS</string>
+    <string name="otherBtn" translatable="false">Other Stock in detail</string>
+
+    <string name="selectedTabLabel" translatable="false">NO OPTION IS SELECTED !!!</string>
 
 </resources>

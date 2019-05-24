@@ -23,7 +23,7 @@
                 android:id="@+id/tagSend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LOADS SENT"
+                android:text="@string/sendLabel"
                 android:textSize="15dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Load Send in details" />
+                android:text="@string/sendBtn" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
