@@ -81,16 +81,16 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
         layoutManagerContent = new LinearLayoutManager(this);
         recyclerViewContent.setLayoutManager(layoutManagerContent);
 
-        headerOpening = (LinearLayout) findViewById(R.id.headerOpening);
+        headerOpening  = (LinearLayout) findViewById(R.id.headerOpening);
         headerDomestic = (LinearLayout) findViewById(R.id.headerDomestic);
-        headerReceive = (LinearLayout) findViewById(R.id.headerReceive);
-        headerSend = (LinearLayout) findViewById(R.id.headerSend);
-        headerOther = (LinearLayout) findViewById(R.id.headerOther);
+        headerReceive  = (LinearLayout) findViewById(R.id.headerReceive);
+        headerSend     = (LinearLayout) findViewById(R.id.headerSend);
+        headerOther    = (LinearLayout) findViewById(R.id.headerOther);
 
         intent     =  getIntent();
         response   =  intent.getStringExtra("response");
         title      =  intent.getStringExtra("layout_type");
-        toolbar   = findViewById(R.id.toolbar);
+        toolbar    = findViewById(R.id.toolbar);
 
         mTitle = toolbar.findViewById(R.id.toolbar_title);
         mTitle.setText(title);
