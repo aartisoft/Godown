@@ -27,6 +27,21 @@
             android:layout_marginBottom="2dp"
             android:background="@color/colorBlack" />
 
+        <TextView
+            android:id="@+id/selectedTab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/selectedTabLabel"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/colorBlack" />
+
         <LinearLayout
             android:id="@+id/headerOpening"
             android:layout_width="match_parent"

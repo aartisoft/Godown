@@ -21,6 +21,7 @@ import com.infosolutions.model.ModelOwnerDetailsHeader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
     String response;
     public static String title;
     Toolbar toolbar;
-    TextView mTitle;
+    TextView mTitle, mSelectedTab;
     String description, defective, opening_full, opening_empty, delivery, sv, dbc, lost, sound, credit, on_field;
     List<ModelOwnerDetails> insideList;
     LinearLayout headerOpening, headerDomestic, headerReceive, headerSend, headerOther;
@@ -86,6 +87,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
         headerReceive  = (LinearLayout) findViewById(R.id.headerReceive);
         headerSend     = (LinearLayout) findViewById(R.id.headerSend);
         headerOther    = (LinearLayout) findViewById(R.id.headerOther);
+
+        mSelectedTab = (TextView) findViewById(R.id.selectedTab);
 
         intent     =  getIntent();
         response   =  intent.getStringExtra("response");
@@ -358,8 +361,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
         ModelOwnerDetailsHeader header = list.get(position);
         String itemName = header.getDISPLAY_NAME();
-        //Toast.makeText(this, "Clicked : " + itemName, Toast.LENGTH_LONG).show();
 
+        mSelectedTab.setText("You are selected : " + itemName);
         insideList.clear();
 
         try {

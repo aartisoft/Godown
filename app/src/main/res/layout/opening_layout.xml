@@ -27,7 +27,7 @@
                     android:id="@+id/tagOpening"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="OPENING STOCK"
+                    android:text="@string/openingLabel"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Opening stock in details" />
+                android:text="@string/openingBtn" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

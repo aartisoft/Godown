@@ -24,7 +24,7 @@
                     android:id="@+id/tagDomestic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="DOMESTIC DELIVERY"
+                    android:text="@string/domesticLabel"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Domestic Delivery in details" />
+                android:text="@string/domesticBtn" />
 
         </LinearLayout>
 

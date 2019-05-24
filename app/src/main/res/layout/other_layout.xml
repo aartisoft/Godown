@@ -23,7 +23,7 @@
                     android:id="@+id/tagOther"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="OTHER DETAILS"
+                    android:text="@string/otherLabel"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Other Stock in details" />
+                android:text="@string/otherBtn" />
 
         </LinearLayout>
 
