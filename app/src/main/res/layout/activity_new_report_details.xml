@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context="com.infosolutions.ui.user.reports.NewReportDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <include layout="@layout/actionbar_toolbar" />
         <RelativeLayout
@@ -39,14 +41,16 @@
             android:clickable="true" />
         </RelativeLayout>
 
-
         <ExpandableListView
             android:id="@+id/reports_listview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
         </ExpandableListView>
-    </LinearLayout>
+
+
+        </LinearLayout>
 
     <LinearLayout
         android:id="@+id/errorMsg"
