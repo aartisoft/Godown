@@ -367,7 +367,7 @@ public class GodownReportForOwner extends
 
         TableRow row= new TableRow(getApplicationContext());
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(10,0,10,0);
+        lp.setMargins(0,0,0,0);
         row.setLayoutParams(lp);
 
         TextView tvHeaderTitle1 = new TextView(getApplicationContext());
@@ -443,9 +443,10 @@ public class GodownReportForOwner extends
 
         view.setTextColor(Color.BLACK);
         view.setTypeface(view.getTypeface(), Typeface.BOLD);
-        view.setTextSize(15);
-        view.setPadding(10, 0, 10, 10);
         view.setGravity(Gravity.CENTER);
+        view.setTextSize(15);
+        view.setMinWidth(120);
+        view.setPadding(0, 0, 0, 0);
         return view;
     }
 
@@ -453,9 +454,8 @@ public class GodownReportForOwner extends
 
         viewHeader.setTextSize(15);
         viewHeader.setTextColor(getResources().getColor(R.color.colorBlack));
-        viewHeader.setPadding(10, 0, 10, 10);
+        viewHeader.setPadding(0, 0, 0, 10);
         viewHeader.setGravity(Gravity.LEFT);
-
         return viewHeader;
     }
 
@@ -464,7 +464,7 @@ public class GodownReportForOwner extends
 
         viewRow.setTextSize(15);
         viewRow.setTextColor(getResources().getColor(R.color.colorBlack));
-        viewRow.setPadding(10, 0, 10, 10);
+        viewRow.setPadding(0, 0, 0, 10);
         viewRow.setGravity(Gravity.CENTER);
         return viewRow;
     }
@@ -629,7 +629,6 @@ public class GodownReportForOwner extends
 
         //Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity.class);
         //Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity_2.class);
-
         Intent intent = new Intent(getApplicationContext(), OwnerDetailingActivity_new.class);
         intent.putExtra("response", response);
         intent.putExtra("layout_type", DETAILING_LAYOUT);
