@@ -445,6 +445,7 @@ public class GodownReportForOwner extends
         view.setTypeface(view.getTypeface(), Typeface.BOLD);
         view.setTextSize(15);
         view.setPadding(10, 0, 10, 10);
+        view.setGravity(Gravity.CENTER);
         return view;
     }
 
@@ -454,6 +455,7 @@ public class GodownReportForOwner extends
         viewHeader.setTextColor(getResources().getColor(R.color.colorBlack));
         viewHeader.setPadding(10, 0, 10, 10);
         viewHeader.setGravity(Gravity.LEFT);
+
         return viewHeader;
     }
 
@@ -463,7 +465,7 @@ public class GodownReportForOwner extends
         viewRow.setTextSize(15);
         viewRow.setTextColor(getResources().getColor(R.color.colorBlack));
         viewRow.setPadding(10, 0, 10, 10);
-        viewRow.setGravity(Gravity.RIGHT);
+        viewRow.setGravity(Gravity.CENTER);
         return viewRow;
     }
 

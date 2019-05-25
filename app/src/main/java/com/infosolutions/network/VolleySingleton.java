@@ -618,7 +618,6 @@ public class VolleySingleton {
             public void onResponse(JSONObject response) {
                 if (mResponseListener != null)
                     notifySuccessListener(type, response.toString());
-
             }
         }, new Response.ErrorListener() {
             @Override
