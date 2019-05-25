@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -362,7 +363,8 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
         ModelOwnerDetailsHeader header = list.get(position);
         String itemName = header.getDISPLAY_NAME();
 
-        mSelectedTab.setText("You are selected : " + itemName);
+        String sourceString =  "You are selected : " + "<b><font color='#800000'>" + itemName + "</font></b>";
+        mSelectedTab.setText(Html.fromHtml(sourceString));
         insideList.clear();
 
         try {
