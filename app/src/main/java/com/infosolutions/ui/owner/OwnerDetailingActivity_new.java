@@ -35,6 +35,7 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
     AdapterOwnerDetailsHeader adapterHeader;
     AdapterOwnerDetails adapterOpening;
     List<ModelOwnerDetailsHeader> list;
+    View upperLine, lowerLine;
 
     Intent intent;
     String response;
@@ -89,6 +90,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
         headerSend = (LinearLayout) findViewById(R.id.headerSend);
         headerOther = (LinearLayout) findViewById(R.id.headerOther);
 
+        upperLine = (View) findViewById(R.id.upperLine);
+        lowerLine = (View) findViewById(R.id.lowerLine);
+
         mSelectedTab = (TextView) findViewById(R.id.selectedTab);
 
         intent     =  getIntent();
@@ -138,6 +142,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                 } else {
                                     Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                                    upperLine.setVisibility(View.GONE);
+                                    lowerLine.setVisibility(View.GONE);
+                                    mSelectedTab.setVisibility(View.GONE);
                                 }
                             }
                             adapterHeader = new AdapterOwnerDetailsHeader(list, this, this);
@@ -145,6 +152,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                         } else {showError();}
                     } else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                        upperLine.setVisibility(View.GONE);
+                        lowerLine.setVisibility(View.GONE);
+                        mSelectedTab.setVisibility(View.GONE);
                     }
                 } else if(title.equalsIgnoreCase("OTHER")) {
 
@@ -169,6 +179,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                 }else {
                                     Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                                    upperLine.setVisibility(View.GONE);
+                                    lowerLine.setVisibility(View.GONE);
+                                    mSelectedTab.setVisibility(View.GONE);
                                 }
                             }
                             adapterHeader = new AdapterOwnerDetailsHeader(list, this, this);
@@ -176,6 +189,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                         } else {showError();}
                     } else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                        upperLine.setVisibility(View.GONE);
+                        lowerLine.setVisibility(View.GONE);
+                        mSelectedTab.setVisibility(View.GONE);
                     }
                 } else if(title.equalsIgnoreCase("DOMESTIC")) {
 
@@ -200,6 +216,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                 }else {
                                     Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                                    upperLine.setVisibility(View.GONE);
+                                    lowerLine.setVisibility(View.GONE);
+                                    mSelectedTab.setVisibility(View.GONE);
                                 }
                             }
                             adapterHeader = new AdapterOwnerDetailsHeader(list, this, this);
@@ -207,6 +226,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                         }else {showError();}
                     } else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                        upperLine.setVisibility(View.GONE);
+                        lowerLine.setVisibility(View.GONE);
+                        mSelectedTab.setVisibility(View.GONE);
                     }
                 } else if (title.equalsIgnoreCase("COMMERCIAL")) {
 
@@ -228,6 +250,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                 }else {
                                     Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                                    upperLine.setVisibility(View.GONE);
+                                    lowerLine.setVisibility(View.GONE);
+                                    mSelectedTab.setVisibility(View.GONE);
                                 }
                             }
                             adapterHeader = new AdapterOwnerDetailsHeader(list, this, this);
@@ -235,6 +260,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                         } else {showError();}
                     } else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                        upperLine.setVisibility(View.GONE);
+                        lowerLine.setVisibility(View.GONE);
+                        mSelectedTab.setVisibility(View.GONE);
                     }
                 } else if(title.equalsIgnoreCase("RECEIVING")) {
 
@@ -256,6 +284,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                 }else {
                                     Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                                    upperLine.setVisibility(View.GONE);
+                                    lowerLine.setVisibility(View.GONE);
+                                    mSelectedTab.setVisibility(View.GONE);
                                 }
                             }
                             adapterHeader = new AdapterOwnerDetailsHeader(list, this, this);
@@ -263,6 +294,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                         } else {showError();}
                     } else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                        upperLine.setVisibility(View.GONE);
+                        lowerLine.setVisibility(View.GONE);
+                        mSelectedTab.setVisibility(View.GONE);
                     }
                 } else if(title.equalsIgnoreCase("SENDING")) {
                     if(rootObject.has("SENDING_STOCKS_GODOWN_WISE") &&
@@ -283,6 +317,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                 }else {
                                     Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                                    upperLine.setVisibility(View.GONE);
+                                    lowerLine.setVisibility(View.GONE);
+                                    mSelectedTab.setVisibility(View.GONE);
                                 }
                             }
                             adapterHeader = new AdapterOwnerDetailsHeader(list, this, this);
@@ -290,6 +327,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                         } else {showError();}
                     } else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                        upperLine.setVisibility(View.GONE);
+                        lowerLine.setVisibility(View.GONE);
+                        mSelectedTab.setVisibility(View.GONE);
                     }
                 } else if(title.equalsIgnoreCase("TV-DETAILS")) {
 
@@ -311,6 +351,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                 }else {
                                     Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                                    upperLine.setVisibility(View.GONE);
+                                    lowerLine.setVisibility(View.GONE);
+                                    mSelectedTab.setVisibility(View.GONE);
                                 }
                             }
                             adapterHeader = new AdapterOwnerDetailsHeader(list, this, this);
@@ -318,6 +361,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                         } else {showError();}
                     } else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                        upperLine.setVisibility(View.GONE);
+                        lowerLine.setVisibility(View.GONE);
+                        mSelectedTab.setVisibility(View.GONE);
                     }
                 } else if(title.equalsIgnoreCase("CLOSING")) {
 
@@ -339,6 +385,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
 
                                 } else {
                                     Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                                    upperLine.setVisibility(View.GONE);
+                                    lowerLine.setVisibility(View.GONE);
+                                    mSelectedTab.setVisibility(View.GONE);
                                 }
                             }
                             adapterHeader = new AdapterOwnerDetailsHeader(list, this, this);
@@ -346,6 +395,9 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
                         } else {showError();}
                     } else {
                         Toast.makeText(this, "No result found", Toast.LENGTH_SHORT).show();
+                        upperLine.setVisibility(View.GONE);
+                        lowerLine.setVisibility(View.GONE);
+                        mSelectedTab.setVisibility(View.GONE);
                     }
                 }
             }

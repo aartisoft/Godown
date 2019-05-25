@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="@color/colorBlack"
-            android:gravity="center" />
+            android:layout_marginLeft="10dp"
+            android:gravity="left" />
 
         <TextView
             android:id="@+id/fullOpening"
