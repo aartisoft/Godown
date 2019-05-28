@@ -131,6 +131,7 @@ public class AddNewConsumerActivity extends AppCompatActivity implements Respons
         getProducts();
         saveConsumerBtn();
         VolleySingleton.getInstance(getApplicationContext()).addResponseListener(VolleySingleton.CallType.POST_COMMERCIAL_CONSUMER, this);
+
     }
 
     private void disabledFocusFromET() {
