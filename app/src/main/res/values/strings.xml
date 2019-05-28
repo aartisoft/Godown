@@ -324,4 +324,6 @@
 
     <string name="selectedTabLabel" translatable="false">NO OPTION IS SELECTED !!!</string>
 
+    <string name="stockdetailslabel" translatable="false">Stock Details</string>
+
 </resources>

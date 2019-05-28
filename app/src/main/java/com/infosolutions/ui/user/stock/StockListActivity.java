@@ -84,7 +84,6 @@ public class StockListActivity extends BaseActivity {
             Toast.makeText(this, "No Network Connection", Toast.LENGTH_SHORT).show();
         }
 
-
     }
 
 
@@ -192,8 +191,7 @@ public class StockListActivity extends BaseActivity {
                 applyHeaderMargin("OPENING STOCKS",opening_stock_table);
                 setHeaderStock("", "FULL", "EMPTY", "DEFECTIVE",opening_stock_table);
 
-                for (int i = 0; i<arrayOpening.length(); i++)
-                {
+                for (int i = 0; i<arrayOpening.length(); i++) {
                     JSONObject jsonReceived = arrayOpening.optJSONObject(i);
 
                     String DEFECTIVE     =  jsonReceived.optString("DEFECTIVE");
