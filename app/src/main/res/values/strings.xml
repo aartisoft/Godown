@@ -297,6 +297,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
+
     <!-- String resource added by Ahmed - Date - 23/05/2019 -->
     <string name="openingLabel" translatable="false">OPENING STOCK</string>
     <string name="openingBtn" translatable="false">Opening stock in detail</string>
@@ -325,5 +326,21 @@
     <string name="selectedTabLabel" translatable="false">NO OPTION IS SELECTED !!!</string>
 
     <string name="stockdetailslabel" translatable="false">Stock Details</string>
+
+    <string name="labelProduct" translatable="false">Product</string>
+    <string name="labelDefective" translatable="false">Defective</string>
+    <string name="labelFull" translatable="false">Full</string>
+    <string name="labelEmpty" translatable="false">Empty</string>
+    <string name="labelSound" translatable="false">Sound</string>
+    <string name="labelLost" translatable="false">Lost</string>
+    <string name="labelSV" translatable="false">SV</string>
+    <string name="labelTV" translatable="false">TV</string>
+    <string name="labelCredit" translatable="false">Credit</string>
+    <string name="labelOnField" translatable="false">On Field</string>
+    <string name="labelDelivery" translatable="false">Delivery</string>
+    <string name="labelDBC" translatable="false">DBC</string>
+
+    <string name="labelSelectedItem" translatable="false">You have selected : </string>
+
 
 </resources>

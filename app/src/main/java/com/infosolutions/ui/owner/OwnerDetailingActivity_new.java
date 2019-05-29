@@ -415,7 +415,7 @@ public class OwnerDetailingActivity_new extends AppCompatActivity implements Ada
         ModelOwnerDetailsHeader header = list.get(position);
         String itemName = header.getDISPLAY_NAME();
 
-        String sourceString =  "You have selected : " + "<b><font color='#800000'>" + itemName + "</font></b>";
+        String sourceString = getResources().getString(R.string.labelSelectedItem) + "<b><font color='#800000'>" + itemName + "</font></b>";
         mSelectedTab.setText(Html.fromHtml(sourceString));
         insideList.clear();
 
