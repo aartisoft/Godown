@@ -57,6 +57,7 @@ import com.infosolutions.ui.user.commercial.CommercialActivity;
 import com.infosolutions.ui.user.domestic.DomesticActivity;
 import com.infosolutions.ui.user.reports.ReportListItemsActivity;
 import com.infosolutions.ui.user.setting.SettingsActivity;
+import com.infosolutions.ui.user.stock.StockDetails;
 import com.infosolutions.ui.user.stock.StockListActivity;
 import com.infosolutions.ui.user.stock.StockTransferActivity;
 import com.infosolutions.ui.user.tvdetails.TVDetailsActivity;
@@ -483,7 +484,8 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(getApplicationContext(), TVDetailsActivity.class));
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             } else if (selectedModuleType.equalsIgnoreCase("5")) {
-                startActivity(new Intent(getApplicationContext(), StockListActivity.class));
+                //startActivity(new Intent(getApplicationContext(), StockListActivity.class));
+                startActivity(new Intent(getApplicationContext(), StockDetails.class));
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             } else if (selectedModuleType.equalsIgnoreCase("6")) {
                 startActivity(new Intent(getApplicationContext(), ReportListItemsActivity.class));
