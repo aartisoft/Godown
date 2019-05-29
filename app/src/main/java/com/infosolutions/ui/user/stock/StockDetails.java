@@ -188,7 +188,7 @@ public class StockDetails extends AppCompatActivity implements ResponseListener,
         itemName = header.getDISPLAY_NAME();
         //Toast.makeText(this, "Tab Name : " + itemName, Toast.LENGTH_SHORT).show();
 
-        String sourceString =  "You have selected : " + "<b><font color='#800000'>" + itemName + "</font></b>";
+        String sourceString =  getResources().getString(R.string.labelSelectedItem) + "<b><font color='#800000'>" + itemName + "</font></b>";
         mSelectedTab.setText(Html.fromHtml(sourceString));
 
         //listDetails.clear();
