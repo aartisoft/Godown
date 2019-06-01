@@ -69,7 +69,7 @@ public class Constants {
     Cloud
      */
 
-    public static final String dbname = "EVITA_PROD";
+   /* public static final String dbname = "EVITA_PROD";
     public static final String INFO ="android.evitasoftsolutions.com";
     public static final String GET_ALL_REPORT = "http://android.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://android.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
@@ -89,9 +89,10 @@ public class Constants {
     public static final String STOCK_REPORT="http://android.evitasoftsolutions.com/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://android.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
     public static final String SV_CONSUMERS = "http://android.evitasoftsolutions.com/Masters/GetAndrSvDetails";
+*/
 
-    /*public static final String dbname = "EVITA_PROD";
-    public static final String INFO ="ags.evitasoftsolutions.com";
+    public static final String dbname = "EVITA_PROD";
+    public static final String INFO ="http://ags.evitasoftsolutions.com/";
     public static final String GET_ALL_REPORT = "http://ags.evitasoftsolutions.com/Reports/GetAndrReportAll";
     public static final String get_url = "http://ags.evitasoftsolutions.com/masters/GetAndrEmp"; //"http://103.31.144.174/masters/GetAndrEmp";
     public static final String post_url = "http://ags.evitasoftsolutions.com/Purchase/SaveDomesticDeliveryAndrA";
@@ -109,8 +110,7 @@ public class Constants {
     public static final String AGENCY_NAME="http://ags.evitasoftsolutions.com/Masters/GetAndrPrimaryCompany";
     public static final String STOCK_REPORT="http://ags.evitasoftsolutions.com/Inventory/GetAndrGodownWiseStocks";
     public static final String OWNER_DETAIL_REPORT = "http://ags.evitasoftsolutions.com/Inventory/GetAndrOwnerReports";
-    public static final String SV_CONSUMERS = "http://ags.evitasoftsolutions.com/Masters/GetAndrSvDetails";*/
-
+    public static final String SV_CONSUMERS = "http://ags.evitasoftsolutions.com/Masters/GetAndrSvDetails";
 
 /*
     public static final String dbname = "EVITA_PROD";

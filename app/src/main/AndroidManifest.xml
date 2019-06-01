@@ -172,7 +172,7 @@
             android:name="com.commercialMgmt.CommercialSaleActivity"
             android:label="" />
         <activity
-            android:name="com.commercialMgmt.CommercialReportDetailActivity"
+            android:name="com.commercialMgmt.CommercialSaleReportActivity"
             android:configChanges="orientation|screenSize"
             android:label="" />
         <activity

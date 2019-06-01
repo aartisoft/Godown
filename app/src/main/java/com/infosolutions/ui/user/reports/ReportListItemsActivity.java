@@ -3,8 +3,6 @@ package com.infosolutions.ui.user.reports;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,13 +16,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.commercialMgmt.CommercialReportDetailActivity;
-import com.commercialMgmt.graph.graphReport;
+import com.commercialMgmt.CommercialCashReport;
+import com.commercialMgmt.CommercialEmptyReceivedReport;
+import com.commercialMgmt.CommercialSaleReportActivity;
 import com.infosolutions.adapter.StockReportAdapter;
 import com.infosolutions.evita.R;
 import com.infosolutions.model.StockReportModel;
 import com.infosolutions.network.Constants;
-import com.infosolutions.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -153,7 +151,7 @@ public class ReportListItemsActivity extends AppCompatActivity {
             }
 */            else if (model.getStockReportTitle().equalsIgnoreCase(Constants.StockReportTitle)) {
 
-                Intent intent = new Intent(getApplicationContext(), CommercialReportDetailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CommercialSaleReportActivity.class);
                 intent.putExtra("reportName", "GET_STOCK");
                 intent.putExtra("header", Constants.StockReportTitle);
                 startActivity(intent);
@@ -161,7 +159,7 @@ public class ReportListItemsActivity extends AppCompatActivity {
 
             }else if (model.getStockReportTitle().equalsIgnoreCase(Constants.commercial_sale)) {
 
-                Intent intent = new Intent(getApplicationContext(), CommercialReportDetailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CommercialSaleReportActivity.class);
                 intent.putExtra("reportName", "GET_CONSUMER");
                 intent.putExtra("header", Constants.commercial_sale);
                 startActivity(intent);
@@ -169,7 +167,7 @@ public class ReportListItemsActivity extends AppCompatActivity {
             }
             else if (model.getStockReportTitle().equalsIgnoreCase(Constants.commercial_cash)) {
 
-                Intent intent = new Intent(getApplicationContext(), CommercialReportDetailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CommercialCashReport.class);
                 intent.putExtra("reportName", "GET_CONSUMER");
                 intent.putExtra("header", Constants.commercial_cash);
                 startActivity(intent);
@@ -177,14 +175,12 @@ public class ReportListItemsActivity extends AppCompatActivity {
             }
             else if (model.getStockReportTitle().equalsIgnoreCase(Constants.commercial_empty_received)) {
 
-                Intent intent = new Intent(getApplicationContext(), CommercialReportDetailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CommercialEmptyReceivedReport.class);
                 intent.putExtra("reportName", "GET_CONSUMER");
                 intent.putExtra("header", Constants.commercial_empty_received);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             }
-
-
             else {
                 Toast.makeText(this, "Wrong Selection", Toast.LENGTH_SHORT).show();
             }

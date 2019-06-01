@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,23 +14,19 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.commercialMgmt.models.CommercialConsumerStockReport;
-import com.commercialMgmt.models.CommercialStockModel;
 import com.infosolutions.evita.R;
 import com.infosolutions.network.Constants;
 import com.infosolutions.network.ResponseListener;
 import com.infosolutions.network.VolleySingleton;
-import com.infosolutions.ui.user.reports.NewReportDetailsActivity;
 import com.infosolutions.utils.AppSettings;
 
 import org.json.JSONArray;
@@ -41,17 +36,15 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.SimpleTimeZone;
 
-public class CommercialReportDetailActivity extends AppCompatActivity implements ResponseListener {
+public class CommercialSaleReportActivity extends AppCompatActivity implements ResponseListener {
 
 
     ExpandableListView reportsListView;
-    CommercialReportDetailActivity.ExpandableListAdapter adapter;
+    CommercialSaleReportActivity.ExpandableListAdapter adapter;
     List<String> listDataHeader;
     ProgressBar progressBar;
     HashMap<String, List<String>> listDataChild;
@@ -131,7 +124,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
         calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(CommercialReportDetailActivity.this, date, myCalendar
+                new DatePickerDialog(CommercialSaleReportActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -165,7 +158,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
                 if (groupPosition != previousGroup)
                     reportsListView.collapseGroup(previousGroup);
                 previousGroup = groupPosition;
-                AppSettings.hideKeyboard(CommercialReportDetailActivity.this);
+                AppSettings.hideKeyboard(CommercialSaleReportActivity.this);
             }
         });
 
@@ -295,7 +288,7 @@ public class CommercialReportDetailActivity extends AppCompatActivity implements
     }
 
     private void loadListView(String type,List<CommercialConsumerStockReport> stocksmodel) {
-        adapter = new CommercialReportDetailActivity.ExpandableListAdapter(this, listDataHeader, stockHash, type,stocksmodel);
+        adapter = new CommercialSaleReportActivity.ExpandableListAdapter(this, listDataHeader, stockHash, type,stocksmodel);
         reportsListView.setAdapter(adapter);
     }
 

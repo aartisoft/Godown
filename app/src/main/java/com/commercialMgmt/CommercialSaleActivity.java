@@ -78,7 +78,6 @@ import static java.lang.Integer.parseInt;
 public class CommercialSaleActivity extends AppCompatActivity implements ResponseListener {
 
 
-
     @BindView(R.id.scrollView)
     ScrollView scrollView;
     @BindView(R.id.et_chalan)
